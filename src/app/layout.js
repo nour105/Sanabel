@@ -1,6 +1,22 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { League_Spartan } from "next/font/google";
+import { Montserrat } from "next/font/google";
 
+
+import "./globals.css";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], 
+});
+const leagueSpartan = League_Spartan({
+  variable: "--font-league-spartan",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"], // اختياري حسب احتياجك
+});
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,9 +36,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${leagueSpartan.variable} ${montserrat.variable} ${geistMono.variable} antialiased`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
