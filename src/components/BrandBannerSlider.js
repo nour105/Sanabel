@@ -17,8 +17,8 @@ export default function BrandBannerSlider({ banners, brandName }) {
         <Image
           src={banners[0]}
           alt={brandName}
-          fill
-          priority
+          width={1920}
+          height={600}
           className="object-cover"
           unoptimized
         />
@@ -42,9 +42,7 @@ export default function BrandBannerSlider({ banners, brandName }) {
               <Image
                 src={img}
                 alt={`${brandName} banner ${index + 1}`}
-                fill
                 className="object-cover"
-                priority={index === 0}
                 unoptimized
               />
             </div>

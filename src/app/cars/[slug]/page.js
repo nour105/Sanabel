@@ -36,7 +36,7 @@ export default async function CarPage({ params }) {
         <Image
           src={car.image}
           alt={car.name}
-          fill
+          
           priority
           className="object-cover"
           unoptimized
@@ -91,7 +91,6 @@ export default async function CarPage({ params }) {
                         <Image
                           src={`https://sanabelauto.com/storage/${offer.banners[0]}`}
                           alt={offer.title}
-                          fill
                           className="object-cover"
                           unoptimized
                         />
@@ -123,7 +122,6 @@ export default async function CarPage({ params }) {
                     <Image
                       src={img}
                       alt="Interior"
-                      fill
                       className="object-cover hover:scale-105 transition"
                       unoptimized
                     />
@@ -143,7 +141,6 @@ export default async function CarPage({ params }) {
                     <Image
                       src={img}
                       alt="Exterior"
-                      fill
                       className="object-cover hover:scale-105 transition"
                       unoptimized
                     />

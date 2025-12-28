@@ -18,7 +18,7 @@ export default function Offers({ offers }) {
                   <Image
                     src={`https://sanabelauto.com/storage/${offer.banners[0]}`}
                     alt={offer.title}
-                    fill
+                
                     className="object-cover group-hover:scale-105 transition-transform"
                     unoptimized
                   />

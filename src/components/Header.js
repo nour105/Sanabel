@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function Header() {
   const [brands, setBrands] = useState([]);
@@ -48,9 +49,11 @@ export default function Header() {
                       className="flex items-center px-3 py-2 rounded hover:bg-gray-100 hover:shadow-sm transition-all"
                     >
                       {brand.logo && (
-                        <img
+                        <Image
                           src={`https://sanabelauto.com/storage/${brand.logo}`}
                           alt={brand.name}
+                          fill
+                          unoptimized
                           className="w-8 h-8 mr-3 object-contain"
                         />
                       )}

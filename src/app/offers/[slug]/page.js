@@ -53,7 +53,7 @@ export default async function OfferDetailsPage({ params }) {
           <div className="relative w-full h-[450px]">
             <Image
               src={`https://sanabelauto.com/storage/${offer.banners[0]}`}
-              fill
+              alt={offer.title}
               className="object-cover"
               unoptimized
             />

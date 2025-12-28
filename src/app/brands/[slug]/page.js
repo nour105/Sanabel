@@ -58,8 +58,6 @@ const cars = await getCarsByBrandId(brand.id);
                 <Image
                   src={`${car.image}`}
                   alt={car.name}
-                  unoptimized
-                  fill
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Gradient Overlay */}

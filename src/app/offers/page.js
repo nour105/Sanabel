@@ -95,7 +95,7 @@ export default function OffersPage() {
                   <div className="relative h-56 w-full">
                     <Image
                       src={`https://sanabelauto.com/storage/${offer.banners[0]}`}
-                      fill
+                      alt={offer.title}
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       unoptimized
                     />

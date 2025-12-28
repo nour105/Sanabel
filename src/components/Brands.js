@@ -24,7 +24,8 @@ export default function Brands({ brands }) {
                 <Image
                   src={`https://sanabelauto.com/storage/${brand.logo}`}
                   alt={brand.name}
-                  fill
+                  width={120}
+                  height={60}
                   className="object-contain"
                   unoptimized
                 />

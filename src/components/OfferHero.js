@@ -23,8 +23,7 @@ export default function OfferHero({ title, subtitle, banners }) {
             <div className="relative h-[420px] w-full">
               <Image
                 src={`https://sanabelauto.com/storage/${banner}`}
-                alt={`Banner ${i + 1}`}
-                fill
+                alt={`Banner ${i + 1}`}             
                 className="object-cover"
                 unoptimized
               />

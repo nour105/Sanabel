@@ -25,7 +25,6 @@ export default function Models({ cars }) {
                     <Image
                       src={`https://sanabelauto.com/storage/${car.banner_image}`}
                       alt={car.name}
-                      fill
                       className="object-cover"
                         unoptimized={true} // <-- bypass optimization
 
