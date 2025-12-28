@@ -68,7 +68,7 @@ export default function EmiForm({ setCars, selectedCarId }) {
       )}
 
       <select name="visa_limit">
-        <option value="">Visa Limit</option>
+        <option value="">Credit Limit (Optional)</option>
         <option value="below_5000">Below 5,000</option>
         <option value="5000-10000">5,000 – 10,000</option>
         <option value="10000-15000">10,000 – 15,000</option>
