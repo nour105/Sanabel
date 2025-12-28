@@ -52,8 +52,7 @@ export default async function OfferDetailsPage({ params }) {
         {offer.banners?.length > 0 && (
           <div className="relative w-full h-[450px]">
             <Image
-              src={`http://127.0.0.1:8000/storage/${offer.banners[0]}`}
-              alt="Offer Banner"
+              src={`https://sanabelauto.com/storage/${offer.banners[0]}`}
               fill
               className="object-cover"
               unoptimized
@@ -89,8 +88,7 @@ export default async function OfferDetailsPage({ params }) {
                   >
                     {brand.logo ? (
                       <Image
-                        src={`http://127.0.0.1:8000/storage/${brand.logo}`}
-                        alt={brand.name}
+                        src={`https://sanabelauto.com/storage/${brand.logo}`}
                         width={120}
                         height={60}
                         className="object-contain p-2"

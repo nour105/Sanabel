@@ -16,7 +16,7 @@ export default function Offers({ offers }) {
               {offer.banners && offer.banners.length > 0 && (
                 <div className="relative h-64 w-full">
                   <Image
-                    src={`http://127.0.0.1:8000/storage/${offer.banners[0]}`}
+                    src={`https://sanabelauto.com/storage/${offer.banners[0]}`}
                     alt={offer.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform"

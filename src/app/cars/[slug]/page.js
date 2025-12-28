@@ -89,7 +89,7 @@ export default async function CarPage({ params }) {
                     {offer.banners?.[0] && (
                       <div className="relative h-40 w-full">
                         <Image
-                          src={`http://127.0.0.1:8000/storage/${offer.banners[0]}`}
+                          src={`https://sanabelauto.com/storage/${offer.banners[0]}`}
                           alt={offer.title}
                           fill
                           className="object-cover"

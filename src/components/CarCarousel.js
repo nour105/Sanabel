@@ -27,7 +27,7 @@ export default function CarCarousel({ cars }) {
             {/* Image */}
             <div className="relative h-56 overflow-hidden">
               <img
-                src={`http://127.0.0.1:8000/storage/${car.banner_image}`}
+                src={`https://sanabelauto.com/storage/${car.banner_image}`}
                 alt={car.name}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />

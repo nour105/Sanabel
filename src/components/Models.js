@@ -23,7 +23,7 @@ export default function Models({ cars }) {
                 {car.banner_image && (
                   <div className="relative h-48">
                     <Image
-                      src={`http://127.0.0.1:8000/storage/${car.banner_image}`}
+                      src={`https://sanabelauto.com/storage/${car.banner_image}`}
                       alt={car.name}
                       fill
                       className="object-cover"

@@ -22,7 +22,7 @@ export default function OfferHero({ title, subtitle, banners }) {
           <SwiperSlide key={i}>
             <div className="relative h-[420px] w-full">
               <Image
-                src={`http://127.0.0.1:8000/storage/${banner}`}
+                src={`https://sanabelauto.com/storage/${banner}`}
                 alt={`Banner ${i + 1}`}
                 fill
                 className="object-cover"

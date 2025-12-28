@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://127.0.0.1:8000/api/v1';
+const API_BASE_URL = 'https://sanabelauto.com/api/v1';
 // export async function submitLeadSearch(payload) {
 //   const res = await fetch(
 //     `${API_BASE_URL}/lead-search`,
@@ -92,7 +92,7 @@ export async function getCars() {
 }
 
 export async function getCar(slug) {
-  const res = await fetch(`http://127.0.0.1:8000/api/v1/cars/slug/${slug}`);
+  const res = await fetch(`https://sanabelauto.com/api/v1/cars/slug/${slug}`);
   if (!res.ok) throw new Error('Car not found');
   const data = await res.json();
   return data.data; // لأن الـ API بيرجع data داخل object
@@ -162,7 +162,7 @@ export async function getAllcars() {
 
 }
 export async function getCarsByBrandId(brandId) {
-  const res = await fetch(`http://127.0.0.1:8000/api/v1/cars/brand/${brandId}`);
+  const res = await fetch(`https://sanabelauto.com/api/v1/cars/brand/${brandId}`);
   const data = await res.json();
   return data.success ? data.data : [];
 }

@@ -8,7 +8,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/v1/brands')
+    fetch('https://sanabelauto.com/api/v1/brands')
       .then(res => res.json())
       .then(data => setBrands(data.data || []));
   }, []);
@@ -49,7 +49,7 @@ export default function Header() {
                     >
                       {brand.logo && (
                         <img
-                          src={`http://127.0.0.1:8000/storage/${brand.logo}`}
+                          src={`https://sanabelauto.com/storage/${brand.logo}`}
                           alt={brand.name}
                           className="w-8 h-8 mr-3 object-contain"
                         />

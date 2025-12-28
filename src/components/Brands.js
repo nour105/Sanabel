@@ -22,7 +22,7 @@ export default function Brands({ brands }) {
             >
               <div className="relative w-20 h-20">
                 <Image
-                  src={`http://127.0.0.1:8000/storage/${brand.logo}`}
+                  src={`https://sanabelauto.com/storage/${brand.logo}`}
                   alt={brand.name}
                   fill
                   className="object-contain"
