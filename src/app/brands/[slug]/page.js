@@ -55,9 +55,11 @@ const cars = await getCarsByBrandId(brand.id);
             <div className="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
               {/* Image */}
               <div className="relative h-56 overflow-hidden">
-                <img
+                <Image
                   src={`${car.image}`}
                   alt={car.name}
+                  unoptimized
+                  fill
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Gradient Overlay */}

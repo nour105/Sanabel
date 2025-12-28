@@ -3,16 +3,23 @@ const nextConfig = {
   reactCompiler: true,
 
   images: {
-  remotePatterns: [
-    {
-      protocol: 'http',
-      hostname: '192.168.1.10',
-      port: '8000',
-      pathname: '/storage/**',
-    },
-  ],
-},
+    remotePatterns: [
+      // Local backend (development)
+      {
+        protocol: 'http',
+        hostname: '192.168.1.10',
+        port: '8000',
+        pathname: '/storage/**',
+      },
 
+      // Production dashboard
+      {
+        protocol: 'https',
+        hostname: 'sanabelauto.com',
+        pathname: '/storage/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
