@@ -52,8 +52,8 @@ export default function Header() {
                         <Image
                           src={`https://sanabelauto.com/storage/${brand.logo}`}
                           alt={brand.name}
-                          fill
-                          unoptimized
+                          width={50}
+                          height={50}
                           className="w-8 h-8 mr-3 object-contain"
                         />
                       )}
