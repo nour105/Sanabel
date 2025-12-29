@@ -34,7 +34,8 @@ export default function Banner({ banners }) {
               <Image
                 src={`${BASE_IMAGE_URL}${item.banner}`}
                 alt={`Banner ${index + 1}`}
-                
+                width={1920}
+                height={600}
                 priority={index === 0}
                 className="object-cover"
                 unoptimized={true}
