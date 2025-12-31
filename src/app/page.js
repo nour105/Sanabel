@@ -30,7 +30,7 @@ export default async function Home() {
       </section>
       {/* 2️⃣ OFFERS / FEATURED CARS */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container text-black mx-auto px-4">
           <Offers offers={offers} />
         </div>
       </section>
@@ -39,7 +39,7 @@ export default async function Home() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <h2 className="mb-4 text-2xl font-bold text-center">
+            <h2 className="mb-4 text-black text-2xl font-bold text-center">
               Apply now and get your car
             </h2>
             <LeadForm />
@@ -51,7 +51,7 @@ export default async function Home() {
 
       {/* 5️⃣ BRANDS */}
       <section className="py-16 bg-gray-50">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Brands</h2>
+        <h2 className="text-3xl font-bold text-black text-center mb-12">Our Brands</h2>
         <div className="container mx-auto px-4">
           <Brands brands={brands} />
         </div>

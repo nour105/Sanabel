@@ -13,7 +13,7 @@ export default function Brands({ brands }) {
   return (
     <section className=" bg-gray-50">
       <div className="container mx-auto px-6">        
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-8 items-center">
+        <div className="flex  justify-center sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-8 items-center">
           {brands.map((brand) => (
             <Link
               key={brand.id}

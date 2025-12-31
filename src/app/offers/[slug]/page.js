@@ -82,10 +82,10 @@ export default async function OfferDetailsPage({ params }) {
           {/* BRANDS */}
           {offer.brands?.length > 0 && (
             <section className="mb-24">
-              <h2 className="text-3xl font-bold text-center mb-10">
+              <h2 className="text-3xl  font-bold text-center mb-10">
                 Explore Our Brands
               </h2>
-              <div className="flex gap-6 overflow-x-auto py-4 px-2">
+              <div className="flex gap-6 items-center justify-center py-4 px-2">
                 {offer.brands.map((brand, i) => (
                   <div
                     key={i}
@@ -126,21 +126,20 @@ export default async function OfferDetailsPage({ params }) {
           )}
 
           {/* CARS */}
-          {offer.cars?.length > 0 && (
-            <section className="mb-32">
-              <div className="mb-8 flex items-center justify-between">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Cars Included in This Offer
-                </h2>
-                <span className="text-sm font-medium text-green-600">
-                  EMI Available
-                </span>
-              </div>
-              <div className="rounded-3xl  p-8">
-                <CarCarousel cars={offer.cars} />
-              </div>
-            </section>
-          )}
+         {offer.cars?.length > 0 && (
+          <section className="mb-24">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-bold">
+                Cars Included in This Offer
+              </h2>
+              <span className="text-green-600 font-medium">
+                EMI Available
+              </span>
+            </div>
+
+            <CarCarousel cars={offer.cars} />
+          </section>
+        )}
         </div>
       </div>
     );

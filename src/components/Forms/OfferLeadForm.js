@@ -10,7 +10,7 @@ export default function OfferLeadForm({ offer }) {
 
   async function submit(e) {
     e.preventDefault();
-    if (!agreeTerms || !authorize) {
+    if (!agreeTerms) {
       alert('Please agree to the terms and authorization.');
       return;
     }
@@ -60,11 +60,13 @@ export default function OfferLeadForm({ offer }) {
           className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
         />
         <input
-          name="phone"
-          placeholder="050 000 0000"
-          required
-          className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
-        />
+  name="phone"
+  placeholder="050 000 0000"
+  required
+  pattern="^05\d{8}$"
+  title="Enter a valid Saudi phone number starting with 05 and 10 digits"
+  className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+/>
         <input
           name="email"
           type="email"
@@ -84,16 +86,11 @@ export default function OfferLeadForm({ offer }) {
           ))}
         </select>
 
-        <select
-          name="salary"
-          className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
-          defaultValue=""
-        >
+        <select name="salary" className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
           <option value="" disabled>راتبك الشهري</option>
-          <option value="5000-10000">5000 - 10000</option>
-          <option value="10001-20000">10001 - 20000</option>
-          <option value="20001-30000">20001 - 30000</option>
-          <option value="30001+">30001+</option>
+          <option value="below_5000">Below 5000</option>
+          <option value="between_5000_and_10,000">between 5000 and 10,000</option>
+          <option value="over_10,000">over 10,000</option>
         </select>
 
         <select
@@ -101,10 +98,11 @@ export default function OfferLeadForm({ offer }) {
           className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
           defaultValue=""
         >
-          <option value="" disabled>مصرف</option>
-          <option value="ABC Bank">ABC Bank</option>
-          <option value="XYZ Bank">XYZ Bank</option>
-          <option value="Other">Other</option>
+        <option value="" disabled>Bank</option>
+        <option value="SNB">SNB</option>
+        <option value="NCB">NCB</option>
+        <option value="NBD">NBD</option>
+        <option value="Bank4">Bank 4</option>
         </select>
 
         <button

@@ -19,7 +19,7 @@ export default function ProductListing({ brands = [], cars = [] }) {
 
   return (
     <div className="flex flex-col gap-8">
-      <Filters brands={brands} cars={safeCars} onFilterChange={handleFilterChange} />
+<Filters brands={brands} cars={safeCars} onFilterChange={handleFilterChange} />
 
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredCars.map(car => (
@@ -32,6 +32,9 @@ export default function ProductListing({ brands = [], cars = [] }) {
                   alt={car.name}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                 {car.has_offer && (
+                <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">Offer</span>
+              )}
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80"></div>
                 {/* Price Badge */}

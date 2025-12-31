@@ -1,7 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
+import { trackCTA } from '@/lib/ctaTrack';
 
-export default function CallButton() {
+
+export default function CallUs({ car }) {
   const [showPopup, setShowPopup] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -16,21 +18,30 @@ export default function CallButton() {
     return (
       <a
         href={`tel:${phoneNumber.replace(/\s+/g, "")}`}
-        className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition font-semibold"
+        onClick={() => {
+        trackCTA({ cta: 'callback', car });
+        setOpen(true);
+      }}
+        className="w-full bg-white text-indigo-600 py-3 rounded-xl font-semibold cursor-pointer"
       >
-        Call Us Now
+         Call us now!
       </a>
     );
   }
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setShowPopup(true)}
-        className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition font-semibold"
-      >
-        Call Us Now
+    <button
+      type="button"
+      onClick={() => {
+        setShowPopup(true);
+        trackCTA({ cta: 'callback', car });
+      }}
+
+      className="w-full bg-white text-indigo-600 py-3 rounded-xl font-semibold cursor-pointer"
+    >
+         Call us now!
+
       </button>
 
       {showPopup && (
@@ -38,16 +49,12 @@ export default function CallButton() {
           <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl border border-gray-100 relative">
             <button
               onClick={() => setShowPopup(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl transition"
+              className="absolute top-3  cursor-pointer right-3 text-gray-400 hover:text-gray-600 text-xl transition"
             >
               ✕
             </button>
-            <h2 className="text-2xl font-bold mb-3 text-gray-900 text-center">
-              Call Us
-            </h2>
-            <p className="text-gray-600 mb-6 text-center">
-              You can reach us at:
-            </p>
+            <h2 className="text-2xl font-bold mb-3 text-gray-900 text-center">Call Us</h2>
+            <p className="text-gray-600 mb-6 text-center">You can reach us at:</p>
             <a
               href={`tel:${phoneNumber.replace(/\s+/g, "")}`}
               className="block text-lg font-semibold text-blue-600 hover:underline text-center"

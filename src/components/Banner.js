@@ -26,18 +26,18 @@ export default function Banner({ banners }) {
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         loop
-        className="h-[70vh] md:h-[80vh] lg:h-[90vh]"
+        className=""
       >
         {banners.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-full">
+            <div className="relative ">
               <Image
                 src={`${BASE_IMAGE_URL}${item.banner}`}
                 alt={`Banner ${index + 1}`}
-                width={1920}
-                height={600}
+                width={1860}
+                height={720}
                 priority={index === 0}
-                className="object-cover"
+                className="object-cover w-full h-[70vh] md:h-[80vh] lg:h-[90vh]"
                 unoptimized={true}
               />
             </div>

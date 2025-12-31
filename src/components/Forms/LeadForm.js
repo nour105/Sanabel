@@ -3,20 +3,20 @@
 import { useState } from "react";
 import { submitLeadSearch } from "@/lib/api";
 import CallButton from "../CallButton";
+import Filters from "../Filters";
 
 export default function EmiLeadForm() {
   const [loading, setLoading] = useState(false);
   const [showLoanType, setShowLoanType] = useState(false);
   const [cars, setCars] = useState([]);
   const [selectedCar, setSelectedCar] = useState(null);
-  const [filters, setFilters] = useState({
-    brand: "",
-    minPrice: 0,
-    maxPrice: 0,
-  });
   const [brands, setBrands] = useState([]);
   const [emiBudget, setEmiBudget] = useState(null);
   const [showEmiBudget, setShowEmiBudget] = useState(false);
+  const [filteredCars, setFilteredCars] = useState([]);
+  const [loadingCarId, setLoadingCarId] = useState(null);
+  
+
 
   // Fetch cars and calculate EMI
   async function handleShowCars(e) {
@@ -41,26 +41,17 @@ export default function EmiLeadForm() {
       bank: f.bank?.value || null,
       purchase_timeline: f.purchase_timeline?.value || null,
       privacy_accepted: true,
-      fetch_cars_only: true,
     };
 
     try {
       const res = await submitLeadSearch(payload);
       const carsData = res.results || [];
       setCars(carsData);
+      setFilteredCars(carsData);
       setEmiBudget(res.emi_budget);
 
       const uniqueBrands = [...new Set(carsData.map((car) => car.brand))];
       setBrands(uniqueBrands);
-
-      const prices = carsData.map((car) => parseFloat(car.price));
-      setFilters({
-        ...filters,
-        minPrice: Math.min(...prices),
-        maxPrice: Math.max(...prices),
-      });
-
-      setSelectedCar(null);
 
       // Show EMI Budget only if financial data exists
       if (
@@ -82,52 +73,38 @@ export default function EmiLeadForm() {
   }
 
   // Submit lead after selecting a car
-  async function handleLeadSubmit() {
-    if (!selectedCar) return alert("Please select a car first");
-    setLoading(true);
-    const f = document.forms[0];
+async function handleLeadSubmit(car) {
+  setLoadingCarId(car.id); // only this car is loading
+  const f = document.forms[0];
 
-    const payload = {
-      name: f.name.value,
-      phone: f.phone.value,
-      email: f.email.value || null,
-      salary_range: f.salary_range.value || null,
-      has_loans: f.hasLoans ? parseInt(f.hasLoans.value) : 0,
-      loan_type: showLoanType ? f.loan_type?.value : null,
-      visa_limit: f.visa_limit?.value || null,
-      bank: f.bank?.value || null,
-      purchase_timeline: f.purchase_timeline?.value || null,
-      car_id: selectedCar.id,
-      privacy_accepted: true,
-    };
+  const payload = {
+    name: f.name.value,
+    phone: f.phone.value,
+    email: f.email.value || null,
+    salary_range: f.salary_range.value || null,
+    has_loans: f.hasLoans ? parseInt(f.hasLoans.value) : 0,
+    loan_type: showLoanType ? f.loan_type?.value : null,
+    visa_limit: f.visa_limit?.value || null,
+    bank: f.bank?.value || null,
+    purchase_timeline: f.purchase_timeline?.value || null,
+    car_id: car.id,
+    privacy_accepted: true,
+  };
 
-    try {
-      await submitLeadSearch(payload);
-      alert("Lead submitted successfully");
-    } catch {
-      alert("Something went wrong submitting the lead");
-    } finally {
-      setLoading(false);
-    }
+  try {
+    await submitLeadSearch(payload);
+    alert(`Lead submitted successfully for ${car.name}`);
+  } catch {
+    alert("Something went wrong submitting the lead");
+  } finally {
+    setLoadingCarId(null); // reset after submission
   }
-
-  // Filter cars
-  const filteredCars = cars.filter((car) => {
-    let matches = true;
-    if (filters.brand) matches = matches && car.brand === filters.brand;
-    if (filters.minPrice)
-      matches =
-        matches && parseFloat(car.price) >= parseFloat(filters.minPrice);
-    if (filters.maxPrice)
-      matches =
-        matches && parseFloat(car.price) <= parseFloat(filters.maxPrice);
-    return matches;
-  });
+}
 
   return (
     <div className="grid gap-6">
       {/* Lead Form */}
-  <form
+       <form
   className="flex flex-wrap gap-4"
   onSubmit={handleShowCars}
 >
@@ -137,12 +114,14 @@ export default function EmiLeadForm() {
     placeholder="Full Name"
     className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
   />
-  <input
-    name="phone"
-    required
-    placeholder="Phone Number"
-    className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
-  />
+ <input
+  name="phone"
+  required
+  placeholder="Phone Number"
+  className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+  pattern="^05\d{8}$"
+  title="Enter a valid Saudi phone number starting with 05 and 10 digits"
+/>
   <input
     name="email"
     type="email"
@@ -250,97 +229,36 @@ export default function EmiLeadForm() {
 
       {/* Filters */}
       {cars.length > 0 && (
-        <div className="mt-8 flex flex-col md:flex-row md:items-center gap-6 px-4 md:px-0">
-          <select
-            className="flex-grow md:flex-none w-full md:w-60 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-transparent transition"
-            value={filters.brand}
-            onChange={(e) => setFilters({ ...filters, brand: e.target.value })}
-          >
-            <option value="">All Brands</option>
-            {brands.map((brand) => (
-              <option key={brand} value={brand}>
-                {brand}
-              </option>
-            ))}
-          </select>
-
-          <div className="flex flex-col gap-2 flex-grow md:flex-none w-full md:w-[320px]">
-            <div className="flex justify-between text-gray-600 font-medium text-sm">
-              <span>Min: {filters.minPrice}</span>
-              <span>Max: {filters.maxPrice}</span>
-            </div>
-            <input
-              type="range"
-              min={Math.min(...cars.map((c) => parseFloat(c.price)))}
-              max={Math.max(...cars.map((c) => parseFloat(c.price)))}
-              value={filters.minPrice}
-              onChange={(e) => setFilters({ ...filters, minPrice: e.target.value })}
-              className="w-full h-2 rounded-lg appearance-none bg-blue-200 cursor-pointer accent-blue-600"
-            />
-            <input
-              type="range"
-              min={Math.min(...cars.map((c) => parseFloat(c.price)))}
-              max={Math.max(...cars.map((c) => parseFloat(c.price)))}
-              value={filters.maxPrice}
-              onChange={(e) => setFilters({ ...filters, maxPrice: e.target.value })}
-              className="w-full h-2 rounded-lg appearance-none bg-blue-200 cursor-pointer accent-blue-600"
-            />
-          </div>
-        </div>
+        <Filters brands={brands.map((b) => ({ name: b }))} cars={cars} onFilterChange={setFilteredCars} />
       )}
 
       {/* Display Cars */}
       {filteredCars.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 px-4 md:px-0">
           {filteredCars.map((car) => (
-            <div
-              key={car.id}
-              className={`bg-white rounded-2xl shadow-lg cursor-pointer overflow-hidden transform transition duration-300 hover:scale-[1.03] relative ${
-                selectedCar?.id === car.id ? "ring-4 ring-blue-500" : ""
-              }`}
-              onClick={() => setSelectedCar(car)}
-            >
-              <img
-                src={car.image}
-                alt={car.name}
-                className="w-full h-52 object-cover"
-                loading="lazy"
-              />
+            <div key={car.id} className="bg-white rounded-2xl shadow-lg overflow-hidden relative">
+              <img src={car.image} alt={car.name} className="w-full h-52 object-cover" loading="lazy" />
               {car.has_offer && (
-                <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                  Offer
-                </span>
+                <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">Offer</span>
               )}
-                <span className="absolute top-3 right-10 bg-gray-200 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                <p className="text-sm text-gray-500">{car.brand}</p>
-
-              </span>
+              <span className="absolute top-3 right-3 bg-gray-200 px-3 py-1 rounded-full text-sm font-semibold shadow-lg text-gray-500">{car.brand}</span>
               <div className="p-5">
                 <h3 className="text-xl font-semibold text-gray-800">{car.name}</h3>
-               
-                <p className="mt-2 text-lg font-bold text-gray-900">
-                  {car.price} {car.currency}
-                </p>
+                <p className="mt-2 text-lg font-bold text-gray-900">{car.price} {car.currency}</p>
                 {car.emi_monthly && (
-                  <p className="mt-1 text-sm text-blue-600">
-                    EMI: {car.emi_monthly} {car.currency}
-                  </p>
+                  <p className="mt-1 text-sm text-blue-600">EMI: {car.emi_monthly} {car.currency}</p>
                 )}
+                <button
+  className="mt-4 w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition"
+  onClick={() => handleLeadSubmit(car)}
+  disabled={loadingCarId === car.id}
+>
+  {loadingCarId === car.id ? "Submitting..." : "I Want This Car"}
+</button>
               </div>
             </div>
           ))}
         </div>
-      )}
-
-      {/* Submit Lead */}
-      {selectedCar && (
-        <button
-          className="block mx-auto mt-10 bg-green-600 text-white py-4 px-10 rounded-full text-lg font-semibold hover:bg-green-700 transition"
-          onClick={handleLeadSubmit}
-          disabled={loading}
-        >
-          {loading ? "Submitting..." : "I Want This Car"}
-        </button>
       )}
     </div>
   );

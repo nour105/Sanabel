@@ -4,7 +4,9 @@ import { getAllcars, getCar } from '@/lib/api';
 import CarLeadForm from '@/components/Forms/CarLeadForm';
 import Link from 'next/link';
 import Countdown from "@/components/CountDown";
-
+import CallUs from '@/components/CallUs';
+import Gallery from '@/components/Gallery';
+import RequestForm from '@/components/RequestForm';
 export const dynamic = 'force-dynamic';
 
 /**
@@ -65,7 +67,7 @@ export default async function CarPage({ params }) {
           {/* Price Box */}
           <div className="bg-white rounded-3xl shadow p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <p className="text-sm text-gray-500">Starting Price</p>
+              <p className="text-sm text-gray-500">Cash Price</p>
               <p className="text-3xl font-bold text-gray-900">
                 {car.price} {car.currency}
               </p>
@@ -134,47 +136,17 @@ export default async function CarPage({ params }) {
             </div>
           )}
 
-          {/* Interior Images */}
-          {car.interior_images?.length > 0 && (
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Interior</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {car.interior_images.map((img, i) => (
-                  <div key={i} className="relative h-48 rounded-2xl overflow-hidden">
-                    <Image
-                      src={img}
-                      alt="Interior"
-                      width={400}
-                      height={300}
-                      className="object-cover hover:scale-105 transition"
-                      unoptimized
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+       <div className="grid lg:grid-cols-2 gap-12">
+  <Gallery
+    title="Interior"
+    images={car.interior_images}
+  />
 
-          {/* Exterior Images */}
-          {car.exterior_images?.length > 0 && (
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Exterior</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {car.exterior_images.map((img, i) => (
-                  <div key={i} className="relative h-48 rounded-2xl overflow-hidden">
-                    <Image
-                      src={img}
-                      alt="Exterior"
-                      width={400}
-                      height={300}
-                      className="object-cover hover:scale-105 transition"
-                      unoptimized
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+  <Gallery
+    title="Exterior"
+    images={car.exterior_images}
+  />
+</div>
         </div>
 
         {/* ===== RIGHT SIDEBAR ===== */}
@@ -208,9 +180,10 @@ export default async function CarPage({ params }) {
             <p className="text-sm text-indigo-100 mb-4">
               Our advisors will help you choose the best option.
             </p>
-            <button className="w-full bg-white text-indigo-600 py-3 rounded-xl font-semibold">
-              Request Callback
-            </button>
+            <div className="space-x-4 flex items-center justify-center" >
+<RequestForm car={car} />
+<CallUs car={car} />
+        </div>
           </div>
         </div>
       </div>
