@@ -26,9 +26,9 @@ export default function ProductListing({ brands = [], cars = [] }) {
           <Link key={car.id} href={`/cars/${car.slug}`}>
             <div className="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
               {/* Image */}
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-62 overflow-hidden">
                 <img
-                  src={`${car.image}`}
+                  src={`${car.card_image}`}
                   alt={car.name}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />

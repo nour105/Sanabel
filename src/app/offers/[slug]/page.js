@@ -49,25 +49,30 @@ export default async function OfferDetailsPage({ params }) {
     return (
       <div className="bg-gray-50">
         {/* HERO BANNER */}
-        {offer.banners?.length > 0 && (
-          <div className="relative w-full h-[450px]">
-            <Image
-              src={`https://sanabelauto.com/storage/${offer.banners[0]}`}
-              alt={offer.title}
-              className="object-cover"
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-4xl px-6 text-center text-white">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                {offer.title}
-              </h1>
-              <p className="text-lg md:text-xl">
-                Flexible EMI options · Multiple brands · Limited time offer
-              </p>
-            </div>
-          </div>
-        )}
+       {offer.banners?.length > 0 && (
+  <div className="relative w-full">
+    {/* Container for banner with fixed aspect ratio */}
+    <div className="relative w-full pt-[30%] md:pt-[23%] lg:pt-[25%] overflow-hidden  shadow-lg">
+      <Image
+        src={`https://sanabelauto.com/storage/${offer.banners}`}
+        alt={offer.title}
+        fill
+        className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+        unoptimized
+      />
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+      {/* Text content */}
+      {/* <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-4xl px-6 text-center text-white">
+        <h1 className="text-4xl md:text-5xl font-bold mb-2">{offer.title}</h1>
+        <p className="text-lg md:text-xl">
+          Flexible EMI options · Multiple brands · Limited time offer
+        </p>
+      </div> */}
+    </div>
+  </div>
+)}
+
 
 <OfferLeadForm offer={offer} />
 
@@ -89,6 +94,7 @@ export default async function OfferDetailsPage({ params }) {
                     {brand.logo ? (
                       <Image
                         src={`https://sanabelauto.com/storage/${brand.logo}`}
+                        alt=""
                         width={120}
                         height={60}
                         className="object-contain p-2"

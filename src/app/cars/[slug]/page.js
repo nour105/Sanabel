@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getAllcars, getCar } from '@/lib/api';
 import CarLeadForm from '@/components/Forms/CarLeadForm';
 import Link from 'next/link';
+import Countdown from "@/components/CountDown";
 
 export const dynamic = 'force-dynamic';
 
@@ -32,12 +33,13 @@ export default async function CarPage({ params }) {
   return (
     <section className="bg-gray-50">
       {/* ================= HERO ================= */}
-      <div className="relative h-[520px] w-full">
+      <div className="relative">
         <Image
           src={car.image}
           alt={car.name}
-          
           priority
+          width={1860}
+          height={720}
           className="object-cover"
           unoptimized
         />
@@ -86,24 +88,44 @@ export default async function CarPage({ params }) {
                     key={offer.id}
                     className="bg-white rounded-2xl shadow overflow-hidden"
                   >
-                    {offer.banners?.[0] && (
-                      <div className="relative h-40 w-full">
-                        <Image
-                          src={`https://sanabelauto.com/storage/${offer.banners[0]}`}
-                          alt={offer.title}
-                          className="object-cover"
-                          unoptimized
-                        />
-                      </div>
-                    )}
+                    {offer.banners?.length > 0 && (
+                                     <div className="relative h-56 w-full">
+                                       <Image
+                                         src={
+                                           offer.card_image
+                                             ? `https://sanabelauto.com/storage/${offer.card_image}`
+                                             : `https://sanabelauto.com/storage/${offer.banners[0]}`
+                                         }
+                                         alt={offer.title}
+                                         fill
+                                         className="object-cover group-hover:scale-105 transition-transform"
+                                         unoptimized
+                                       />
+                                     </div>
+                                   )}
                     <div className="p-5">
                       <h3 className="font-bold text-lg">{offer.title}</h3>
                       <p className="text-sm text-gray-600 mt-2">
                         {offer.description}
                       </p>
-                      <p className="text-xs text-gray-400 mt-3">
-                        Valid: {offer.start_date} → {offer.end_date}
-                      </p>
+                                       {offer.end_date && <Countdown endDate={offer.end_date} />}
+   {offer.brands?.length > 0 && (
+                    <div className="flex gap-2 flex-wrap mt-2">
+                      {offer.brands.map((b, i) => (
+                        <div
+                          key={i}
+                          className="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700"
+                        >
+                          {b.name}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <div className="mt-4 text-right">
+                    <span className="text-blue-600 font-semibold text-sm">
+                      View Details &rarr;
+                    </span>
+                  </div>
                     </div>
                   </div>
                   </Link>
@@ -122,6 +144,8 @@ export default async function CarPage({ params }) {
                     <Image
                       src={img}
                       alt="Interior"
+                      width={400}
+                      height={300}
                       className="object-cover hover:scale-105 transition"
                       unoptimized
                     />
@@ -141,6 +165,8 @@ export default async function CarPage({ params }) {
                     <Image
                       src={img}
                       alt="Exterior"
+                      width={400}
+                      height={300}
                       className="object-cover hover:scale-105 transition"
                       unoptimized
                     />

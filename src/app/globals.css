@@ -4,6 +4,17 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+@keyframes flip {
+  0% { transform: rotateX(0deg); }
+  50% { transform: rotateX(-90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+.flip {
+  display: inline-block;
+  animation: flip 0.5s ease-in-out;
+  backface-visibility: hidden;
+}
 
 /* للعناوين الكبيرة */
 h1, h2, h3 ,input, button {
