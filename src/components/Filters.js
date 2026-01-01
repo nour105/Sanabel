@@ -16,15 +16,19 @@ export default function Filters({ brands, cars, onFilterChange }) {
     maxCarPrice = minCarPrice + 1;
   }
 
-  const [selectedFilters, setSelectedFilters] = useState({
-    brand: '',
-    priceRange: [minCarPrice, maxCarPrice],
-    model: '',
-    colors: [],
-    features: [],
-    trims: [],
-    specifications: []
-  });
+const [selectedFilters, setSelectedFilters] = useState({
+  brand: '',
+  priceRange: [minCarPrice, maxCarPrice],
+  model: '',
+  colors: [],
+  features: [],
+  trims: [],
+  vehicleTypes: [], // ✅ NEW
+  showrooms: [],
+  specifications: [],
+});
+
+  
 
   // ===== Reset price range if cars change =====
   useEffect(() => {
@@ -49,6 +53,27 @@ export default function Filters({ brands, cars, onFilterChange }) {
     () => [...new Set(cars.flatMap(c => c.available_trims?.map(x => x.trim_name) || []))],
     [cars]
   );
+const showroomsOptions = useMemo(
+  () =>
+    [...new Set(
+      cars.flatMap(
+        c => c.available_showrooms?.map(x => x.showroom_name) || []
+      )
+    )],
+  [cars]
+);
+const vehicleTypesOptions = useMemo(
+  () =>
+    [
+      ...new Set(
+        cars.flatMap(
+          c => c.vehicle_types?.map(x => x.type_name) || []
+        )
+      ),
+    ],
+  [cars]
+);
+
 
   const specificationsOptions = useMemo(
     () => [...new Set(cars.flatMap(c => c.specifications?.map(x => x.key) || []))],
@@ -75,6 +100,18 @@ export default function Filters({ brands, cars, onFilterChange }) {
         (selectedFilters.trims.length
           ? c.available_trims?.some(x => selectedFilters.trims.includes(x.trim_name))
           : true) &&
+          (selectedFilters.showrooms.length
+  ? c.available_showrooms?.some(x =>
+      selectedFilters.showrooms.includes(x.showroom_name)
+    )
+  : true) &&
+  (selectedFilters.vehicleTypes.length
+  ? c.vehicle_types?.some(x =>
+      selectedFilters.vehicleTypes.includes(x.type_name)
+    )
+  : true) &&
+
+
         (selectedFilters.specifications.length
           ? c.specifications?.some(x => selectedFilters.specifications.includes(x.key))
           : true)
@@ -208,6 +245,8 @@ export default function Filters({ brands, cars, onFilterChange }) {
     { title: 'Colors', type: 'colors', options: colorsOptions },
     { title: 'Features', type: 'features', options: featuresOptions },
     { title: 'Trims', type: 'trims', options: trimsOptions },
+    { title: 'Showrooms', type: 'showrooms', options: showroomsOptions },
+      { title: 'Vehicle Types', type: 'vehicleTypes', options: vehicleTypesOptions }, // ✅ NEW
     { title: 'Specifications', type: 'specifications', options: specificationsOptions },
   ].map(({ title, type, options }) => (
     <div key={type} className="relative w-full md:w-[250px]">
@@ -221,6 +260,8 @@ export default function Filters({ brands, cars, onFilterChange }) {
               colorsOpen: false,
               featuresOpen: false,
               trimsOpen: false,
+              showroomsOpen: false,
+                vehicleTypesOpen: false, // ✅
               specificationsOpen: false,
             };
             newState[`${type}Open`] = !prev[`${type}Open`];

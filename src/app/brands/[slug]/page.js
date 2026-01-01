@@ -73,8 +73,8 @@ const cars = await getCarsByBrandId(brand.id);
                 <h3 className="text-lg font-bold text-gray-900 transition-colors duration-300 group-hover:text-indigo-600">
                   {car.name}
                 </h3>
-                <p className="mt-1 text-sm text-gray-500">
-                  Premium condition • Low mileage
+               <p className="mt-1 text-sm text-gray-500">
+                  {car.description}
                 </p>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-sm text-gray-400">EMI available</span>

@@ -72,12 +72,34 @@ export default async function CarPage({ params }) {
                 {car.price} {car.currency}
               </p>
               <p className="text-sm text-gray-500 mt-1">
-                EMI from <span className="font-semibold">{car.emi_monthly} {car.currency}</span> / month
+                Monthly Installments (EMI) from <span className="font-semibold">{car.emi_monthly} {car.currency}</span> / month
               </p>
+
+              
             </div>
 
             
           </div>
+{car.specifications?.length > 0 && (
+  <div className="bg-white rounded-3xl shadow p-6">
+    <h3 className="font-bold text-lg mb-4">Specifications</h3>
+    <ul className="space-y-3">
+      {car.specifications.map((spec, i) => (
+        <li key={i} className="flex items-center gap-3">
+          {spec.icon && (
+            <img
+              src={`https://sanabelauto.com/storage/${spec.icon}`} 
+              alt={spec.key}
+              className="w-6 h-6 object-contain"
+            />
+          )}
+          <span className="font-semibold">{spec.key}:</span>
+          <span>{spec.value}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
 
           {/* Offers */}
           {car.has_offer && car.offers?.length > 0 && (
@@ -167,9 +189,55 @@ export default async function CarPage({ params }) {
                 <span className="font-semibold">{car.price} {car.currency}</span>
               </li>
               <li className="flex justify-between">
-                <span>Monthly EMI</span>
+                <span>Monthly Installments (EMI)</span>
                 <span className="font-semibold">{car.emi_monthly}</span>
               </li>
+  <li className="space-y-2">
+  <span className="block text-gray-500">Available Showrooms</span>
+
+  <div className="flex flex-wrap gap-2">
+    {car.available_showrooms?.map((s, i) => (
+      <span
+        key={i}
+        className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium"
+      >
+        {s.showroom_name}
+      </span>
+    ))}
+  </div>
+</li>
+<li className="flex justify-between">
+  <span>Year Model</span>
+  <span className="font-semibold">{car.year_model}</span>
+</li>
+
+<li className="flex justify-between">
+  <span>Warranty</span>
+  <span className="font-semibold">{car.warranty}</span>
+</li>
+
+<li className="flex justify-between">
+  <span>Cylinders</span>
+  <span className="font-semibold">{car.cylinders}</span>
+</li>
+
+{car.vehicle_types?.length > 0 && (
+  <div className="mt-4">
+    <p className="text-sm font-semibold mb-2">Vehicle Types</p>
+    <div className="flex gap-2 flex-wrap">
+      {car.vehicle_types.map((v, i) => (
+        <span
+          key={i}
+          className="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700"
+        >
+          {v.type_name}
+        </span>
+      ))}
+    </div>
+  </div>
+)}
+
+
             </ul>
           </div>
 

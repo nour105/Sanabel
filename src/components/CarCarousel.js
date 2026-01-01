@@ -61,9 +61,9 @@ export default function CarCarousel({ cars = [] }) {
                       {car.name}
                     </h3>
 
-                    <p className="mt-1 text-sm text-gray-500">
-                      Premium condition • Low mileage
-                    </p>
+                  <p className="mt-1 text-sm text-gray-500">
+                  {car.description}
+                </p>
 
                     <div className="mt-4 flex items-center justify-between">
                       <span className="text-sm text-gray-400">
