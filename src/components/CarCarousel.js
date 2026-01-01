@@ -67,7 +67,7 @@ export default function CarCarousel({ cars = [] }) {
 
                     <div className="mt-4 flex items-center justify-between">
                       <span className="text-sm text-gray-400">
-                        EMI available
+                        Monthly Installments available
                       </span>
                      <Link
   href={`/cars/${car.slug}`}

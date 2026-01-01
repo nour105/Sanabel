@@ -133,7 +133,7 @@ export default async function OfferDetailsPage({ params }) {
                 Cars Included in This Offer
               </h2>
               <span className="text-green-600 font-medium">
-                EMI Available
+                Monthly Installments Available
               </span>
             </div>
 

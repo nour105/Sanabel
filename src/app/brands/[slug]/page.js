@@ -77,7 +77,7 @@ const cars = await getCarsByBrandId(brand.id);
                   {car.description}
                 </p>
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="text-sm text-gray-400">EMI available</span>
+                  <span className="text-sm text-gray-400">Monthly Installments available</span>
                   <button className=" cursor-pointer relative overflow-hidden  rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-indigo-700">
                     View Details
                   </button>
