@@ -20,7 +20,28 @@ export async function generateStaticParams() {
     slug: car.slug,
   }));
 }
+/* ================= Helper Function ================= */
+function formatYouTubeUrl(url) {
+  if (!url) return '';
 
+  // لو الرابط فيه watch?v= نحوله لـ embed
+  if (url.includes('watch?v=')) {
+    return url.replace('watch?v=', 'embed/');
+  }
+
+  // لو الرابط أصلاً embed خلاص نرجعه كما هو
+  if (url.includes('embed/')) {
+    return url;
+  }
+
+  // لو رابط قصير youtu.be
+  if (url.includes('youtu.be/')) {
+    return url.replace('youtu.be/', 'www.youtube.com/embed/');
+  }
+
+  // أي رابط غير معروف نرجع فارغ (لن يظهر iframe)
+  return '';
+}
 export default async function CarPage({ params }) {
   const { slug, lang } = await params;
 
@@ -120,18 +141,23 @@ export default async function CarPage({ params }) {
             </div>
           )}
 
-          {/* Galleries */}
-          <div className="grid lg:grid-cols-2 gap-12">
-            <Gallery
-              title={lang === 'ar' ? 'الداخلية' : 'Interior'}
-              images={car?.interior_images}
-            />
+  {car?.video_url && (
+  <div className="bg-white rounded-3xl shadow p-6">
+    <h3 className="font-bold text-lg mb-4">
+      {lang === 'ar' ? 'فيديو السيارة' : 'Car Video'}
+    </h3>
 
-            <Gallery
-              title={lang === 'ar' ? 'الخارجية' : 'Exterior'}
-              images={car?.exterior_images}
-            />
-          </div>
+    <iframe
+      src={formatYouTubeUrl(car.video_url)}
+      className="w-full aspect-video rounded-2xl"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  </div>
+)}
+
+
+
         </div>
 
 
@@ -215,7 +241,22 @@ export default async function CarPage({ params }) {
           </div>
 
         </div>
+
       </div>
+         {/* Galleries */}
+          <div className="grid lg:grid-cols-2 gap-12 px-12">
+            <Gallery
+              title={lang === 'ar' ? 'الداخلية' : 'Interior'}
+              images={car?.interior_images}
+            />
+
+            <Gallery
+              title={lang === 'ar' ? 'الخارجية' : 'Exterior'}
+              images={car?.exterior_images}
+            />
+          </div>
+
+
     </section>
   );
 }
