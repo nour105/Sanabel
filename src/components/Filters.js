@@ -1,9 +1,12 @@
 'use client';
+
 import { useState, useEffect, useMemo } from 'react';
 import { Range, getTrackBackground } from 'react-range';
+import Image from 'next/image';
+import SAR_symbol from '@/publicImage/Saudi_Riyal_Symbol.svg.png';
 
-export default function Filters({ brands, cars, onFilterChange }) {
-  // ===== Price bounds =====
+export default function Filters({ brands, cars, onFilterChange, lang }) {
+  /* ================= PRICE ================= */
   const prices = useMemo(
     () => cars.map(c => Number(c.price?.replace(/,/g, '')) || 0),
     [cars]
@@ -11,341 +14,267 @@ export default function Filters({ brands, cars, onFilterChange }) {
 
   let minCarPrice = prices.length ? Math.min(...prices) : 0;
   let maxCarPrice = prices.length ? Math.max(...prices) : 1;
+  if (minCarPrice >= maxCarPrice) maxCarPrice = minCarPrice + 1;
 
-  if (minCarPrice >= maxCarPrice) {
-    maxCarPrice = minCarPrice + 1;
-  }
+  /* ================= STATE ================= */
+  const [selectedFilters, setSelectedFilters] = useState({
+    brand: '',
+    model: '',
+    priceRange: [minCarPrice, maxCarPrice],
+    colors: [],
+    features: [],
+    trims: [],
+    vehicleTypes: [],
+    showrooms: [],
+    specifications: [],
+  });
 
-const [selectedFilters, setSelectedFilters] = useState({
-  brand: '',
-  priceRange: [minCarPrice, maxCarPrice],
-  model: '',
-  colors: [],
-  features: [],
-  trims: [],
-  vehicleTypes: [], // ✅ NEW
-  showrooms: [],
-  specifications: [],
-});
-
-  
-
-  // ===== Reset price range if cars change =====
+  /* ================= RESET PRICE ================= */
   useEffect(() => {
     setSelectedFilters(prev => ({
       ...prev,
-      priceRange: [minCarPrice, maxCarPrice]
+      priceRange: [minCarPrice, maxCarPrice],
     }));
   }, [minCarPrice, maxCarPrice]);
 
-  // ===== Options for tags =====
+  /* ================= OPTIONS ================= */
+  const getTranslated = (obj, key) =>
+    typeof obj === 'object' ? obj?.[lang] || obj?.en : obj;
+
   const colorsOptions = useMemo(
-    () => [...new Set(cars.flatMap(c => c.colors?.map(x => x.color_name) || []))],
-    [cars]
+    () => [...new Set(cars.flatMap(c => c.colors?.map(x => getTranslated(x.color_name)) || []))],
+    [cars, lang]
   );
 
   const featuresOptions = useMemo(
-    () => [...new Set(cars.flatMap(c => c.features?.map(x => x.feature_name) || []))],
-    [cars]
+    () => [...new Set(cars.flatMap(c => c.features?.map(x => getTranslated(x.feature_name)) || []))],
+    [cars, lang]
   );
 
   const trimsOptions = useMemo(
-    () => [...new Set(cars.flatMap(c => c.available_trims?.map(x => x.trim_name) || []))],
-    [cars]
+    () => [...new Set(cars.flatMap(c => c.available_trims?.map(x => getTranslated(x.trim_name)) || []))],
+    [cars, lang]
   );
-const showroomsOptions = useMemo(
-  () =>
-    [...new Set(
-      cars.flatMap(
-        c => c.available_showrooms?.map(x => x.showroom_name) || []
-      )
-    )],
-  [cars]
-);
-const vehicleTypesOptions = useMemo(
-  () =>
-    [
-      ...new Set(
-        cars.flatMap(
-          c => c.vehicle_types?.map(x => x.type_name) || []
-        )
-      ),
-    ],
-  [cars]
-);
 
+  const showroomsOptions = useMemo(
+    () => [...new Set(cars.flatMap(c => c.available_showrooms?.map(x => getTranslated(x.showroom_name)) || []))],
+    [cars, lang]
+  );
+
+  const vehicleTypesOptions = useMemo(
+    () => [...new Set(cars.flatMap(c => c.vehicle_types?.map(x => getTranslated(x.type_name)) || []))],
+    [cars, lang]
+  );
 
   const specificationsOptions = useMemo(
-    () => [...new Set(cars.flatMap(c => c.specifications?.map(x => x.key) || []))],
-    [cars]
+    () => [...new Set(cars.flatMap(c => c.specifications?.map(x => getTranslated(x.key)) || []))],
+    [cars, lang]
   );
 
-  // ===== Filtering =====
+  /* ================= FILTERING ================= */
   useEffect(() => {
     const filtered = cars.filter(c => {
       const price = Number(c.price?.replace(/,/g, '')) || 0;
+      const brand = getTranslated(c.brand?.name);
+      const name = getTranslated(c.name);
+
       return (
         price >= selectedFilters.priceRange[0] &&
         price <= selectedFilters.priceRange[1] &&
-        (selectedFilters.brand ? c.brand === selectedFilters.brand : true) &&
-        (selectedFilters.model
-          ? c.name.toLowerCase().includes(selectedFilters.model.toLowerCase())
-          : true) &&
-        (selectedFilters.colors.length
-          ? c.colors?.some(x => selectedFilters.colors.includes(x.color_name))
-          : true) &&
-        (selectedFilters.features.length
-          ? c.features?.some(x => selectedFilters.features.includes(x.feature_name))
-          : true) &&
-        (selectedFilters.trims.length
-          ? c.available_trims?.some(x => selectedFilters.trims.includes(x.trim_name))
-          : true) &&
-          (selectedFilters.showrooms.length
-  ? c.available_showrooms?.some(x =>
-      selectedFilters.showrooms.includes(x.showroom_name)
-    )
-  : true) &&
-  (selectedFilters.vehicleTypes.length
-  ? c.vehicle_types?.some(x =>
-      selectedFilters.vehicleTypes.includes(x.type_name)
-    )
-  : true) &&
-
-
-        (selectedFilters.specifications.length
-          ? c.specifications?.some(x => selectedFilters.specifications.includes(x.key))
-          : true)
+        (!selectedFilters.brand || brand === selectedFilters.brand) &&
+        (!selectedFilters.model || name?.toLowerCase().includes(selectedFilters.model.toLowerCase())) &&
+        (!selectedFilters.colors.length ||
+          c.colors?.some(x => selectedFilters.colors.includes(getTranslated(x.color_name)))) &&
+        (!selectedFilters.features.length ||
+          c.features?.some(x => selectedFilters.features.includes(getTranslated(x.feature_name)))) &&
+        (!selectedFilters.trims.length ||
+          c.available_trims?.some(x => selectedFilters.trims.includes(getTranslated(x.trim_name)))) &&
+        (!selectedFilters.showrooms.length ||
+          c.available_showrooms?.some(x => selectedFilters.showrooms.includes(getTranslated(x.showroom_name)))) &&
+        (!selectedFilters.vehicleTypes.length ||
+          c.vehicle_types?.some(x => selectedFilters.vehicleTypes.includes(getTranslated(x.type_name)))) &&
+        (!selectedFilters.specifications.length ||
+          c.specifications?.some(x => selectedFilters.specifications.includes(getTranslated(x.key))))
       );
     });
 
     onFilterChange(filtered);
-  }, [selectedFilters, cars, onFilterChange]);
+  }, [selectedFilters, cars, lang, onFilterChange]);
 
-  // ===== Handlers =====
-  const handleCheckboxChange = (type, value) => {
+  /* ================= HANDLERS ================= */
+  const handleInputChange = e =>
+    setSelectedFilters(prev => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const handleCheckboxChange = (type, value) =>
     setSelectedFilters(prev => ({
       ...prev,
       [type]: prev[type].includes(value)
         ? prev[type].filter(v => v !== value)
-        : [...prev[type], value]
+        : [...prev[type], value],
     }));
-  };
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setSelectedFilters(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handlePriceChange = values => {
+  const handlePriceChange = values =>
     setSelectedFilters(prev => ({ ...prev, priceRange: values }));
-  };
-
-  const renderTagCheckboxes = (title, type, options) =>
-    options.length > 0 && (
-      <div className="space-y-2">
-        <p className="font-semibold text-gray-700">{title}</p>
-        <div className="flex flex-wrap gap-2">
-          {options.map(opt => (
-            <label
-              key={opt}
-              className={`px-3 py-1 rounded-full text-sm cursor-pointer border transition
-                ${selectedFilters[type].includes(opt)
-                  ? 'bg-indigo-100 border-indigo-400 text-indigo-700'
-                  : 'bg-gray-100 border-transparent text-gray-600 hover:bg-gray-200'}`}
-            >
-              <input
-                type="checkbox"
-                className="hidden"
-                checked={selectedFilters[type].includes(opt)}
-                onChange={() => handleCheckboxChange(type, opt)}
-              />
-              {opt}
-            </label>
-          ))}
-        </div>
-      </div>
-    );
 
   const [minPrice, maxPrice] = selectedFilters.priceRange;
 
+  /* ================= UI ================= */
   return (
-    <div className="bg-white p-6 rounded-3xl shadow-lg flex gap-6 items-start">
-      {/* Brand */}
-      <div className="w-full md:w-[200px] space-y-1">
-        <label className="font-semibold text-gray-700">Brand</label>
-        <select
-          name="brand"
-          value={selectedFilters.brand}
-          onChange={handleInputChange}
-          className="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm"
-        >
-          <option value="">All Brands</option>
-          {brands.map(b => (
-            <option key={b.id || b.name} value={b.name}>{b.name}</option>
-          ))}
-        </select>
-      </div>
-
-      {/* Model */}
-      <div className="w-full md:w-[220px]">
-        <h3 className="font-semibold text-gray-700">Cars Model</h3>
-        <input
-          type="text"
-          name="model"
-          placeholder="Search model..."
-          value={selectedFilters.model}
-          onChange={handleInputChange}
-          className="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm"
-        />
-      </div>
-
-      {/* Price */}
-      <div className="w-full md:w-[280px] space-y-2">
-        <h3 className="font-semibold text-gray-700">Price Range</h3>
-        <p className="text-xs text-gray-500">{minPrice.toLocaleString()} – {maxPrice.toLocaleString()}</p>
-      <Range
-  values={selectedFilters.priceRange}
-  step={100}
-  min={minCarPrice}
-  max={maxCarPrice}
-  onChange={handlePriceChange}
-  renderTrack={({ props, children }) => (
     <div
-      {...props}
-      className="h-1.5 rounded-full"
-      style={{
-        background: getTrackBackground({
-          values: selectedFilters.priceRange,
-          colors: ['#6366F1', '#E5E7EB', '#6366F1'],
-          min: minCarPrice,
-          max: maxCarPrice
-        })
-      }}
+      dir={lang === 'ar' ? 'rtl' : 'ltr'}
+      className={`bg-white p-6 rounded-3xl shadow-lg ${
+        lang === 'ar' ? 'text-right' : 'text-left'
+      }`}
     >
-      {children}
-    </div>
-  )}
-  renderThumb={({ props, index }) => {
-    // Extract key from props and apply it directly
-    const { key, ...restProps } = props;
-    return (
-      <div
-        key={key ?? index}  // key applied directly
-        {...restProps}      // rest of the props spread normally
-        className="h-4 w-4 bg-indigo-600 rounded-full shadow"
-      />
-    );
-  }}
-/>
+      <div className="flex flex-wrap items-end gap-4">
+
+        {/* BRAND */}
+        <div className="w-full md:w-[220px]">
+          <label className="block mb-1 font-semibold text-gray-700">
+            {lang === 'ar' ? 'العلامة التجارية' : 'Brand'}
+          </label>
+          <select
+            name="brand"
+            value={selectedFilters.brand}
+            onChange={handleInputChange}
+            className="w-full border rounded-xl px-3 py-2 text-sm"
+          >
+            <option value="">
+              {lang === 'ar' ? 'جميع العلامات التجارية' : 'All Brands'}
+            </option>
+            {brands.map(b => {
+              const name = getTranslated(b.name);
+              return (
+                <option key={b.id || name} value={name}>
+                  {name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+
+        {/* MODEL */}
+        <div className="w-full md:w-[220px]">
+          <label className="block mb-1 font-semibold text-gray-700">
+            {lang === 'ar' ? 'موديل السيارة' : 'Cars Model'}
+          </label>
+          <input
+            type="text"
+            name="model"
+            value={selectedFilters.model}
+            onChange={handleInputChange}
+            className="w-full border rounded-xl px-3 py-2 text-sm"
+          />
+        </div>
+
+        {/* PRICE */}
+        <div className="w-full md:w-[320px]">
+          <label className="block mb-2 font-semibold text-gray-700">
+            {lang === 'ar' ? 'نطاق السعر' : 'Price Range'}
+          </label>
+
+          <div className="flex justify-center items-center gap-2 text-xs text-gray-500 mb-2">
+            <span>
+              {minPrice.toLocaleString()} – {maxPrice.toLocaleString()}
+            </span>
+            <Image src={SAR_symbol} alt="SAR" width={16} height={16} />
+          </div>
+
+          <div dir="ltr">
+            <Range
+              values={selectedFilters.priceRange}
+              step={100}
+              min={minCarPrice}
+              max={maxCarPrice}
+              onChange={handlePriceChange}
+              renderTrack={({ props, children }) => (
+                <div
+                  {...props}
+                  className="h-1.5 rounded-full"
+                  style={{
+                    background: getTrackBackground({
+                      values: selectedFilters.priceRange,
+                      colors: ['#6366F1', '#E5E7EB', '#6366F1'],
+                      min: minCarPrice,
+                      max: maxCarPrice,
+                    }),
+                  }}
+                >
+                  {children}
+                </div>
+              )}
+              renderThumb={({ props, index }) => {
+                const { key, ...rest } = props;
+                return (
+                  <div
+                    key={key ?? index}
+                    {...rest}
+                    className="h-4 w-4 bg-indigo-600 rounded-full shadow"
+                  />
+                );
+              }}
+            />
+          </div>
+        </div>
+
+        {/* TAG FILTERS */}
+        {[
+          { title: lang === 'ar' ? 'الألوان' : 'Colors', type: 'colors', options: colorsOptions },
+          { title: lang === 'ar' ? 'المزايا' : 'Features', type: 'features', options: featuresOptions },
+          { title: lang === 'ar' ? 'الفئات' : 'Trims', type: 'trims', options: trimsOptions },
+          { title: lang === 'ar' ? 'المعارض' : 'Showrooms', type: 'showrooms', options: showroomsOptions },
+          { title: lang === 'ar' ? 'نوع المركبة' : 'Vehicle Types', type: 'vehicleTypes', options: vehicleTypesOptions },
+          { title: lang === 'ar' ? 'المواصفات' : 'Specifications', type: 'specifications', options: specificationsOptions },
+        ].map(({ title, type, options }) => (
+          <div key={type} className="relative w-full md:w-[220px] flex-shrink-0">
+            <button
+              type="button"
+              dir="ltr"
+              onClick={() =>
+                setSelectedFilters(prev => ({
+                  ...prev,
+                  [`${type}Open`]: !prev[`${type}Open`],
+                }))
+              }
+              className="w-full border rounded-xl px-3 py-2 text-sm
+                         flex justify-between items-center bg-white text-gray-700"
+            >
+              <span>{title}</span>
+              <svg
+                className={`w-4 h-4 transition-transform ${
+                  selectedFilters[`${type}Open`] ? 'rotate-180' : ''
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            {selectedFilters[`${type}Open`] && (
+              <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
+                {options.map(opt => (
+                  <label key={opt} className="flex items-center gap-2 px-3 py-2">
+                    <input
+                      type="checkbox"
+                      checked={selectedFilters[type].includes(opt)}
+                      onChange={() => handleCheckboxChange(type, opt)}
+                    />
+                    <span className="text-sm">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
 
       </div>
-      {/* Tags as dropdown multi-selects */}
-<div className="w-full flex gap-4 flex-wrap">
-  {[
-    { title: 'Colors', type: 'colors', options: colorsOptions },
-    { title: 'Features', type: 'features', options: featuresOptions },
-    { title: 'Trims', type: 'trims', options: trimsOptions },
-    { title: 'Showrooms', type: 'showrooms', options: showroomsOptions },
-      { title: 'Vehicle Types', type: 'vehicleTypes', options: vehicleTypesOptions }, // ✅ NEW
-    { title: 'Specifications', type: 'specifications', options: specificationsOptions },
-  ].map(({ title, type, options }) => (
-    <div key={type} className="relative w-full md:w-[250px]">
-      {/* Dropdown Button */}
-      <button
-        type="button"
-        onClick={() => {
-          setSelectedFilters(prev => {
-            const newState = {
-              ...prev,
-              colorsOpen: false,
-              featuresOpen: false,
-              trimsOpen: false,
-              showroomsOpen: false,
-                vehicleTypesOpen: false, // ✅
-              specificationsOpen: false,
-            };
-            newState[`${type}Open`] = !prev[`${type}Open`];
-            return newState;
-          });
-        }}
-        className="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm flex justify-between items-center bg-white"
-      >
-        <span>{title}</span>
-        <div className="flex items-center gap-2">
-          {selectedFilters[type].length > 0 && (
-            <span>({selectedFilters[type].length})</span>
-          )}
-          <svg
-            className={`w-4 h-4 transition-transform duration-200 ${
-              selectedFilters[`${type}Open`] ? 'rotate-180' : ''
-            }`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
-      </button>
-
-      {/* Dropdown */}
-      {selectedFilters[`${type}Open`] && (
-        <div className="absolute mt-1 w-full bg-white border border-gray-300 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
-          {/* Clear Button */}
-          {selectedFilters[type].length > 0 && (
-            <div className="px-3 py-2 border-b border-gray-200 flex justify-end">
-              <button
-                type="button"
-                onClick={() =>
-                  setSelectedFilters(prev => ({
-                    ...prev,
-                    [type]: [], // clear this filter
-                  }))
-                }
-                className="text-xs text-red-500 hover:underline"
-              >
-                Clear
-              </button>
-              
-            </div>
-          )}
-          <button
-          type="button"
-          onClick={() =>
-            setSelectedFilters(prev => ({
-              ...prev,
-              [`${type}Open`]: false, // just close dropdown
-            }))
-          }
-          className="text-xs text-gray-500 hover:underline"
-        >
-          Close
-        </button>
-
-          {/* Options */}
-          {options.map(opt => (
-            <label
-              key={opt}
-              className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 cursor-pointer"
-            >
-              <input
-                type="checkbox"
-                className="form-checkbox"
-                checked={selectedFilters[type].includes(opt)}
-                onChange={() => handleCheckboxChange(type, opt)}
-              />
-              <span className="text-sm">{opt}</span>
-            </label>
-          ))}
-        </div>
-      )}
-    </div>
-  ))}
-</div>
-
-
-
     </div>
   );
 }

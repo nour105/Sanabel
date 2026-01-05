@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { getAllOffers } from "@/lib/api";
 
+// Countdown component
 function Countdown({ endDate }) {
   const calculateTimeLeft = () => {
     const diff = new Date(endDate) - new Date();
@@ -18,6 +20,7 @@ function Countdown({ endDate }) {
   };
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
   useEffect(() => {
     const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
     return () => clearInterval(timer);
@@ -35,9 +38,9 @@ function Countdown({ endDate }) {
 
   return (
     <div className="mt-4 flex gap-2">
-      {items.map((item, idx) => (
+      {items.map((item) => (
         <div
-          key={idx}
+          key={item.label}
           className="flex flex-col items-center bg-blue-600 text-white px-3 py-2 rounded-lg shadow-md min-w-[55px]"
         >
           <span className="font-bold text-lg flip">{item.value}</span>
@@ -57,8 +60,12 @@ export default function OffersPage() {
     maxPrice: 0,
   });
   const [currentPage, setCurrentPage] = useState(1);
-  const [perPage] = useState(6);
+  const perPage = 6;
   const [loading, setLoading] = useState(true);
+
+  // Detect locale from URL (example: /en/ or /ar/)
+  const pathname = usePathname();
+  const locale = pathname.startsWith("/ar") ? "ar" : "en";
 
   useEffect(() => {
     async function fetchOffers() {
@@ -67,13 +74,22 @@ export default function OffersPage() {
         const allOffers = await getAllOffers();
         setOffers(allOffers);
 
+        // Extract unique brands
         const uniqueBrands = [
-          ...new Set(allOffers.flatMap((o) => o.brands.map((b) => b.name))),
+          ...new Map(
+            allOffers
+              .flatMap((o) => o.brands)
+              .map((b) => [b.id, b])
+          ).values(),
         ];
         setBrands(uniqueBrands);
 
+        // Min/max prices
         const prices = allOffers.flatMap(
-          (o) => o.cars?.map((c) => parseFloat(c.price)) || []
+          (o) =>
+            o.cars?.map((c) =>
+              parseFloat(c.price?.replace(/,/g, "")) || 0
+            ) || []
         );
         if (prices.length > 0) {
           setFilters((f) => ({
@@ -88,17 +104,17 @@ export default function OffersPage() {
         setLoading(false);
       }
     }
+
     fetchOffers();
   }, []);
 
+  // Filter offers by brand
   const filteredOffers = offers.filter((offer) => {
-    let matches = true;
-    if (filters.brand) {
-      matches = matches && offer.brands.some((b) => b.name === filters.brand);
-    }
-    return matches;
+    if (!filters.brand) return true;
+    return offer.brands.some((b) => b.name[locale] === filters.brand);
   });
 
+  // Pagination
   const indexOfLast = currentPage * perPage;
   const indexOfFirst = indexOfLast - perPage;
   const currentOffers = filteredOffers.slice(indexOfFirst, indexOfLast);
@@ -108,7 +124,7 @@ export default function OffersPage() {
     <div className="bg-gray-50 py-16 px-6">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">
-          All Offers
+          {locale === "ar" ? "جميع العروض" : "All Offers"}
         </h1>
 
         {/* Filters */}
@@ -116,12 +132,16 @@ export default function OffersPage() {
           <select
             className="border border-gray-300 rounded px-4 py-2"
             value={filters.brand}
-            onChange={(e) => setFilters({ ...filters, brand: e.target.value })}
+            onChange={(e) =>
+              setFilters({ ...filters, brand: e.target.value })
+            }
           >
-            <option value="">All Brands</option>
+            <option value="">
+              {locale === "ar" ? "جميع الماركات" : "All Brands"}
+            </option>
             {brands.map((b) => (
-              <option key={b} value={b}>
-                {b}
+              <option key={b.id} value={b.name[locale]}>
+                {b.name[locale]}
               </option>
             ))}
           </select>
@@ -129,60 +149,67 @@ export default function OffersPage() {
 
         {/* Offers Grid */}
         {loading ? (
-          <p className="text-center text-gray-500">Loading offers...</p>
+          <p className="text-center text-gray-500">
+            {locale === "ar" ? "جاري تحميل العروض..." : "Loading offers..."}
+          </p>
         ) : currentOffers.length === 0 ? (
-          <p className="text-center text-gray-500">No offers found</p>
+          <p className="text-center text-gray-500">
+            {locale === "ar" ? "لا توجد عروض" : "No offers found"}
+          </p>
         ) : (
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {currentOffers.map((offer) => (
               <Link
                 key={offer.id}
-                href={`/offers/${offer.slug}`}
+                href={`/${locale}/offers/${offer.slug}`}
                 className="group block bg-white rounded-3xl shadow-lg overflow-hidden transform transition hover:scale-[1.02]"
               >
-                {offer.banners?.length > 0 && (
+                {offer.banners?.[locale]?.length > 0 && (
                   <div className="relative h-56 w-full">
                     <Image
                       src={
-                        offer.card_image
-                          ? `https://sanabelauto.com/storage/${offer.card_image}`
-                          : `https://sanabelauto.com/storage/${offer.banners[0]}`
+                        offer.card_image?.[locale]
+                          ? `https://sanabelauto.com/storage/${offer.card_image[locale]}`
+                          : `https://sanabelauto.com/storage/${offer.banners[locale][0]}`
                       }
-                      alt={offer.title}
+                      alt={offer.title[locale]}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform"
                       unoptimized
                     />
                   </div>
                 )}
+
                 <div className="p-6">
                   <h2 className="text-2xl font-bold mb-2 text-gray-900">
-                    {offer.title}
+                    {offer.title[locale]}
                   </h2>
                   {offer.description && (
                     <p className="text-gray-700 text-sm md:text-base mb-2 line-clamp-3">
-                      {offer.description}
+                      {offer.description[locale]}
                     </p>
                   )}
 
                   {/* Countdown */}
                   {offer.end_date && <Countdown endDate={offer.end_date} />}
 
+                  {/* Brands */}
                   {offer.brands?.length > 0 && (
                     <div className="flex gap-2 flex-wrap mt-2">
-                      {offer.brands.map((b, i) => (
+                      {offer.brands.map((b) => (
                         <div
-                          key={i}
+                          key={b.id}
                           className="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700"
                         >
-                          {b.name}
+                          {b.name[locale]}
                         </div>
                       ))}
                     </div>
                   )}
+
                   <div className="mt-4 text-right">
                     <span className="text-blue-600 font-semibold text-sm">
-                      View Details &rarr;
+                      {locale === "ar" ? "عرض التفاصيل →" : "View Details →"}
                     </span>
                   </div>
                 </div>

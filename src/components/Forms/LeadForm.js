@@ -4,12 +4,13 @@ import { useState } from "react";
 import { submitLeadSearch } from "@/lib/api";
 import CallButton from "../CallButton";
 import Filters from "../Filters";
+import SAR_symbol from '@/publicImage/Saudi_Riyal_Symbol.svg.png';
 
-export default function EmiLeadForm() {
+export default function EmiLeadForm({lang}) {
   const [loading, setLoading] = useState(false);
   const [showLoanType, setShowLoanType] = useState(false);
   const [cars, setCars] = useState([]);
-  const [selectedCar, setSelectedCar] = useState(null);
+const [selectedCars, setSelectedCars] = useState({});
   const [brands, setBrands] = useState([]);
   const [emiBudget, setEmiBudget] = useState(null);
   const [showEmiBudget, setShowEmiBudget] = useState(false);
@@ -104,36 +105,45 @@ async function handleLeadSubmit(car) {
   return (
     <div className="grid gap-6">
       {/* Lead Form */}
-       <form
+  <form
   className="flex flex-wrap gap-4"
   onSubmit={handleShowCars}
 >
   <input
     name="name"
     required
-    placeholder="Full Name"
+    placeholder={lang === 'ar' ? 'الاسم الكامل' : 'Full Name'}
     className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
   />
- <input
-  name="phone"
-  required
-  placeholder="Phone Number"
-  className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
-  pattern="^05\d{8}$"
-  title="Enter a valid Saudi phone number starting with 05 and 10 digits"
-/>
+
+  <input
+    name="phone"
+    required
+    placeholder={lang === 'ar' ? 'رقم الهاتف' : 'Phone Number'}
+    className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+    pattern="^05\d{8}$"
+    title={
+      lang === 'ar'
+        ? 'أدخل رقم هاتف سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام'
+        : 'Enter a valid Saudi phone number starting with 05 and 10 digits'
+    }
+  />
+
   <input
     name="email"
     type="email"
     required
-    placeholder="Email Address"
+    placeholder={lang === 'ar' ? 'البريد الإلكتروني' : 'Email Address'}
     className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
   />
+
   <select
     name="salary_range"
     className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
   >
-    <option value="">Salary (Optional)</option>
+    <option value="">
+      {lang === 'ar' ? 'الراتب (اختياري)' : 'Salary (Optional)'}
+    </option>
     <option value="0-5000">0 – 5,000</option>
     <option value="5000-10000">5,000 – 10,000</option>
     <option value="10000-15000">10,000 – 15,000</option>
@@ -149,8 +159,9 @@ async function handleLeadSubmit(car) {
         defaultChecked
         onChange={() => setShowLoanType(false)}
       />
-      No Loans
+      {lang === 'ar' ? 'لا يوجد قروض' : 'No Loans'}
     </label>
+
     <label className="flex items-center gap-2">
       <input
         type="radio"
@@ -158,7 +169,7 @@ async function handleLeadSubmit(car) {
         value="1"
         onChange={() => setShowLoanType(true)}
       />
-      Has Loans
+      {lang === 'ar' ? 'يوجد قروض' : 'Has Loans'}
     </label>
   </div>
 
@@ -168,10 +179,18 @@ async function handleLeadSubmit(car) {
       className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
       required
     >
-      <option value="">Loan Type</option>
-      <option value="personal">Personal</option>
-      <option value="realestate">Real Estate</option>
-      <option value="both">Both</option>
+      <option value="">
+        {lang === 'ar' ? 'نوع القرض' : 'Loan Type'}
+      </option>
+      <option value="personal">
+        {lang === 'ar' ? 'قرض شخصي' : 'Personal'}
+      </option>
+      <option value="realestate">
+        {lang === 'ar' ? 'قرض عقاري' : 'Real Estate'}
+      </option>
+      <option value="both">
+        {lang === 'ar' ? 'كلاهما' : 'Both'}
+      </option>
     </select>
   )}
 
@@ -179,8 +198,14 @@ async function handleLeadSubmit(car) {
     name="visa_limit"
     className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
   >
-    <option value="">Visa Limit (Optional)</option>
-    <option value="below_5000">Below 5,000</option>
+    <option value="">
+      {lang === 'ar'
+        ? 'حد البطاقة الائتمانية (اختياري)'
+        : 'Visa Limit (Optional)'}
+    </option>
+    <option value="below_5000">
+      {lang === 'ar' ? 'أقل من 5,000' : 'Below 5,000'}
+    </option>
     <option value="5000-10000">5,000 – 10,000</option>
     <option value="10000-15000">10,000 – 15,000</option>
     <option value="15000+">15,000+</option>
@@ -190,7 +215,9 @@ async function handleLeadSubmit(car) {
     name="bank"
     className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
   >
-    <option value="">choose your bank (Optional)</option>
+    <option value="">
+      {lang === 'ar' ? 'اختر البنك (اختياري)' : 'Choose your bank (Optional)'}
+    </option>
     <option>SNB</option>
     <option>NCB</option>
     <option>NBD</option>
@@ -201,24 +228,37 @@ async function handleLeadSubmit(car) {
     name="purchase_timeline"
     className="grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
   >
-    <option value="">Purchase time frame</option>
-    <option>Now</option>
-    <option>Next month</option>
-    <option>2 months from now</option>
-    <option>3 months from now</option>
-    <option>Not sure</option>
-    <option>Other</option>
+    <option value="">
+      {lang === 'ar' ? 'موعد الشراء' : 'Purchase time frame'}
+    </option>
+    <option>{lang === 'ar' ? 'الآن' : 'Now'}</option>
+    <option>{lang === 'ar' ? 'الشهر القادم' : 'Next month'}</option>
+    <option>{lang === 'ar' ? 'بعد شهرين' : '2 months from now'}</option>
+    <option>{lang === 'ar' ? 'بعد 3 أشهر' : '3 months from now'}</option>
+    <option>{lang === 'ar' ? 'غير متأكد' : 'Not sure'}</option>
+    <option>{lang === 'ar' ? 'أخرى' : 'Other'}</option>
   </select>
-
+ <div className="flex items-center gap-3 mt-auto">
   <button
     type="submit"
     disabled={loading}
-    className="bg-black text-white py-3 px-6 rounded mt-auto"
+    className="bg-black text-white py-3 px-6 rounded"
   >
-    {loading ? "Loading..." : "Get Results"}
+    {loading
+      ? lang === 'ar'
+        ? 'جاري التحميل...'
+        : 'Loading...'
+      : lang === 'ar'
+        ? 'عرض النتائج'
+        : 'Search'}
   </button>
-  <CallButton/>
+
+  <CallButton lang={lang} />
+</div>
+
+ 
 </form>
+
 
       {/* EMI Budget */}
       {emiBudget !== null && showEmiBudget && (
@@ -229,37 +269,91 @@ async function handleLeadSubmit(car) {
 
       {/* Filters */}
       {cars.length > 0 && (
-        <Filters brands={brands.map((b) => ({ name: b }))} cars={cars} onFilterChange={setFilteredCars} />
+        <Filters lang={lang} brands={brands.map((b) => ({ name: b }))} cars={cars} onFilterChange={setFilteredCars} />
       )}
 
       {/* Display Cars */}
       {filteredCars.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 px-4 md:px-0">
-          {filteredCars.map((car) => (
-            <div key={car.id} className="bg-white rounded-2xl shadow-lg overflow-hidden relative">
-              <img src={car.image} alt={car.name} className="w-full h-52 object-cover" loading="lazy" />
-              {car.has_offer && (
-                <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">Offer</span>
-              )}
-              <span className="absolute top-3 right-3 bg-gray-200 px-3 py-1 rounded-full text-sm font-semibold shadow-lg text-gray-500">{car.brand}</span>
-              <div className="p-5">
-                <h3 className="text-xl font-semibold text-gray-800">{car.name}</h3>
-                <p className="mt-2 text-lg font-bold text-gray-900">{car.price} {car.currency}</p>
-                {car.emi_monthly && (
-                  <p className="mt-1 text-sm text-blue-600">EMI: {car.emi_monthly} {car.currency}</p>
-                )}
-                <button
-  className="mt-4 w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition"
-  onClick={() => handleLeadSubmit(car)}
-  disabled={loadingCarId === car.id}
->
-  {loadingCarId === car.id ? "Submitting..." : "I Want This Car"}
-</button>
-              </div>
-            </div>
-          ))}
-        </div>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 px-4 md:px-0">
+{filteredCars.map((car) => {
+  const isSelected = selectedCars[car.id] || false;
+
+  const handleSelectCar = async () => {
+    setLoadingCarId(car.id);
+
+    const f = document.forms[0]; // get form values
+
+    const payload = {
+      name: f.name.value,
+      phone: f.phone.value,
+      email: f.email.value || null,
+      salary_range: f.salary_range?.value || null,
+      has_loans: f.hasLoans ? parseInt(f.hasLoans.value) : 0,
+      loan_type: showLoanType ? f.loan_type?.value : null,
+      visa_limit: f.visa_limit?.value || null,
+      bank: f.bank?.value || null,
+      purchase_timeline: f.purchase_timeline?.value || null,
+      car_id: car.id,
+      privacy_accepted: true,
+    };
+
+    try {
+      await submitLeadSearch(payload); // send lead
+      setSelectedCars({ ...selectedCars, [car.id]: true }); // mark as selected
+    } catch {
+      alert("Something went wrong submitting the lead");
+    } finally {
+      setLoadingCarId(null);
+    }
+  };
+
+  return (
+    <div key={car.id} className="bg-white rounded-2xl shadow-lg overflow-hidden relative">
+      <img src={car.image} alt={car.name} className="w-full h-52 object-cover" loading="lazy" />
+      {car.has_offer && (
+        <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+          Offer
+        </span>
       )}
+      <span className="absolute top-3 right-3 bg-gray-200 px-3 py-1 rounded-full text-sm font-semibold shadow-lg text-gray-500">
+        {car.brand}
+      </span>
+      <div className="p-5">
+        <h3 className="text-xl font-semibold text-gray-800">{car.name}</h3>
+        <p className="mt-2 text-lg font-bold text-gray-900">{car.price}                         <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
+        </p>
+        {car.emi_monthly && (
+          <p className="mt-1 text-sm text-blue-600">EMI: {car.emi_monthly}                         <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
+          </p>
+        )}
+
+        {!isSelected ? (
+          <button
+            className="mt-4 w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition"
+            onClick={handleSelectCar}
+            disabled={loadingCarId === car.id}
+          >
+            {loadingCarId === car.id
+              ? lang === 'ar' ? 'جاري الإرسال...' : 'Submitting...'
+              : lang === 'ar' ? 'أريد هذه السيارة' : 'I Want This Car'}
+          </button>
+        ) : (
+          <a
+            href={`/${lang}/cars/${car.slug}`} // car details page
+            className="mt-4 block w-full text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+          >
+            {lang === 'ar' ? 'عرض التفاصيل' : 'View Details'}
+          </a>
+        )}
+      </div>
+    </div>
+  );
+})}
+
+
+  </div>
+)}
+
     </div>
   );
 }

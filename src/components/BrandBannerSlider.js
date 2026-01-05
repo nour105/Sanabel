@@ -1,31 +1,12 @@
 'use client';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import Image from 'next/image';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 export default function BrandBannerSlider({ banners, brandName }) {
   if (!banners || banners.length === 0) return null;
-
-  // Single image → no slider
-  if (banners.length === 1) {
-    return (
-      <div className="relative h-[60vh]">
-        <Image
-          src={banners[0]}
-          alt={brandName}
-          width={1920}
-          height={600}
-          className="object-cover"
-          unoptimized
-        />
-        <Overlay title={brandName} />
-      </div>
-    );
-  }
 
   return (
     <div className="relative h-[60vh]">
@@ -40,8 +21,9 @@ export default function BrandBannerSlider({ banners, brandName }) {
           <SwiperSlide key={index}>
             <div className="relative w-full h-full">
               <Image
-                src={img}
+                src={`https://sanabelauto.com/storage/${img}`}
                 alt={`${brandName} banner ${index + 1}`}
+                fill
                 className="object-cover"
                 unoptimized
               />

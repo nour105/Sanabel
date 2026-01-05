@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-export default function CallButton() {
+export default function CallButton({lang}) {
   const [showPopup, setShowPopup] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -18,7 +18,7 @@ export default function CallButton() {
         href={`tel:${phoneNumber.replace(/\s+/g, "")}`}
         className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition font-semibold"
       >
-        Call Us Now
+        {lang === 'ar' ? 'اتصل بنا الآن!' : 'Call us now!'} 
       </a>
     );
   }
@@ -30,7 +30,7 @@ export default function CallButton() {
         onClick={() => setShowPopup(true)}
         className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition font-semibold"
       >
-        Call Us Now
+       {lang === 'ar' ? 'اتصل بنا الآن!' : 'Call us now!'} 
       </button>
 
       {showPopup && (
@@ -43,17 +43,19 @@ export default function CallButton() {
               ✕
             </button>
             <h2 className="text-2xl font-bold mb-3 text-gray-900 text-center">
-              Call Us
+           {lang === 'ar' ? 'اتصل بنا' : 'Call Us'}
+
             </h2>
             <p className="text-gray-600 mb-6 text-center">
-              You can reach us at:
+  {lang === 'ar' ? 'يمكنك الوصول إلينا على:' : 'You can reach us at:'}
             </p>
             <a
-              href={`tel:${phoneNumber.replace(/\s+/g, "")}`}
-              className="block text-lg font-semibold text-blue-600 hover:underline text-center"
-            >
-              {phoneNumber}
-            </a>
+  href={`tel:${phoneNumber.replace(/\s+/g, '')}`}
+  className="block text-lg font-semibold text-blue-600 hover:underline text-center"
+  dir={lang === 'ar' ? 'ltr' : 'ltr'}
+>
+  {phoneNumber}
+</a>
           </div>
         </div>
       )}

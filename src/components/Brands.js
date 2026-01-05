@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Brands({ brands }) {
+export default function Brands({ brands, lang }) {
   if (!brands || brands.length === 0) {
     return (
       <section className="py-16">
@@ -23,7 +23,7 @@ export default function Brands({ brands }) {
               <div className="relative w-20 h-20">
                 <Image
                   src={`https://sanabelauto.com/storage/${brand.logo}`}
-                  alt={brand.name}
+                  alt={typeof brand.name === 'object' ? brand.name[lang] || brand.name.en : brand.name}
                   width={120}
                   height={60}
                   className="object-contain"

@@ -10,14 +10,14 @@ import 'swiper/css/pagination';
 
 const BASE_IMAGE_URL = 'https://sanabelauto.com/storage/';
 
-export default function Banner({ banners }) {
+export default function Banner({ banners, lang }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted || !banners || banners.length === 0) return null;
+  if (!mounted || !banners?.length) return null;
 
   return (
     <section className="relative w-full">
@@ -26,23 +26,32 @@ export default function Banner({ banners }) {
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         loop
-        className=""
       >
-        {banners.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="relative ">
-              <Image
-                src={`${BASE_IMAGE_URL}${item.banner}`}
-                alt={`Banner ${index + 1}`}
-                width={1860}
-                height={720}
-                priority={index === 0}
-                className="object-cover w-full h-[70vh] md:h-[80vh] lg:h-[90vh]"
-                unoptimized={true}
-              />
-            </div>
-          </SwiperSlide>
-        ))}
+        {banners.map((item, index) => {
+          const imagePath = item?.image?.[lang] || item?.image?.en;
+          if (!imagePath) return null;
+
+          return (
+            <SwiperSlide key={index}>
+              <div className="
+                relative w-full
+                h-[55vh]
+                md:h-[70vh]
+                lg:h-[85vh]
+                xl:h-[90vh]
+              ">
+                <Image
+                  src={`${BASE_IMAGE_URL}${imagePath}`}
+                  alt={`Banner ${index + 1}`}
+                  fill
+                  priority={index === 0}
+                  className=" object-center"
+                  unoptimized
+                />
+              </div>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </section>
   );

@@ -1,7 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import SAR_symbol from '@/publicImage/Saudi_Riyal_Symbol.svg.png';
 
-export default function Models({ cars }) {
+export default function Models({ cars, lang }) {
+  const getCarName = (car) => {
+    return typeof car.name === 'object' ? car.name[lang] || car.name.en : car.name;
+  };
+
+  const getCarDescription = (car) => {
+    return typeof car.description === 'object' ? car.description[lang] || car.description.en : car.description;
+  };
+
+  const getBrandName = (brand) => {
+    return typeof brand.name === 'object' ? brand.name[lang] || brand.name.en : brand.name;
+  };
+
   if (!cars || cars.length === 0) {
     return (
       <section className="py-16">
@@ -24,7 +37,7 @@ export default function Models({ cars }) {
                   <div className="relative h-48">
                     <Image
                       src={`https://sanabelauto.com/storage/${car.banner_image}`}
-                      alt={car.name}
+                      alt={getCarName(car)}
                       className="object-cover"
                         unoptimized={true} // <-- bypass optimization
 
@@ -33,15 +46,21 @@ export default function Models({ cars }) {
                 )}
                 <div className="p-6">
                   <h3 className="font-semibold text-xl mb-2 group-hover:text-blue-600 transition-colors">
-                    {car.name}
+                    {getCarName(car)}
                   </h3>
-                  <p className="text-gray-600 mb-4">{car.description}</p>
+                  <p className="text-gray-600 mb-4">{getCarDescription(car)}</p>
                   <div className="flex justify-between items-center">
                     <span className="text-2xl font-bold text-green-600">
-                      {car.price} {car.currency}
+                      {car.price}   <Image
+    src={SAR_symbol}
+    alt="SAR"
+    width={20}
+    height={20}
+    className="inline"
+  />
                     </span>
                     <span className="text-sm text-gray-500">
-                      {car.brand.name}
+                      {getBrandName(car.brand)}
                     </span>
                   </div>
                 </div>

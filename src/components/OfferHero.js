@@ -8,7 +8,14 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-export default function OfferHero({ title, subtitle, banners }) {
+export default function OfferHero({ title, subtitle, banners, lang }) {
+  const getTitle = (title) => {
+    return typeof title === 'object' ? title[lang] || title.en : title;
+  };
+
+  const getSubtitle = (subtitle) => {
+    return typeof subtitle === 'object' ? subtitle[lang] || subtitle.en : subtitle;
+  };
   return (
     <div className="relative h-[420px] w-full">
 
@@ -37,11 +44,11 @@ export default function OfferHero({ title, subtitle, banners }) {
         <div className="w-full bg-gradient-to-t from-black/60 to-transparent px-6 py-10">
           <div className="container mx-auto">
             <h1 className="text-4xl md:text-5xl font-semibold text-white">
-              {title}
+              {getTitle(title)}
             </h1>
             {subtitle && (
               <p className="mt-2 text-lg text-white/90">
-                {subtitle}
+                {getSubtitle(subtitle)}
               </p>
             )}
           </div>
