@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 
 export default function ThankYouPage() {
   const pathname = usePathname(); 
+  const lang = pathname.startsWith('/ar') ? 'ar' : 'en';
 
   const t = {
     ar: {
