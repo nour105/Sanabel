@@ -5,7 +5,12 @@ import Filters from './Filters';
 import Link from 'next/link';
 import Image from 'next/image';
 import SAR_symbol from '@/publicImage/Saudi_Riyal_Symbol.svg.png';
-
+const t = (val, lang) => {
+  if (!val) return '';
+  if (typeof val === 'string') return val;
+  if (typeof val === 'object') return val[lang] || val.en || '';
+  return '';
+};
 export default function ProductListing({ brands = [], cars = [], lang }) {
   const [filteredCars, setFilteredCars] = useState([]);
   const [visibleCars, setVisibleCars] = useState([]);
@@ -42,8 +47,11 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
 
   return (
     <div className="flex flex-col gap-8">
-      <Filters
-        brands={brands}
+         <Filters
+        brands={brands.map(b => ({
+          ...b,
+          name: t(b.name, lang),
+        }))}
         cars={cars}
         onFilterChange={handleFilterChange}
         lang={lang}

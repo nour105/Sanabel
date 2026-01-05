@@ -11,13 +11,13 @@ export default function Brands({ brands, lang }) {
   }
 
   return (
-    <section className=" bg-gray-50">
-      <div className="container mx-auto px-6">        
-        <div className="flex  justify-center sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-8 items-center">
+    <section className="bg-gray-50 py-12">
+      <div className="container mx-auto px-6">
+        <div className="sm:grid sm:grid-cols-3 md:grid md:grid-cols-4 lg:flex xl:flex gap-6  justify-center items-center">
           {brands.map((brand) => (
             <Link
               key={brand.id}
-              href={`/brands/${brand.slug}`}
+              href={`/${lang}/brands/${brand.slug}`}
               className="flex items-center justify-center p-4 bg-white rounded-xl shadow hover:shadow-lg transition-shadow"
             >
               <div className="relative w-20 h-20">

@@ -1,25 +1,48 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { submitLeadSearch } from "@/lib/api";
-import CallButton from "../CallButton";
-import Filters from "../Filters";
+import { useState } from 'react';
+import { submitLeadSearch } from '@/lib/api';
+import CallButton from '../CallButton';
+import Filters from '../Filters';
+import Image from 'next/image';
 import SAR_symbol from '@/publicImage/Saudi_Riyal_Symbol.svg.png';
-import Image from "next/image";
-export default function EmiLeadForm({lang}) {
+
+/* ================= HELPERS ================= */
+
+const getText = (val, lang) => {
+  if (!val) return '';
+  if (typeof val === 'string') return val;
+  if (typeof val === 'object') return val[lang] || val.en || '';
+  return '';
+};
+const getContent = (val, lang) => {
+  if (!val) return '';
+  if (typeof val === 'string') return val;
+  if (typeof val === 'object') return val[lang] || val.en || '';
+  return '';
+};
+
+const getBrandName = (brand, lang) => {
+  if (!brand) return '';
+  if (typeof brand === 'string') return brand;
+  return getText(brand.name, lang);
+};
+
+/* ================= COMPONENT ================= */
+
+export default function EmiLeadForm({ lang }) {
   const [loading, setLoading] = useState(false);
   const [showLoanType, setShowLoanType] = useState(false);
   const [cars, setCars] = useState([]);
-const [selectedCars, setSelectedCars] = useState({});
+  const [filteredCars, setFilteredCars] = useState([]);
   const [brands, setBrands] = useState([]);
   const [emiBudget, setEmiBudget] = useState(null);
   const [showEmiBudget, setShowEmiBudget] = useState(false);
-  const [filteredCars, setFilteredCars] = useState([]);
   const [loadingCarId, setLoadingCarId] = useState(null);
-  
+  const [selectedCars, setSelectedCars] = useState({});
 
+  /* ================= FETCH ================= */
 
-  // Fetch cars and calculate EMI
   async function handleShowCars(e) {
     e.preventDefault();
     const f = document.forms[0];
@@ -36,76 +59,75 @@ const [selectedCars, setSelectedCars] = useState({});
       phone: f.phone.value,
       email: f.email.value || null,
       salary_range: f.salary_range.value || null,
-      has_loans: f.hasLoans ? parseInt(f.hasLoans.value) : 0,
+      has_loans: f.hasLoans ? Number(f.hasLoans.value) : 0,
       loan_type: showLoanType ? f.loan_type?.value : null,
       visa_limit: f.visa_limit?.value || null,
       bank: f.bank?.value || null,
       purchase_timeline: f.purchase_timeline?.value || null,
+        emi_budget: emiBudget ?? 0,
+
       privacy_accepted: true,
     };
 
     try {
       const res = await submitLeadSearch(payload);
       const carsData = res.results || [];
+
       setCars(carsData);
       setFilteredCars(carsData);
-      setEmiBudget(res.emi_budget);
+      setEmiBudget(res.emi_budget ?? null);
 
-      const uniqueBrands = [...new Set(carsData.map((car) => car.brand))];
+      const uniqueBrands = [
+        ...new Set(carsData.map(c => getBrandName(c.brand, lang)).filter(Boolean)),
+      ];
+
       setBrands(uniqueBrands);
-
-      // Show EMI Budget only if financial data exists
-      if (
-        payload.salary_range ||
-        payload.has_loans === 1 ||
-        payload.loan_type ||
-        payload.visa_limit ||
-        payload.bank
-      ) {
-        setShowEmiBudget(true);
-      } else {
-        setShowEmiBudget(false);
-      }
+      setShowEmiBudget(Boolean(payload.salary_range || payload.has_loans));
     } catch {
-      alert("Something went wrong fetching cars");
+      alert('Something went wrong');
     } finally {
       setLoading(false);
     }
   }
 
-  // Submit lead after selecting a car
-async function handleLeadSubmit(car) {
-  setLoadingCarId(car.id); // only this car is loading
-  const f = document.forms[0];
+  /* ================= SELECT CAR ================= */
 
-  const payload = {
-    name: f.name.value,
-    phone: f.phone.value,
-    email: f.email.value || null,
-    salary_range: f.salary_range.value || null,
-    has_loans: f.hasLoans ? parseInt(f.hasLoans.value) : 0,
-    loan_type: showLoanType ? f.loan_type?.value : null,
-    visa_limit: f.visa_limit?.value || null,
-    bank: f.bank?.value || null,
-    purchase_timeline: f.purchase_timeline?.value || null,
-    car_id: car.id,
-    privacy_accepted: true,
-  };
+  async function handleSelectCar(car) {
+    setLoadingCarId(car.id);
+    const f = document.forms[0];
 
-  try {
-    await submitLeadSearch(payload);
-    alert(`Lead submitted successfully for ${car.name}`);
-  } catch {
-    alert("Something went wrong submitting the lead");
-  } finally {
-    setLoadingCarId(null); // reset after submission
+    const payload = {
+      name: f.name.value,
+      phone: f.phone.value,
+      email: f.email.value || null,
+      salary_range: f.salary_range?.value || null,
+      has_loans: f.hasLoans ? Number(f.hasLoans.value) : 0,
+      loan_type: showLoanType ? f.loan_type?.value : null,
+      visa_limit: f.visa_limit?.value || null,
+      bank: f.bank?.value || null,
+      purchase_timeline: f.purchase_timeline?.value || null,
+      car_id: car.id,
+        emi_budget: emiBudget ?? 0,
+      privacy_accepted: true,
+    };
+
+    try {
+      await submitLeadSearch(payload);
+      setSelectedCars(prev => ({ ...prev, [car.id]: true }));
+    } catch {
+      alert('Submission failed');
+    } finally {
+      setLoadingCarId(null);
+    }
   }
-}
+
+  /* ================= UI ================= */
 
   return (
-    <div className="grid gap-6">
-      {/* Lead Form */}
-  <form
+    <div className="grid gap-8">
+
+      {/* ================= FORM ================= */}
+        <form
   className="flex flex-wrap gap-4"
   onSubmit={handleShowCars}
 >
@@ -259,101 +281,133 @@ async function handleLeadSubmit(car) {
  
 </form>
 
-
-      {/* EMI Budget */}
+      {/* ================= EMI BUDGET ================= */}
       {emiBudget !== null && showEmiBudget && (
-        <div className="mt-6 px-6 py-4 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg shadow-lg font-semibold text-xl text-center">
-          EMI Budget: <span className="font-extrabold">{emiBudget}</span>
+<div className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-blue-50 text-blue-900 border border-blue-200">
+  <span className="text-sm">
+    {lang === 'ar' ? 'قسطك الشهري المُقدّر:' : 'Your Estimated Monthly (EMI):'}
+  </span>
+
+  <span className="text-xl font-semibold">
+    {emiBudget}
+  </span>
+
+  <Image src={SAR_symbol} alt="SAR" width={16} height={16} />
+</div>
+
+
+
+      )}
+
+      {/* ================= FILTERS ================= */}
+      {cars.length > 0 && (
+        <Filters
+          lang={lang}
+          brands={brands.map(b => ({ name: b }))}
+          cars={cars}
+          onFilterChange={setFilteredCars}
+        />
+      )}
+
+      {/* ================= CARS GRID (NEW DESIGN) ================= */}
+      {filteredCars.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 px-4 md:px-0">
+          {filteredCars.map(car => {
+            const isSelected = selectedCars[car.id] || false;
+
+            return (
+              <div key={car.id} className="bg-white rounded-2xl shadow-lg overflow-hidden relative">
+                <img
+src={`https://sanabelauto.com/storage/${car.card_image}`}
+                  alt={getText(car.name, lang)}
+                  className="w-full h-52 object-cover"
+                  loading="lazy"
+                />
+
+                {car.has_offer && (
+                  <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    {lang === 'ar' ? 'عرض خاص' : 'Special Offer'}
+                  </span>
+                )}
+
+                <span className="absolute top-3 right-3 bg-gray-200 px-3 py-1 rounded-full text-sm font-semibold text-gray-600">
+                 
+                   {car.price}{' '}
+                    <Image src={SAR_symbol} alt="SAR" width={18} height={18} className="inline" />
+                </span>
+
+              <div
+  className={`p-5 flex flex-col gap-3 ${
+    lang === 'ar' ? 'text-right' : 'text-left'
+  }`}
+>
+  {/* Car Name */}
+  <h3 className="text-xl font-semibold text-gray-800 leading-snug">
+    {getText(car.name, lang)}
+  </h3>
+
+  {/* Brand */}
+  <span className="inline-block w-fit text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+    {getBrandName(car.brand, lang)}
+  </span>
+
+  {/* Short Content */}
+  <p
+    className="text-sm text-gray-700 leading-relaxed line-clamp-1"
+    dangerouslySetInnerHTML={{
+      __html: getContent(car.content, lang),
+    }}
+  />
+
+  {/* EMI */}
+  {car.emi_monthly && (
+    <div className="flex items-center gap-1 text-blue-600 text-sm font-medium">
+      <span>
+        {lang === 'ar' ? 'القسط الشهري' : 'Monthly Installment'}
+      </span>
+      <span className="font-semibold">
+        {car.emi_monthly}
+      </span>
+      <Image
+        src={SAR_symbol}
+        alt="SAR"
+        width={14}
+        height={14}
+        className="inline"
+      />
+    </div>
+  )}
+
+  {/* CTA */}
+  {!isSelected ? (
+    <button
+      onClick={() => handleSelectCar(car)}
+      disabled={loadingCarId === car.id}
+      className="mt-3 w-full bg-green-600 text-white py-2.5 rounded-xl font-medium hover:bg-green-700 transition disabled:opacity-60"
+    >
+      {loadingCarId === car.id
+        ? lang === 'ar'
+          ? 'جاري الإرسال...'
+          : 'Submitting...'
+        : lang === 'ar'
+        ? 'أريد هذه السيارة'
+        : 'I Want This Car'}
+    </button>
+  ) : (
+    <a
+      href={`/${lang}/cars/${car.slug}`}
+      className="mt-3 block text-center bg-blue-600 text-white py-2.5 rounded-xl font-medium hover:bg-blue-700 transition"
+    >
+      {lang === 'ar' ? 'عرض التفاصيل' : 'View Details'}
+    </a>
+  )}
+</div>
+
+              </div>
+            );
+          })}
         </div>
       )}
-
-      {/* Filters */}
-      {cars.length > 0 && (
-        <Filters lang={lang} brands={brands.map((b) => ({ name: b }))} cars={cars} onFilterChange={setFilteredCars} />
-      )}
-
-      {/* Display Cars */}
-      {filteredCars.length > 0 && (
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 px-4 md:px-0">
-{filteredCars.map((car) => {
-  const isSelected = selectedCars[car.id] || false;
-
-  const handleSelectCar = async () => {
-    setLoadingCarId(car.id);
-
-    const f = document.forms[0]; // get form values
-
-    const payload = {
-      name: f.name.value,
-      phone: f.phone.value,
-      email: f.email.value || null,
-      salary_range: f.salary_range?.value || null,
-      has_loans: f.hasLoans ? parseInt(f.hasLoans.value) : 0,
-      loan_type: showLoanType ? f.loan_type?.value : null,
-      visa_limit: f.visa_limit?.value || null,
-      bank: f.bank?.value || null,
-      purchase_timeline: f.purchase_timeline?.value || null,
-      car_id: car.id,
-      privacy_accepted: true,
-    };
-
-    try {
-      await submitLeadSearch(payload); // send lead
-      setSelectedCars({ ...selectedCars, [car.id]: true }); // mark as selected
-    } catch {
-      alert("Something went wrong submitting the lead");
-    } finally {
-      setLoadingCarId(null);
-    }
-  };
-
-  return (
-    <div key={car.id} className="bg-white rounded-2xl shadow-lg overflow-hidden relative">
-      <img src={car.image} alt={car.name} className="w-full h-52 object-cover" loading="lazy" />
-      {car.has_offer && (
-        <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-          Offer
-        </span>
-      )}
-      <span className="absolute top-3 right-3 bg-gray-200 px-3 py-1 rounded-full text-sm font-semibold shadow-lg text-gray-500">
-        {car.brand}
-      </span>
-      <div className="p-5">
-        <h3 className="text-xl font-semibold text-gray-800">{car.name}</h3>
-        <p className="mt-2 text-lg font-bold text-gray-900">{car.price}                         <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
-        </p>
-        {car.emi_monthly && (
-          <p className="mt-1 text-sm text-blue-600">EMI: {car.emi_monthly}                         <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
-          </p>
-        )}
-
-        {!isSelected ? (
-          <button
-            className="mt-4 w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition"
-            onClick={handleSelectCar}
-            disabled={loadingCarId === car.id}
-          >
-            {loadingCarId === car.id
-              ? lang === 'ar' ? 'جاري الإرسال...' : 'Submitting...'
-              : lang === 'ar' ? 'أريد هذه السيارة' : 'I Want This Car'}
-          </button>
-        ) : (
-          <a
-            href={`/${lang}/cars/${car.slug}`} // car details page
-            className="mt-4 block w-full text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
-          >
-            {lang === 'ar' ? 'عرض التفاصيل' : 'View Details'}
-          </a>
-        )}
-      </div>
-    </div>
-  );
-})}
-
-
-  </div>
-)}
-
     </div>
   );
 }

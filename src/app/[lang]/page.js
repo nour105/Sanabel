@@ -44,7 +44,7 @@ export default async function Home({ params }) {
                 ? 'قدّم الآن واحصل على سيارتك'
                 : 'Apply now and get your car'}
             </h2>
-            <LeadForm lang={lang} brands={brands}  cars={cars} />
+            <LeadForm lang={lang} />
           </div>
         </div>
       </section>
@@ -53,13 +53,13 @@ export default async function Home({ params }) {
         <h2 className="text-3xl font-bold text-black text-center mb-12">
           {lang === 'ar' ? 'علاماتنا التجارية' : 'Our Brands'}
         </h2>
-        <div className="container mx-auto px-4">
+        <div className=" px-4">
           <Brands brands={brands} lang={lang} />
         </div>
       </section>
 
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="  px-4">
           <ProductListing brands={brands} cars={cars} lang={lang} />
         </div>
       </section>
