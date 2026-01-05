@@ -2,7 +2,7 @@
 import { getUTMParams } from '@/lib/utm';
 import { useState } from 'react';
 
-export default function CarLeadForm({ car, lang  }) {
+export default function CarLeadForm({ car, lang }) {
   const [loading, setLoading] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
 
@@ -78,7 +78,8 @@ export default function CarLeadForm({ car, lang  }) {
     });
 
     setLoading(false);
-    alert(lang === "ar" ? "تم الإرسال" : "Submitted");
+    // redirect to thank you page
+window.location.href = `/${lang}/thank-you`;
   }
 
   return (

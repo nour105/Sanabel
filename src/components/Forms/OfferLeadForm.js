@@ -29,9 +29,9 @@ export default function OfferLeadForm({ offer, locale = 'en' }) {
 
         source_type: 'offer',
         source_id: offer.id,
-        offer_title: offer.title[locale],  // <-- use locale
+        offer_title: offer.title[locale],
 
-        car_name: car.name[locale],        // <-- use locale
+        car_name: car.name[locale],
         price: car.price,
         currency: car.currency,
 
@@ -40,7 +40,8 @@ export default function OfferLeadForm({ offer, locale = 'en' }) {
     });
 
     setLoading(false);
-    alert(locale === 'ar' ? 'تم الإرسال' : 'Submitted');
+    // redirect to thank you page
+    window.location.href = locale === 'ar' ? '/thank-you?lang=ar' : '/thank-you?lang=en';
   }
 
   return (
@@ -60,7 +61,7 @@ export default function OfferLeadForm({ offer, locale = 'en' }) {
         />
         <input
           name="phone"
-          placeholder={locale === 'ar' ? '050 000 0000' : '050 000 0000'}
+          placeholder="050 000 0000"
           required
           pattern="^05\d{8}$"
           title={locale === 'ar' ? 'رقم سعودي صالح يبدأ بـ05 و10 أرقام' : 'Enter a valid Saudi phone number starting with 05 and 10 digits'}
