@@ -18,31 +18,12 @@ const nextConfig = {
         hostname: 'sanabelauto.com',
         pathname: '/storage/**',
       },
-
-      {
+       {
         protocol: 'http',
         hostname: '127.0.0.1',
         pathname: '/storage/**',
       },
     ],
-  },
-
-  async rewrites() {
-    return [
-      {
-        source: '/api/marketing-leads',
-        destination: 'https://sanabelauto.com/api/v1/marketing-leads',
-      },
-      // Optional: other API rewrites
-      {
-        source: '/api/lead-search',
-        destination: 'https://sanabelauto.com/api/v1/lead-search',
-      },
-      {
-        source: '/api/callback-requests',
-        destination: 'https://sanabelauto.com/api/v1/callback-requests',
-      },
-    ];
   },
 };
 
