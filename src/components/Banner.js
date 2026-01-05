@@ -45,7 +45,7 @@ export default function Banner({ banners, lang }) {
                   alt={`Banner ${index + 1}`}
                   fill
                   priority={index === 0}
-                  className=" object-center"
+                  className="object-cover object-center"
                   unoptimized
                 />
               </div>

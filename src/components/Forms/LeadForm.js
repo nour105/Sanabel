@@ -5,7 +5,7 @@ import { submitLeadSearch } from "@/lib/api";
 import CallButton from "../CallButton";
 import Filters from "../Filters";
 import SAR_symbol from '@/publicImage/Saudi_Riyal_Symbol.svg.png';
-
+import Image from "next/image";
 export default function EmiLeadForm({lang}) {
   const [loading, setLoading] = useState(false);
   const [showLoanType, setShowLoanType] = useState(false);
