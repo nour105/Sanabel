@@ -1,20 +1,20 @@
-// middleware.js
+// middleware.js (put it at the root of your project)
+
 import { NextResponse } from 'next/server';
 
-export function middleware(req) {
-  const { pathname } = req.nextUrl;
+export function middleware(request) {
+  const { pathname } = request.nextUrl;
 
-  // لو المستخدم داخل على root فقط
+  // Redirect root '/' to '/ar' by default
   if (pathname === '/') {
-    // Redirect افتراضي، هون عربي
-    return NextResponse.redirect(new URL('/ar', req.url));
+    return NextResponse.redirect(new URL('/ar', request.url));
   }
 
-  // خلي باقي الطلبات تمر عادي
+  // Let other paths continue
   return NextResponse.next();
 }
 
-// تطبيق على جميع المسارات
+// Specify which paths this middleware runs on
 export const config = {
-  matcher: ['/'],
+  matcher: ['/'], // runs only on the root
 };
