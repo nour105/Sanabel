@@ -44,7 +44,7 @@ export default async function Home({ params }) {
                 ? 'قدّم الآن واحصل على سيارتك'
                 : 'Apply now and get your car'}
             </h2>
-            <LeadForm lang={lang} />
+            <LeadForm lang={lang} brands={brands}  cars={cars} />
           </div>
         </div>
       </section>
