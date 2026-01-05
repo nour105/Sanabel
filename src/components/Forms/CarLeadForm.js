@@ -59,23 +59,34 @@ export default function CarLeadForm({ car, lang = 'en' }) {
     setLoading(true);
     const f = new FormData(e.target);
 
-    await fetch('https://sanabelauto.com/api/v1/marketing-leads', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: f.get('first_name') + ' ' + f.get('last_name'),
-        phone: f.get('phone'),
-        email: f.get('email'),
-        salary: f.get('salary'),
-        bank: f.get('bank'),
-        source_type: 'car',
-        source_id: car.id,
-        car_name: car.name[lang] || car.name.en,
-        price: car.price,
-        currency: car.currency,
-        ...getUTMParams(),
-      }),
-    });
+    try {
+  const res = await fetch('/api/marketing-leads', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: f.get('first_name') + ' ' + f.get('last_name'),
+      phone: f.get('phone'),
+      email: f.get('email'),
+      salary: f.get('salary'),
+      bank: f.get('bank'),
+      source_type: 'car',
+      source_id: car.id,
+      car_name: car.name[lang] || car.name.en,
+      price: car.price,
+      currency: car.currency,
+      ...getUTMParams(),
+    }),
+  });
+
+  if (!res.ok) throw new Error('Failed to submit');
+  alert(lang === 'ar' ? 'تم الإرسال' : 'Submitted');
+} catch (err) {
+  console.error(err);
+  alert(lang === 'ar' ? 'حدث خطأ أثناء الإرسال' : 'Submission failed');
+} finally {
+  setLoading(false);
+}
+
 
     setLoading(false);
     alert(lang === "ar" ? "تم الإرسال" : "Submitted");

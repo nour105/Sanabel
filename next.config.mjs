@@ -30,16 +30,16 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/v1/marketing-leads',
+        source: '/api/marketing-leads',
         destination: 'https://sanabelauto.com/api/v1/marketing-leads',
       },
       // Optional: other API rewrites
       {
-        source: '/api/v1/lead-search',
+        source: '/api/lead-search',
         destination: 'https://sanabelauto.com/api/v1/lead-search',
       },
       {
-        source: '/api/v1/callback-requests',
+        source: '/api/callback-requests',
         destination: 'https://sanabelauto.com/api/v1/callback-requests',
       },
     ];
