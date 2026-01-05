@@ -114,7 +114,7 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
             onClick={loadMore}
             className="rounded-full bg-indigo-600 px-6 py-2 text-white font-semibold hover:bg-indigo-700 transition"
           >
-            Load More
+            {lang === 'ar' ? 'تحميل المزيد' : 'Load More'}  
           </button>
         </div>
       )}
