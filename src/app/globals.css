@@ -19,6 +19,7 @@
 /* للعناوين الكبيرة */
 h1, h2, h3 ,input, button {
   font-family: var(--font-league-spartan), sans-serif;
+ 
 }
 
 /* للنصوص العادية */

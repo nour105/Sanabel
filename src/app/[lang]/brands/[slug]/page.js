@@ -17,7 +17,7 @@ export default async function BrandPage({ params }) {
 
   if (!brand) {
     return (
-      <div className="p-10 text-center font-bold text-xl">
+      <div className="p-10 text-center text-black font-bold text-xl">
         {lang === 'ar' ? 'العلامة التجارية غير موجودة' : 'Brand not found'}
       </div>
     );
@@ -43,19 +43,23 @@ export default async function BrandPage({ params }) {
       )}
 
       {/* Biography */}
-      <section className="py-16 bg-white">
-        <div
-          className="container mx-auto px-6 prose max-w-4xl"
-          dangerouslySetInnerHTML={{
-            __html: brand.biography[lang] || brand.biography.en
-          }}
-        />
-      </section>
+     <section className="py-16 bg-white">
+  <div
+    className="container mx-auto text-black px-6 prose max-w-4xl"
+    dangerouslySetInnerHTML={{
+      __html:
+        typeof brand.biography?.[lang] === 'string'
+          ? brand.biography[lang]
+          : brand.biography?.en || ''
+    }}
+  />
+</section>
+
 
       {/* Cars Section */}
       <section className="py-16">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12 text-center">
+          <h2 className="text-3xl text-black font-bold mb-12 text-center">
             {lang === 'ar' ? 'الموديلات' : 'Models'}
           </h2>
 
@@ -70,20 +74,36 @@ export default async function BrandPage({ params }) {
                   <div className="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                     
                     {/* Image */}
-                    <div className="relative h-56 overflow-hidden">
-                      <Image
-                        src={car.card_image_url}
-                        alt={car.name[lang] || car.name.en}
-                        fill
-                        unoptimized
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80"></div>
-                      <div className="absolute top-4 right-4 rounded-full bg-white/90 px-4 py-1 text-sm font-semibold text-gray-900 shadow backdrop-blur">
-                        {car.price}   
-                        <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
-                      </div>
-                    </div>
+                 <div className="relative h-56 overflow-hidden">
+  {car.card_image_url ? (
+    <Image
+      src={car.card_image_url}
+      alt={car.name[lang] || car.name.en}
+      fill
+      unoptimized
+      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+    />
+  ) : (
+    <div className="flex h-full w-full items-center justify-center bg-gray-200 text-gray-500 text-sm">
+      {lang === 'ar' ? 'لا توجد صورة' : 'No Image'}
+    </div>
+  )}
+
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80"></div>
+
+  <div className="absolute top-4 right-4 rounded-full bg-white/90 px-4 py-1 text-sm font-semibold text-gray-900 shadow backdrop-blur">
+    {car.price}
+    <Image
+      src={SAR_symbol}
+      alt="SAR"
+      width={20}
+      height={20}
+      className="inline mx-1"
+    />
+    {lang === 'ar' ? ' شامل الضريبة' : ' Including VAT'}
+  </div>
+</div>
+
 
                     {/* Content */}
                     <div className="p-5">
@@ -93,6 +113,10 @@ export default async function BrandPage({ params }) {
                       <p className="mt-1 text-sm text-gray-500">
                         {car.description[lang] || car.description.en}
                       </p>
+                      <p className="flex text-black justify-between"><span>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}</span>
+                      <span className="font-semibold">
+                        {car.year_model}
+                      </span></p>
                       <div className="mt-4 flex items-center justify-between">
                         <span className="text-sm text-gray-400">
                           {lang === 'ar' ? 'إمكانية التقسيط الشهري' : 'Monthly Installments available'}

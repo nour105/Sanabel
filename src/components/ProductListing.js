@@ -83,6 +83,9 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
         <div className="absolute top-4 right-4 rounded-full bg-white/90 px-4 py-1 text-sm font-semibold text-gray-900 shadow backdrop-blur">
           {car.price}   
           <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
+          {lang === 'ar'
+                ? ' شامل الضريبة'
+                : ' Including VAT'}
         </div>
       </div>
 
@@ -94,6 +97,10 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
         <p className="mt-1 text-sm text-gray-500">
           {car.description[lang] || car.description.en}
         </p>
+        <p className="flex text-black justify-between"><span>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}</span>
+        <span className="font-semibold">
+          {car.year_model}
+        </span></p>
 
         <div className="mt-4 flex items-center justify-between">
           <span className="text-sm text-gray-400">

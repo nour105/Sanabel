@@ -58,6 +58,10 @@ export default function Models({ cars, lang }) {
     height={20}
     className="inline"
   />
+  {lang === 'ar'
+                ? ' شامل الضريبة'
+                : ' Including VAT'}
+
                     </span>
                     <span className="text-sm text-gray-500">
                       {getBrandName(car.brand)}

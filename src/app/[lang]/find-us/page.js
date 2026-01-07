@@ -69,7 +69,7 @@ export default function FindUsPage() {
 
       {/* ===== PAGE TITLE & DESCRIPTION ===== */}
       <section className="container mx-auto py-16 px-4 md:px-0">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Find Us</h1>
+        <h1 className="text-4xl md:text-5xl text-black  font-bold text-center mb-6">Find Us</h1>
         <p className="text-center text-gray-600 mb-12">
           Fill out the form below and our team will get back to you shortly.
         </p>
@@ -161,7 +161,7 @@ export default function FindUsPage() {
 
         {/* ===== MAP ===== */}
       <div className="mt-16">
-        <h2 className="text-2xl font-bold mb-4 text-center">Our Location</h2>
+        <h2 className="text-2xl font-bold mb-4 text-black text-center">Our Location</h2>
         <div className="w-full h-64 md:h-96 rounded-3xl overflow-hidden shadow-lg">
           <iframe
             className="w-full h-full"

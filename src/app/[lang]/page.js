@@ -42,7 +42,13 @@ export default async function Home({ params }) {
             <h2 className="mb-4 text-black text-2xl font-bold text-center">
               {lang === 'ar'
                 ? 'قدّم الآن واحصل على سيارتك'
-                : 'Apply now and get your car'}
+                : 'Find the car that fits you!'} <br />
+                <span className="text-red-600 text-md font-semibold">
+                
+                   {lang === 'ar'
+                ? ' تخطى الطابور واحصل على سيارتك بسرعة عن طريق ملء المعلومات أدناه'
+                : 'Cut the line & get your car faster by filling in the information below'}
+                </span>
             </h2>
             <LeadForm lang={lang} />
           </div>

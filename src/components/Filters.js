@@ -206,7 +206,7 @@ export default function Filters({ brands = [], cars = [], onFilterChange, lang }
             name="brand"
             value={selectedFilters.brand}
             onChange={handleInputChange}
-            className="w-full border rounded-xl px-3 py-2 text-sm"
+            className="w-full border text-black rounded-xl px-3 py-2 text-sm"
           >
             <option value="">
               {lang === 'ar' ? 'جميع العلامات التجارية' : 'All Brands'}
@@ -233,7 +233,7 @@ export default function Filters({ brands = [], cars = [], onFilterChange, lang }
             placeholder={lang === 'ar' ? ' ابحث عن موديل السيارة (اختياري)' : ' Search Car Model (Optional)'}
             value={selectedFilters.model}
             onChange={handleInputChange}
-            className="w-full border rounded-xl px-3 py-2 text-sm"
+            className="w-full border rounded-xl text-black px-3 py-2 text-sm"
           />
         </div>
 

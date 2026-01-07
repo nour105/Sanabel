@@ -85,32 +85,32 @@ window.location.href = `/${lang}/thank-you`;
   return (
     <form onSubmit={submit} className="p-6 bg-white shadow-md rounded-md space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <input name="first_name" placeholder={L.firstName} required className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" />
-        <input name="last_name" placeholder={L.lastName} required className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" />
+        <input name="first_name" placeholder={L.firstName} required className="px-3 py-2 border border-gray-300 text-black rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" />
+        <input name="last_name" placeholder={L.lastName} required className="px-3 py-2 border border-gray-300 text-black rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" />
         <input
           name="phone"
           placeholder={L.phone}
           required
           pattern="^05\d{8}$"
           title={lang === "ar" ? "أدخل رقم جوال سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام" : "Enter a valid Saudi phone number starting with 05 and 10 digits"}
-          className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="px-3 py-2 text-black border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
         />
-        <input name="email" type="email" placeholder={L.email} className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" />
+        <input name="email" type="email" placeholder={L.email} className="px-3 text-black py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <select name="car_name" defaultValue={L.carName} className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
+        <select name="car_name" defaultValue={L.carName} className="px-3 text-black py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
           <option>{L.carName}</option>
         </select>
 
-        <select name="salary" className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
+        <select name="salary" className="px-3 py-2 border border-gray-300  text-black rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
           <option value="" disabled>{L.salary}</option>
           {L.salaryOptions.map(opt => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
 
-        <select name="bank" className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
+        <select name="bank" className="px-3 py-2 border text-black border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
           <option value="">{L.bank}</option>
           {L.banks.map(b => (
             <option key={b} value={b}>{b}</option>

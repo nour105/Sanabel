@@ -28,6 +28,11 @@ function getCarDescription(car, locale = "en") {
   return typeof car.description === 'object' ? car.description[locale] || car.description.en : car.description;
 }
 
+function getYearModel(car, locale = "en") {
+  if (!car?.year_model) return "";
+  return typeof car.year_model === 'object' ? car.year_model[locale] || car.year_model.en : car.year_model;
+}
+
 export default function CarCarousel({ cars = [], locale = "en" }) {
   if (!cars.length) return null;
 
@@ -75,19 +80,27 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
     height={20}
     className="inline"
   />
+  {locale === 'ar'
+                ? ' شامل الضريبة'
+                : ' Including VAT'}
                     </div>
                   </div>
 
                   {/* Car Content */}
-                  <div className="p-5">
+                  <div className="py-6 px-2">
                     <h3 className="text-lg font-bold text-gray-900 transition-colors duration-300 group-hover:text-indigo-600">
                       {getCarName(car, locale)}
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">
                       {getCarDescription(car, locale)}
                     </p>
+                     <li className="flex text-black justify-between"><span>{locale === 'ar' ? 'سنة الصنع' : 'Year Model'}</span>
+                     <span className="font-semibold">
+                      {getYearModel(car, locale)}
+                      </span></li>
 
-                    <div className="mt-4 flex items-center justify-between">
+
+                    <div className="mt-4 gap-2 flex items-center justify-between">
                       <span className="text-sm text-gray-400">
                         {locale === "ar"
                           ? "أقساط شهرية متاحة"
@@ -95,7 +108,7 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
                       </span>
                       <span
                        
-                        className="rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
+                        className="rounded-full bg-indigo-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
                       >
                         {locale === "ar" ? "عرض التفاصيل" : "View Details"}
                       </span>
