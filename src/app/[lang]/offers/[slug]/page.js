@@ -119,7 +119,7 @@ export default async function OfferDetailsPage({ params }) {
             </section>
           )}
 
-          {/* CARS */}
+     
           {offer.cars?.length > 0 && (
             <section className="mb-24">
               <div className="flex justify-between items-center mb-6">
