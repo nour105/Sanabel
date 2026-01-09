@@ -1,4 +1,5 @@
-const API_BASE_URL = 'https://sanabelauto.com/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 // export async function submitLeadSearch(payload) {
 //   const res = await fetch(
 //     `${API_BASE_URL}/lead-search`,
@@ -178,9 +179,8 @@ export async function getCarsByBrandId(brandId) {
 export async function getOfferBySlug(slug) {
   const res = await fetch(`${API_BASE_URL}/offers/slug/${slug}`, { cache: 'no-store' });
 
-  if (!res.ok) {
-    throw new Error(`Offer not found: ${slug}`);
-  }
+      if (!res.ok) return null; // <-- return null instead of throwing
+      if (!data) return null; // <-- return null instead of throwing
 
   const json = await res.json();
   return json.data; // <-- single object, NOT array
