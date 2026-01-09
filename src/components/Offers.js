@@ -14,7 +14,7 @@ export default function Offers({ offers, lang }) {
 </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {offers.map((offer) => (
-            <Link key={offer.id} href={`/offers/${offer.slug || offer.id}`} className="group relative block overflow-hidden rounded-xl shadow-lg">
+            <Link key={offer.id} href={`/${lang}/offers/${offer.slug || offer.id}`} className="group relative block overflow-hidden rounded-xl shadow-lg">
               {offer.card_image && (
                 <div className="relative h-64 w-full">
                   <Image

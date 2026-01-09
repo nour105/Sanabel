@@ -179,8 +179,9 @@ export async function getCarsByBrandId(brandId) {
 export async function getOfferBySlug(slug) {
   const res = await fetch(`${API_BASE_URL}/offers/slug/${slug}`, { cache: 'no-store' });
 
-      if (!res.ok) return null; // <-- return null instead of throwing
-      if (!data) return null; // <-- return null instead of throwing
+  if (!res.ok) {
+    throw new Error(`Offer not found: ${slug}`);
+  }
 
   const json = await res.json();
   return json.data; // <-- single object, NOT array
