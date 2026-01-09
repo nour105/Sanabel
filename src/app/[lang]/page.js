@@ -7,15 +7,24 @@ import LeadForm from '@/components/Forms/LeadForm';
 
 import { getBrands, getOffers, getCars, getHomePage } from '@/lib/api';
 
+async function safeFetch(fn, lang) {
+  try {
+    const data = await fn(lang);
+    return data || [];
+  } catch (err) {
+    console.error('Fetch error:', err);
+    return [];
+  }
+}
+
 export default async function Home({ params }) {
   const { lang } = await params;
 
-  const [page, brands, offers, cars] = await Promise.all([
-    getHomePage(lang),
-    getBrands(lang),
-    getOffers(lang),
-    getCars(lang)
-  ]);
+  const page = await safeFetch(getHomePage, lang);
+  const brands = await safeFetch(getBrands, lang);
+  const offers = await safeFetch(getOffers, lang);
+  const cars = await safeFetch(getCars, lang);
+
 
   return (
     <div className="min-h-screen bg-gray-50">
