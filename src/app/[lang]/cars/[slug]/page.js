@@ -8,10 +8,12 @@ import RequestForm from '@/components/RequestForm';
 export const dynamic = 'force-dynamic';
 import SAR_symbol from '@/publicImage/Saudi_Riyal_Symbol.svg.png';
 import ThankYouModal from '@/components/ThankYouModal';
+import Link from 'next/link';
 
 
 export async function generateStaticParams() {
   const cars = await getAllcars();
+  const car = await getAllcars();
   return cars.map(car => ({ slug: car.slug }));
 }
 
@@ -32,6 +34,19 @@ export default async function CarPage({ params }) {
   } catch {
     notFound();
   }
+  let similarCars = [];
+  try {
+    const allCars = await getAllcars(); // ✅ fetch all cars
+    const currentPrice = parseFloat(car.price.replace(/,/g, ''));
+
+    similarCars = allCars?.filter(c => {
+      const price = parseFloat(c?.price?.replace(/,/g, ''));
+      return c.slug !== car.slug && Math.abs(price - currentPrice) <= 15000; // ±15k
+    });
+  } catch (err) {
+    console.error('Error fetching similar cars', err);
+  }
+
 
   if (!car) notFound();
 
@@ -73,12 +88,12 @@ export default async function CarPage({ params }) {
             <div className="bg-white text-black rounded-3xl shadow p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 order-1 lg:order-1">
               <div>
                 <p className="text-sm text-gray-500">{lang === 'ar' ? 'السعر النقدي' : 'Cash Price'} {lang === 'ar'
-                ? ' شامل الضريبة'
-                : ' Including VAT'} </p>
+                  ? ' شامل الضريبة'
+                  : ' Including VAT'} </p>
                 <p className="text-3xl font-bold text-gray-900">
                   {car.price}
                   <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
-                 
+
                 </p>
                 <p className="text-sm text-gray-500 mt-1">
                   {lang === 'ar' ? 'الأقساط الشهرية من' : 'Monthly Installments (EMI) from'}{' '}
@@ -87,6 +102,62 @@ export default async function CarPage({ params }) {
                     <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
                   </span> / {lang === 'ar' ? 'شهر' : 'month'}
                 </p>
+                {car.available_showrooms?.map((s, i) => {
+                  // إذا ما في أي bank_details، ما نعرض شيء
+                  if (!s.bank_details || s.bank_details.length === 0) return null;
+
+                  return (
+                    <div key={i} className="space-y-2">
+                      {s.bank_details.map((bank, bIndex) => (
+                        <div
+                          key={bIndex}
+                          className="items-center gap-3 bg-white p-3 rounded-lg shadow-sm"
+                        >
+                          <img
+                            src={`https://sanabelauto.com/storage/${bank.bank_logo}`}
+                            alt={bank.bank_name?.[lang]}
+                            className="h-8 object-contain"
+                          />
+                          <div className="text-sm">
+                            <p className="font-semibold">{bank.bank_name?.[lang]}</p>
+
+                            {bank.down_payment && (
+                              <p>
+                                {lang === 'ar' ? 'دفعة أولى' : 'Down'}: {bank.down_payment}
+                              </p>
+                            )}
+
+                            {bank.margin && (
+                              <p>
+                                {lang === 'ar' ? 'هامش' : 'Margin'}: {bank.margin}
+                              </p>
+                            )}
+
+                            {bank.final_payment && (
+                              <p>
+                                {lang === 'ar' ? 'الدفعة النهائية' : 'Final'}:{" "}
+                                {bank.final_payment}{" "}
+                                <Image
+                                  src={SAR_symbol}
+                                  alt="SAR"
+                                  width={20}
+                                  height={20}
+                                  className="inline"
+                                />
+                              </p>
+                            )}
+
+                            {bank.valid_till && (
+                              <p>
+                                {lang === 'ar' ? 'صالح حتى' : 'Valid Till'}: {bank.valid_till}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
@@ -123,21 +194,40 @@ export default async function CarPage({ params }) {
               <ul className="space-y-3 text-sm text-gray-700">
                 <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الماركة' : 'Brand'}</span><span className="font-semibold">{lang === 'ar' ? car?.brand?.ar : car?.brand?.en}</span></li>
                 <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الموديل' : 'Model'}</span><span className="font-semibold">{lang === 'ar' ? car?.name?.ar : car?.name?.en}</span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'السعر' : 'Price'}</span><span className="font-semibold">{car?.price} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline"/> {lang === 'ar'
-                ? ' شامل الضريبة'
-                : ' Including VAT'} </span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الأقساط الشهرية' : 'Monthly Installments (EMI)'}</span><span className="font-semibold">{car?.emi_monthly} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline"/></span></li>
+                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'السعر' : 'Price'}</span><span className="font-semibold">{car?.price} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /> {lang === 'ar'
+                  ? ' شامل الضريبة'
+                  : ' Including VAT'} </span></li>
+                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الأقساط الشهرية' : 'Monthly Installments (EMI)'}</span><span className="font-semibold">{car?.emi_monthly} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /></span></li>
                 <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}</span><span className="font-semibold">{lang === 'ar' ? car?.year_model?.ar : car?.year_model?.en}</span></li>
                 <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الضمان' : 'Warranty'}</span><span className="font-semibold">{lang === 'ar' ? car?.warranty?.ar : car?.warranty?.en}</span></li>
                 <li className="flex  text-black justify-between"><span>{lang === 'ar' ? 'عدد الأسطوانات' : 'Cylinders'}</span><span className="font-semibold">{lang === 'ar' ? car?.cylinders?.ar : car?.cylinders?.en}</span></li>
                 <li className="space-y-2">
                   <span className="block text-gray-500">{lang === 'ar' ? 'الصالونات المتوفرة' : 'Available Showrooms'}</span>
                   <div className="flex flex-wrap gap-2">
-                    {car.available_showrooms?.map((s, i) => (
-                      <span key={i} className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium">
-                        {lang === 'ar' ? s?.showroom_name?.ar : s?.showroom_name?.en}
-                      </span>
-                    ))}
+                    {car.available_showrooms?.map((s, i) => {
+                      const name = lang === 'ar' ? s?.showroom_name?.ar : s?.showroom_name?.en;
+
+                      return (
+                        <div key={i} className="space-y-2">
+
+                          {/* Showroom link or plain text */}
+                          {s?.showroom_link ? (
+                            <Link href={s.showroom_link} target="_blank" rel="noopener noreferrer">
+                              <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium inline-block">
+                                {name}
+                              </span>
+                            </Link>
+                          ) : (
+                            <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium inline-block">
+                              {name}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+
+
+
                   </div>
                 </li>
               </ul>
@@ -174,6 +264,58 @@ export default async function CarPage({ params }) {
           <Gallery title={lang === 'ar' ? 'الداخلية' : 'Interior'} images={car?.interior_images} />
           <Gallery title={lang === 'ar' ? 'الخارجية' : 'Exterior'} images={car?.exterior_images} />
         </div>
+        {/* ===== Similar Cars Section ===== */}
+        {similarCars.length > 0 && (
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold mb-6">{lang === 'ar' ? 'سيارات مشابهة' : 'Similar Cars'}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {similarCars.map((c, i) => (
+                <Link
+                  key={i}
+                  href={`/${lang}/cars/${c.slug}`}
+                  className="relative block bg-white rounded-2xl shadow overflow-hidden hover:shadow-lg transition"
+                >
+                  {/* Offer badge */}
+                  {c.has_offer && (
+                    <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                      {lang === 'ar' ? 'عرض خاص' : 'Offer'}
+                    </span>
+                  )}
+                  <p className="absolute top-3 right-3 bg-gray-100  px-3 py-1 rounded-full text-sm shadow-lg  mt-2 font-bold text-gray-900">
+                    {c.price} <Image src={SAR_symbol} alt="SAR" width={16} height={16} className="inline" />
+                    {lang === 'ar'
+                      ? ' شامل الضريبة'
+                      : ' Including VAT'} 
+                  </p>
+
+                  <Image
+                    src={c.image_url}
+                    alt={c.name[lang]}
+                    width={400}
+                    height={250}
+                    className="object-cover w-full h-48"
+                  />
+                  <div className="p-4">
+                    <h3 className="font-semibold text-lg">{c.name[lang]}</h3>
+                    <p className="text-gray-600">{c.brand.name[lang]}</p>
+                    <p className="text-gray-600 line-clamp-1">{c.description[lang]}</p>
+                    <p>
+                      {lang === 'ar' ? 'سنة الصنع' : 'Year Model'}: <span className="font-semibold">{c.year_model}</span>
+                    </p>
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="text-sm text-gray-400">
+                        {lang === 'ar' ? 'إمكانية التقسيط الشهري' : 'Monthly Installments available'}
+                      </span>
+                      <button className="cursor-pointer relative overflow-hidden rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-indigo-700">
+                        {lang === 'ar' ? 'عرض التفاصيل' : 'View Details'}
+                      </button>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
       </div>
     </section>

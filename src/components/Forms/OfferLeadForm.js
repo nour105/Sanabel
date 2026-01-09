@@ -26,11 +26,10 @@ export default function OfferLeadForm({ offer, locale = 'en' }) {
         email: f.get('email'),
         salary: f.get('salary'),
         bank: f.get('bank'),
-
         source_type: 'offer',
         source_id: offer.id,
         offer_title: offer.title[locale],
-
+       vehicle_slug: car.slug,
         car_name: car.name[locale],
         price: car.price,
         currency: car.currency,
@@ -41,12 +40,13 @@ export default function OfferLeadForm({ offer, locale = 'en' }) {
 
     setLoading(false);
     // redirect to thank you page
-    window.location.href = locale === 'ar' ? '/thank-you?lang=ar' : '/thank-you?lang=en';
+window.location.href = `/${locale}/thank-you`;
   }
 
   return (
     <form onSubmit={submit} className="p-6 bg-white shadow-md rounded-md space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <input type="hidden" name="vehicle_slug" value={car.slug} />
         <input
           name="first_name"
           placeholder={locale === 'ar' ? 'الإسم الأول' : 'First Name'}
