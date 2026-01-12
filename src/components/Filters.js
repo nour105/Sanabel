@@ -312,7 +312,7 @@ export default function Filters({ brands = [], cars = [], onFilterChange, lang }
             >
               <span>{title}</span>
               <svg
-                className={`w-4 h-4 transition-transform ${
+                className={`w-4 h-4 text-gray-700 transition-transform ${
                   selectedFilters[`${type}Open`] ? 'rotate-180' : ''
                 }`}
                 fill="none"
@@ -329,15 +329,17 @@ export default function Filters({ brands = [], cars = [], onFilterChange, lang }
             </button>
 
             {selectedFilters[`${type}Open`] && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-1 text-gray-700 bg-white border rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
                 {options.map(opt => (
-                  <label key={opt} className="flex items-center gap-2 px-3 py-2">
+                  <label key={opt} className="flex items-center  text-gray-700 gap-2 px-3 py-2">
                     <input
                       type="checkbox"
+                      value={opt}
+                      className='text-gray-700'
                       checked={selectedFilters[type].includes(opt)}
                       onChange={() => handleCheckboxChange(type, opt)}
                     />
-                    <span className="text-sm">{opt}</span>
+                    <span className="text-sm text-gray-700">{opt}</span>
                   </label>
                 ))}
               </div>

@@ -74,7 +74,7 @@ export default async function OfferDetailsPage({ params }) {
           {/* BRANDS */}
           {offer.brands?.length > 0 && (
             <section className="mb-24">
-              <h2 className="text-3xl font-bold text-center mb-10">
+              <h2 className="text-3xl font-bold text-gray-700 text-center mb-10">
                 {locale === "ar" ? "استكشف علاماتنا التجارية" : "Explore Our Brands"}
               </h2>
               <div className="flex gap-6 items-center justify-center py-4 px-2 flex-wrap">
@@ -123,7 +123,7 @@ export default async function OfferDetailsPage({ params }) {
           {offer.cars?.length > 0 && (
             <section className="mb-24">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-bold">
+                <h2 className="text-3xl text-gray-700 font-bold">
                   {locale === "ar" ? "السيارات المشمولة بالعرض" : "Cars Included in This Offer"}
                 </h2>
                 <span className="text-green-600 font-medium">

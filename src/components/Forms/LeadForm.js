@@ -132,14 +132,14 @@ async function handleSelectCar(car) {
           name="name"
           required
           placeholder={lang === 'ar' ? 'الاسم الكامل' : 'Full Name'}
-          className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+          className="flex-grow  text-gray-700 min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
         />
 
         <input
           name="phone"
           required
           placeholder={lang === 'ar' ? 'رقم الهاتف' : 'Phone Number'}
-          className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+          className="flex-grow text-gray-700 min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
           pattern="^05\d{8}$"
           title={
             lang === 'ar'
@@ -153,12 +153,12 @@ async function handleSelectCar(car) {
           type="email"
           required
           placeholder={lang === 'ar' ? 'البريد الإلكتروني' : 'Email Address'}
-          className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+          className="flex-grow text-gray-700 min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
         />
 
         <select
           name="salary_range"
-          className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+          className="flex-grow  text-gray-700 min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
         >
           <option value="">
             {lang === 'ar' ? 'الراتب (اختياري)' : 'Salary (Optional)'}
@@ -177,6 +177,7 @@ async function handleSelectCar(car) {
               value="0"
               defaultChecked
               onChange={() => setShowLoanType(false)}
+              className='text-gray-700'
             />
             {lang === 'ar' ? 'لا يوجد قروض' : 'No Loans'}
           </label>
@@ -187,6 +188,7 @@ async function handleSelectCar(car) {
               name="hasLoans"
               value="1"
               onChange={() => setShowLoanType(true)}
+              className='text-gray-700'
             />
             {lang === 'ar' ? 'يوجد قروض' : 'Has Loans'}
           </label>
@@ -195,7 +197,7 @@ async function handleSelectCar(car) {
         {showLoanType && (
           <select
             name="loan_type"
-            className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+            className="flex-grow text-gray-700 min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
             required
           >
             <option value="">
@@ -215,7 +217,7 @@ async function handleSelectCar(car) {
 
         <select
           name="visa_limit"
-          className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+          className="flex-grow min-w-[150px] max-w-[220px] border text-gray-700 border-gray-300 rounded px-3 py-2"
         >
           <option value="">
             {lang === 'ar'
@@ -232,7 +234,7 @@ async function handleSelectCar(car) {
 
         <select
           name="bank"
-          className="flex-grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+          className="flex-grow text-gray-700 min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
         >
           <option value="">
             {lang === 'ar' ? 'اختر البنك (اختياري)' : 'Choose your bank (Optional)'}
@@ -245,7 +247,7 @@ async function handleSelectCar(car) {
 
         <select
           name="purchase_timeline"
-          className="grow min-w-[150px] max-w-[220px] border border-gray-300 rounded px-3 py-2"
+          className="grow min-w-[150px] max-w-[220px] text-gray-700 border border-gray-300 rounded px-3 py-2"
         >
           <option value="">
             {lang === 'ar' ? 'موعد الشراء' : 'Purchase time frame'}
@@ -280,7 +282,7 @@ async function handleSelectCar(car) {
 
       {/* ================= EMI BUDGET ================= */}
       {emiBudget !== null && showEmiBudget && (
-        <div className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-blue-50 text-blue-900 border border-blue-200">
+        <div className="flex items-center  justify-center gap-3 px-6 py-4 rounded-xl bg-blue-50 text-blue-900 border border-blue-200">
           <span className="text-sm">
             {lang === 'ar' ? 'قسطك الشهري المُقدّر:' : 'Your Estimated Monthly (EMI):'}
           </span>

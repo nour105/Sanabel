@@ -50,13 +50,13 @@ window.location.href = `/${locale}/thank-you`;
           name="first_name"
           placeholder={locale === 'ar' ? 'الإسم الأول' : 'First Name'}
           required
-          className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
         />
         <input
           name="last_name"
           placeholder={locale === 'ar' ? 'إسم العائلة' : 'Last Name'}
           required
-          className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
         />
         <input
           name="phone"
@@ -64,20 +64,20 @@ window.location.href = `/${locale}/thank-you`;
           required
           pattern="^05\d{8}$"
           title={locale === 'ar' ? 'رقم سعودي صالح يبدأ بـ05 و10 أرقام' : 'Enter a valid Saudi phone number starting with 05 and 10 digits'}
-          className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
         />
         <input
           name="email"
           type="email"
           placeholder={locale === 'ar' ? 'البريد الإلكتروني' : 'Email'}
-          className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
         />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <select
           onChange={e => setCar(offer.cars[e.target.value])}
-          className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
           defaultValue={0}
         >
           {offer.cars.map((c, i) => (
@@ -85,14 +85,14 @@ window.location.href = `/${locale}/thank-you`;
           ))}
         </select>
 
-        <select name="salary" className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
+        <select name="salary" className="px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none">
           <option value="" disabled>{locale === 'ar' ? 'راتبك الشهري' : 'Your Salary'}</option>
           <option value="below_5000">{locale === 'ar' ? 'أقل من 5000' : 'Below 5000'}</option>
           <option value="between_5000_and_10,000">{locale === 'ar' ? 'بين 5000 و 10,000' : 'Between 5000 and 10,000'}</option>
           <option value="over_10,000">{locale === 'ar' ? 'أكثر من 10,000' : 'Over 10,000'}</option>
         </select>
 
-        <select name="bank" className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" defaultValue="">
+        <select name="bank" className="px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" defaultValue="">
           <option value="" disabled>{locale === 'ar' ? 'البنك' : 'Bank'}</option>
           <option value="SNB">SNB</option>
           <option value="NCB">NCB</option>
