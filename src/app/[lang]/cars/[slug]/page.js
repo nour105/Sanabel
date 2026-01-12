@@ -234,7 +234,7 @@ export default async function CarPage({ params }) {
             {/* Video */}
             {car?.video_url && (
               <div className="bg-white rounded-3xl shadow p-6 order-4 lg:order-3">
-                <h3 className="font-bold text-lg mb-4">{lang === 'ar' ? 'فيديو السيارة' : 'Car Video'}</h3>
+                <h3 className="font-bold text-gray-900 text-lg mb-4">{lang === 'ar' ? 'فيديو السيارة' : 'Car Video'}</h3>
                 <iframe
                   src={formatYouTubeUrl(car.video_url)}
                   className="w-full aspect-video rounded-2xl"
@@ -265,7 +265,7 @@ export default async function CarPage({ params }) {
         {/* ===== Similar Cars Section ===== */}
         {similarCars.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-6">{lang === 'ar' ? 'سيارات مشابهة' : 'Similar Cars'}</h2>
+            <h2 className="text-2xl text-gray-900 font-bold mb-6">{lang === 'ar' ? 'سيارات مشابهة' : 'Similar Cars'}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {similarCars.map((c, i) => (
                 <Link
@@ -298,7 +298,7 @@ export default async function CarPage({ params }) {
                     <p className="text-gray-600">{c.brand.name[lang]}</p>
                     <p className="text-gray-600 line-clamp-1">{c.description[lang]}</p>
                     <p>
-                      {lang === 'ar' ? 'سنة الصنع' : 'Year Model'}: <span className=" text-gray-700 font-semibold">{c.year_model}</span>
+                     <span className='text-gray-900'>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}: </span> <span className=" text-gray-700 font-semibold">{c.year_model}</span>
                     </p>
                     <div className="mt-4 flex items-center justify-between">
                       <span className="text-sm text-gray-400">
