@@ -62,7 +62,7 @@ export default async function Home({ params }) {
       </section>
 
       <section className="py-16 bg-gray-50">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl text-gray-700 font-bold text-center mb-12">
           {lang === 'ar' ? 'علاماتنا التجارية' : 'Our Brands'}
         </h2>
         <Brands brands={brands} lang={lang} />

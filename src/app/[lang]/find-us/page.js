@@ -197,7 +197,7 @@ export default function FindUsPage() {
               </label>
               <textarea
                 placeholder={t.messagePlaceholder}
-                className="w-full border rounded-xl px-4 py-3"
+                className="w-full border text-gray-700 rounded-xl px-4 py-3"
                 value={form.message}
                 onChange={(e) =>
                   setForm({ ...form, message: e.target.value })

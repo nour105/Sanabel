@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import siteLogo from '@/publicImage/Layer_1_85ac102c6d.svg';
+import siteLogoAr from '@/publicImage/image00002_1c9e39c647.png';
 
 export default function Header({ lang }) {
   const [brands, setBrands] = useState([]);
@@ -43,8 +45,14 @@ export default function Header({ lang }) {
           href={`/${lang}`}
           className="text-2xl font-bold text-gray-800 hover:text-gray-900"
         >
-          MultiBrand
-        </Link>
+<Image
+  src={isAr ? siteLogoAr : siteLogo}
+  alt="Sanabel Auto"
+  width={200}
+  height={50}
+  className="object-contain"
+/>
+     </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 md:space-x-10 relative">
