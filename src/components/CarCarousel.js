@@ -62,7 +62,7 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
                     {locale === "ar" ? "عرض خاص" : "Offer"}
                   </span>
 
-                  {/* Car Image */}
+                
                   <div className="relative h-56 overflow-hidden rounded-t-2xl">
                     <Image
                       src={`https://admin.sanabelauto.com/storage/${car.banner_image}`}
