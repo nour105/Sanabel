@@ -13,6 +13,7 @@ import Link from 'next/link';
 
 export async function generateStaticParams() {
   const cars = await getAllcars();
+
   const car = await getAllcars();
   return cars.map(car => ({ slug: car.slug }));
 }
@@ -192,15 +193,15 @@ export default async function CarPage({ params }) {
             <div className="bg-white rounded-3xl shadow p-6 order-3 lg:order-1">
               <h3 className="font-bold text-black text-lg mb-4">{lang === 'ar' ? 'تفاصيل المركبة' : 'Car Details'}</h3>
               <ul className="space-y-3 text-sm text-gray-700">
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الماركة' : 'Brand'}</span><span className="font-semibold">{lang === 'ar' ? car?.brand?.ar : car?.brand?.en}</span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الموديل' : 'Model'}</span><span className="font-semibold">{lang === 'ar' ? car?.name?.ar : car?.name?.en}</span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'السعر' : 'Price'}</span><span className="font-semibold">{car?.price} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /> {lang === 'ar'
+                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الماركة' : 'Brand'}</span><span className="font-semibold">{car?.brand?.name?.[lang]}</span></li>
+                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الموديل' : 'Model'}</span><span  dir={lang === 'ar' ? 'ltr' : 'ltr'} className="font-semibold ">{lang === 'ar' ? car?.name?.ar : car?.name?.en}</span></li>
+                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'السعر' : 'Price'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className=" font-semibold">{car?.price} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /> {lang === 'ar'
                   ? ' شامل الضريبة'
                   : ' Including VAT'} </span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الأقساط الشهرية' : 'Monthly Installments (EMI)'}</span><span className="font-semibold">{car?.emi_monthly} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /></span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}</span><span className="font-semibold">{lang === 'ar' ? car?.year_model?.ar : car?.year_model?.en}</span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الضمان' : 'Warranty'}</span><span className="font-semibold">{lang === 'ar' ? car?.warranty?.ar : car?.warranty?.en}</span></li>
-                <li className="flex  text-black justify-between"><span>{lang === 'ar' ? 'عدد الأسطوانات' : 'Cylinders'}</span><span className="font-semibold">{lang === 'ar' ? car?.cylinders?.ar : car?.cylinders?.en}</span></li>
+                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الأقساط الشهرية' : 'Monthly Installments (EMI)'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className="font-semibold">{car?.emi_monthly} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /></span></li>
+                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className="font-semibold">{lang === 'ar' ? car?.year_model?.ar : car?.year_model?.en}</span></li>
+                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الضمان' : 'Warranty'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className="font-semibold">{lang === 'ar' ? car?.warranty?.ar : car?.warranty?.en}</span></li>
+                <li className="flex  text-black justify-between"><span>{lang === 'ar' ? 'عدد الأسطوانات' : 'Cylinders'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className="font-semibold">{lang === 'ar' ? car?.cylinders?.ar : car?.cylinders?.en}</span></li>
                 <li className="space-y-2">
                   <span className="block text-gray-500">{lang === 'ar' ? 'الصالونات المتوفرة' : 'Available Showrooms'}</span>
                   <div className="flex flex-wrap gap-2">
@@ -225,9 +226,6 @@ export default async function CarPage({ params }) {
                         </div>
                       );
                     })}
-
-
-
                   </div>
                 </li>
               </ul>
