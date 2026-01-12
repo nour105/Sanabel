@@ -259,8 +259,8 @@ export default async function CarPage({ params }) {
 
         {/* ===== Galleries ===== */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-10">
-          <Gallery title={lang === 'ar' ? 'الداخلية' : 'Interior'} images={car?.interior_images} />
-          <Gallery title={lang === 'ar' ? 'الخارجية' : 'Exterior'} images={car?.exterior_images} />
+          <Gallery className="text-gray-900" title={lang === 'ar' ? 'الداخلية' : 'Interior'} images={car?.interior_images} />
+          <Gallery className="text-gray-900" title={lang === 'ar' ? 'الخارجية' : 'Exterior'} images={car?.exterior_images} />
         </div>
         {/* ===== Similar Cars Section ===== */}
         {similarCars.length > 0 && (
@@ -294,11 +294,11 @@ export default async function CarPage({ params }) {
                     className="object-cover w-full h-48"
                   />
                   <div className="p-4">
-                    <h3 className="font-semibold text-lg">{c.name[lang]}</h3>
+                    <h3 className="font-semibold text-gray-700 text-lg">{c.name[lang]}</h3>
                     <p className="text-gray-600">{c.brand.name[lang]}</p>
                     <p className="text-gray-600 line-clamp-1">{c.description[lang]}</p>
                     <p>
-                      {lang === 'ar' ? 'سنة الصنع' : 'Year Model'}: <span className="font-semibold">{c.year_model}</span>
+                      {lang === 'ar' ? 'سنة الصنع' : 'Year Model'}: <span className=" text-gray-700 font-semibold">{c.year_model}</span>
                     </p>
                     <div className="mt-4 flex items-center justify-between">
                       <span className="text-sm text-gray-400">
