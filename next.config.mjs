@@ -15,7 +15,7 @@ const nextConfig = {
       // Production dashboard
       {
         protocol: 'https',
-        hostname: 'sanabelauto.com',
+        hostname: 'admin.sanabelauto.com',
         pathname: '/storage/**',
       },
        {

@@ -27,7 +27,7 @@ export default function Header({ lang }) {
       : brand.name;
 
   useEffect(() => {
-    fetch('https://sanabelauto.com/api/v1/brands')
+    fetch('https://admin.sanabelauto.com/api/v1/brands')
       .then(res => res.json())
       .then(data => setBrands(data.data || []));
   }, []);
@@ -76,7 +76,7 @@ export default function Header({ lang }) {
                     >
                       {brand.logo && (
                         <Image
-                          src={`https://sanabelauto.com/storage/${brand.logo}`}
+                          src={`https://admin.sanabelauto.com/storage/${brand.logo}`}
                           alt={getBrandName(brand)}
                           width={32}
                           height={32}
@@ -158,7 +158,7 @@ export default function Header({ lang }) {
                       >
                         {brand.logo && (
                           <Image
-                            src={`https://sanabelauto.com/storage/${brand.logo}`}
+                            src={`https://admin.sanabelauto.com/storage/${brand.logo}`}
                             alt={getBrandName(brand)}
                             width={32}
                             height={32}

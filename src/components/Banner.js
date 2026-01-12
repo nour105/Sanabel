@@ -8,7 +8,7 @@ import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const BASE_IMAGE_URL = 'https://sanabelauto.com/storage/';
+const BASE_IMAGE_URL = 'https://admin.sanabelauto.com/storage/';
 
 export default function Banner({ banners, lang }) {
   const [mounted, setMounted] = useState(false);

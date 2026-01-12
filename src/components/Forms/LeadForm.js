@@ -317,7 +317,7 @@ const isSelected = selectedCars[car.id] || false;
             return (
               <div key={car.id} className="bg-white rounded-2xl shadow-lg overflow-hidden relative">
                 <img
-                  src={`https://sanabelauto.com/storage/${car.card_image}`}
+                  src={`https://admin.sanabelauto.com/storage/${car.card_image}`}
                   alt={getText(car.name, lang)}
                   className="w-full h-52 object-cover"
                   loading="lazy"

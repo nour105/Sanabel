@@ -34,7 +34,7 @@ export default function RequestForm({ car, lang }) {
     setLoading(true);
 
     try {
-      await fetch('https://sanabelauto.com/api/v1/callback-requests', {
+      await fetch('https://admin.sanabelauto.com/api/v1/callback-requests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

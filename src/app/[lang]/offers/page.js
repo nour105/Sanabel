@@ -169,8 +169,8 @@ export default function OffersPage() {
                     <Image
                       src={
                         offer.card_image?.[locale]
-                          ? `https://sanabelauto.com/storage/${offer.card_image[locale]}`
-                          : `https://sanabelauto.com/storage/${offer.banners[locale][0]}`
+                          ? `https://admin.sanabelauto.com/storage/${offer.card_image[locale]}`
+                          : `https://admin.sanabelauto.com/storage/${offer.banners[locale][0]}`
                       }
                       alt={offer.title[locale]}
                       fill

@@ -36,7 +36,7 @@ export default function Models({ cars, lang }) {
                 {car.banner_image && (
                   <div className="relative h-48">
                     <Image
-                      src={`https://sanabelauto.com/storage/${car.banner_image}`}
+                      src={`https://admin.sanabelauto.com/storage/${car.banner_image}`}
                       alt={getCarName(car)}
                       className="object-cover"
                         unoptimized={true} // <-- bypass optimization

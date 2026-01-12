@@ -65,7 +65,7 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
                   {/* Car Image */}
                   <div className="relative h-56 overflow-hidden rounded-t-2xl">
                     <Image
-                      src={`https://sanabelauto.com/storage/${car.banner_image}`}
+                      src={`https://admin.sanabelauto.com/storage/${car.banner_image}`}
                       alt={getCarName(car, locale)}
                       fill
                       className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"

@@ -18,7 +18,7 @@ export default function Offers({ offers, lang }) {
               {offer.card_image && (
                 <div className="relative h-64 w-full">
                   <Image
-                    src={`https://sanabelauto.com/storage/${offer.card_image[lang] || offer.card_image.en}`}
+                    src={`https://admin.sanabelauto.com/storage/${offer.card_image[lang] || offer.card_image.en}`}
                     alt={typeof offer.title === 'object' ? offer.title[lang] || offer.title.en : offer.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform"

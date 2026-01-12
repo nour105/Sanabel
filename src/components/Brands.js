@@ -22,7 +22,7 @@ export default function Brands({ brands, lang }) {
             >
               <div className="relative w-20 h-20">
                 <Image
-                  src={`https://sanabelauto.com/storage/${brand.logo}`}
+                  src={`https://admin.sanabelauto.com/storage/${brand.logo}`}
                   alt={typeof brand.name === 'object' ? brand.name[lang] || brand.name.en : brand.name}
                   width={120}
                   height={60}

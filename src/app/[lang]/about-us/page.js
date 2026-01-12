@@ -77,7 +77,7 @@ export default async function AboutUsPage({ params}) {
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
             <img
-              src="https://sanabelauto.com/storage/team-member1.jpg"
+              src="https://admin.sanabelauto.com/storage/team-member1.jpg"
               alt={lang === 'ar' ? 'عضو الفريق' : 'Team Member'}
               className="w-36 h-36 mx-auto rounded-full object-cover mb-4 shadow-md"
             />
@@ -90,7 +90,7 @@ export default async function AboutUsPage({ params}) {
           </div>
           <div className="text-center">
             <img
-              src="https://sanabelauto.com/storage/team-member2.jpg"
+              src="https://admin.sanabelauto.com/storage/team-member2.jpg"
               alt={lang === 'ar' ? 'عضو الفريق' : 'Team Member'}
               className="w-36 h-36 mx-auto rounded-full object-cover mb-4 shadow-md"
             />

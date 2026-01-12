@@ -5,7 +5,7 @@ export async function trackCTA({ cta, car }) {
         ? document.documentElement.lang || 'en'
         : 'en';
 
-    await fetch(`https://sanabelauto.com/api/v1/cta-click`, {
+    await fetch(`https://admin.sanabelauto.com/api/v1/cta-click`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

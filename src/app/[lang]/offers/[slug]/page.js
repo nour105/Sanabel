@@ -54,7 +54,7 @@ export default async function OfferDetailsPage({ params }) {
   <div className="relative w-full">
     <div className="relative w-full h-[300px] md:h-[500px] lg:h-[600px] overflow-hidden shadow-lg">
       <Image
-        src={`https://sanabelauto.com/storage/${offer.banners[locale][0]}`}
+        src={`https://admin.sanabelauto.com/storage/${offer.banners[locale][0]}`}
         alt={offer.title[locale]}
         width={1920}       // عرض ثابت
         height={600}       // ارتفاع مناسب للشاشات الكبيرة
@@ -86,7 +86,7 @@ export default async function OfferDetailsPage({ params }) {
     >
       {brand.logo ? (
         <Image
-          src={`https://sanabelauto.com/storage/${brand.logo}`}
+          src={`https://admin.sanabelauto.com/storage/${brand.logo}`}
           alt={brand.name[locale]}
           width={120}
           height={60}

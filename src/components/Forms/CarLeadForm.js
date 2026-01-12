@@ -59,7 +59,7 @@ export default function CarLeadForm({ car, lang }) {
     setLoading(true);
     const f = new FormData(e.target);
 
-    await fetch('https://sanabelauto.com/api/v1/marketing-leads', {
+    await fetch('https://admin.sanabelauto.com/api/v1/marketing-leads', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

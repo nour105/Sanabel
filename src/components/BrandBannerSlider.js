@@ -21,7 +21,7 @@ export default function BrandBannerSlider({ banners, brandName }) {
           <SwiperSlide key={index}>
             <div className="relative w-full h-full">
               <Image
-                src={`https://sanabelauto.com/storage/${img}`}
+                src={`https://admin.sanabelauto.com/storage/${img}`}
                 alt={`${brandName} banner ${index + 1}`}
                 fill
                 className="object-cover"

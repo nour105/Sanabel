@@ -58,7 +58,7 @@ export default async function CarPage({ params }) {
       {/* ================= HERO ================= */}
       <div className="relative">
         <Image
-          src={car?.image_url}
+          src={`https://admin.sanabelauto.com/storage/${car?.image}`}
           alt={car?.name[lang]}
           priority
           width={1860}
@@ -115,7 +115,7 @@ export default async function CarPage({ params }) {
                           className="items-center gap-3 bg-white p-3 rounded-lg shadow-sm"
                         >
                           <img
-                            src={`https://sanabelauto.com/storage/${bank.bank_logo}`}
+                            src={`https://admin.sanabelauto.com/storage/${bank.bank_logo}`}
                             alt={bank.bank_name?.[lang]}
                             className="h-8 object-contain"
                           />
@@ -171,7 +171,7 @@ export default async function CarPage({ params }) {
                     <li key={i} className="flex items-center gap-3">
                       {spec.icon && (
                         <img
-                          src={`https://sanabelauto.com/storage/${spec?.icon}`}
+                          src={`https://admin.sanabelauto.com/storage/${spec?.icon}`}
                           alt={lang === 'ar' ? spec?.key?.ar : spec?.key?.en}
                           className="w-6 h-6 object-contain"
                         />
@@ -287,7 +287,7 @@ export default async function CarPage({ params }) {
                   </p>
 
                   <Image
-                    src={c.image_url}
+                    src={`https://admin.sanabelauto.com/storage/${c.image}`}
                     alt={c.name[lang]}
                     width={400}
                     height={250}
