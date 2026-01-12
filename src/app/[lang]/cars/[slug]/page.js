@@ -36,7 +36,7 @@ export default async function CarPage({ params }) {
   }
   let similarCars = [];
   try {
-    const allCars = await getAllcars(); // ✅ fetch all cars
+    const allCars = await getAllcars(); 
     const currentPrice = parseFloat(car.price.replace(/,/g, ''));
 
     similarCars = allCars?.filter(c => {
