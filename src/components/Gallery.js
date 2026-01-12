@@ -11,7 +11,7 @@ export default function Gallery({ title, images }) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">{title}</h2>
+      <h2 className="text-2xl text-gray-900 font-bold mb-4">{title}</h2>
 
       {/* Main image */}
       <div
