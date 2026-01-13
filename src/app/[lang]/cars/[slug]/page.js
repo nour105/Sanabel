@@ -366,13 +366,20 @@ export default async function CarPage({ params }) {
                     <h3 className="font-semibold text-gray-700 text-lg">{c.name[lang]}</h3>
                     <p className="text-gray-600">{c.brand.name[lang]}</p>
                     <p className="text-gray-600 line-clamp-1">{c.description[lang]}</p>
-                    <p>
-                     <span className='text-gray-900'>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}: </span> <span className=" text-gray-700 font-semibold">{c.year_model}</span>
-                    </p>
+                   {c.year_model && (
+  <p>
+    <span className='text-gray-900'>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}: </span> 
+    <span className="text-gray-700 font-semibold">{c.year_model}</span>
+  </p>
+)}
+ 
                     <div className="mt-4 flex items-center justify-between">
-                      <span className="text-sm text-gray-400">
-                        {lang === 'ar' ? 'إمكانية التقسيط الشهري' : 'Monthly Installments available'}
-                      </span>
+                      {c.emi_monthly && (
+  <span className="text-sm text-gray-400">
+    {lang === 'ar' ? 'إمكانية التقسيط الشهري' : 'Monthly Installments available'}
+  </span>
+)}
+
                       <button className="cursor-pointer relative overflow-hidden rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-indigo-700">
                         {lang === 'ar' ? 'عرض التفاصيل' : 'View Details'}
                       </button>

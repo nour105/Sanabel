@@ -97,20 +97,29 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
         <p className="mt-1 text-sm text-gray-500">
           {car.description[lang] || car.description.en}
         </p>
+         {car.year_model && (
         <p className="flex text-black justify-between"><span>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}</span>
         <span className="font-semibold">
           {car.year_model}
         </span></p>
-
+         )}
+        
         <div className="mt-4 flex items-center justify-between">
+     {/* {car.emi_monthly && (     
+  <span className="text-sm text-gray-400">
+    {lang === 'ar' ? 'إمكانية التقسيط الشهري' : 'Monthly Installments available'}
+  </span>
+)} */}
+          {car.emi_monthly && (
           <span className="text-sm text-gray-400">
             {lang === 'ar' ? 'إمكانية التقسيط الشهري' : 'Monthly Installments available'}
           </span>
+          )} 
           <span className="rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white group-hover:bg-indigo-700 transition">
             {lang === 'ar' ? 'عرض التفاصيل' : 'View Details'}
           </span>
         </div>
-      </div>
+     </div>
 
       {/* Hover Glow */}
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
