@@ -96,13 +96,17 @@ export default async function CarPage({ params }) {
                   <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
 
                 </p>
-                <p className="text-sm text-gray-500 mt-1">
-                  {lang === 'ar' ? 'الأقساط الشهرية من' : 'Monthly Installments (EMI) from'}{' '}
-                  <span className="font-semibold">
-                    {car?.emi_monthly}
-                    <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
-                  </span> / {lang === 'ar' ? 'شهر' : 'month'}
-                </p>
+               {car?.emi_monthly && (
+  <p className="text-sm text-gray-500 mt-1">
+    {lang === 'ar' ? 'الأقساط الشهرية من' : 'Monthly Installments (EMI) from'}{' '}
+    <span className="font-semibold">
+      {car.emi_monthly}
+      <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
+    </span>{' '}
+    / {lang === 'ar' ? 'شهر' : 'month'}
+  </p>
+)}
+
                 {car.available_showrooms?.map((s, i) => {
                   // إذا ما في أي bank_details، ما نعرض شيء
                   if (!s.bank_details || s.bank_details.length === 0) return null;
