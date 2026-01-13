@@ -16,7 +16,7 @@ export default function CallButton({lang}) {
     return (
       <a
         href={`tel:${phoneNumber.replace(/\s+/g, "")}`}
-        className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition font-semibold"
+        className="bg-blue-600 text-white px-6 py-3 text-center rounded-lg shadow-lg hover:bg-blue-700 transition font-semibold"
       >
         {lang === 'ar' ? 'اتصل بنا الآن!' : 'Call us now!'} 
       </a>
@@ -28,7 +28,7 @@ export default function CallButton({lang}) {
       <button
         type="button"
         onClick={() => setShowPopup(true)}
-        className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition font-semibold"
+        className="bg-blue-600 text-white px-6 py-3 text-center rounded-lg shadow-lg hover:bg-blue-700 transition font-semibold"
       >
        {lang === 'ar' ? 'اتصل بنا الآن!' : 'Call us now!'} 
       </button>

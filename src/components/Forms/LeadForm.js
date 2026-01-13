@@ -30,6 +30,10 @@ const getBrandName = (brand, lang) => {
 };
 
 /* ================= COMPONENT ================= */
+const cleanNumber = (val) => {
+  if (!val) return 0;
+  return Number(String(val).replace(/,/g, ''));
+};
 
 export default function EmiLeadForm({ lang }) {
   const [loading, setLoading] = useState(false);
@@ -70,10 +74,25 @@ const router = useRouter();
 
   try {
     const res = await submitLeadSearch(payload);
-    const carsData = res.results || [];
-    setCars(carsData);
-    setFilteredCars(carsData);
-    setEmiBudget(res.emi_budget ?? null);
+const carsData = res.results || [];
+
+const budget = cleanNumber(res.emi_budget);
+
+const filtered = carsData.filter(car => {
+  const emi = cleanNumber(car.emi_monthly);
+
+  // ❌ لا EMI → لا سيارة
+  // if (emi <= 0) return false;
+  if (budget === 0) return true;
+  return emi <= budget;
+});
+
+setCars(filtered);
+setFilteredCars(filtered);
+setEmiBudget(budget);
+setShowEmiBudget(true);
+
+
     setShowEmiBudget(Boolean(payload.salary_range || payload.has_loans));
   } catch (err) {
     alert('Something went wrong');

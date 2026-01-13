@@ -61,7 +61,7 @@ export default function RequestForm({ car, lang }) {
           setOpen(true);
           trackCTA({ cta: 'request_form', car });
         }}
-        className="w-full bg-white text-indigo-600 py-3 rounded-xl font-semibold cursor-pointer"
+        className="w-full bg-white text-center text-indigo-600 py-3 rounded-xl font-semibold cursor-pointer"
       >
         {lang === 'ar' ? 'اطلب معاودة الاتصال' : 'Request a Callback'}
       </button>

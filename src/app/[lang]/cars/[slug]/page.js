@@ -190,46 +190,111 @@ export default async function CarPage({ params }) {
           <div className="flex flex-col gap-10">
 
             {/* Car Details */}
-            <div className="bg-white rounded-3xl shadow p-6 order-3 lg:order-1">
-              <h3 className="font-bold text-black text-lg mb-4">{lang === 'ar' ? 'تفاصيل المركبة' : 'Car Details'}</h3>
-              <ul className="space-y-3 text-sm text-gray-700">
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الماركة' : 'Brand'}</span><span className="font-semibold">{car?.brand?.name?.[lang]}</span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الموديل' : 'Model'}</span><span  dir={lang === 'ar' ? 'ltr' : 'ltr'} className="font-semibold ">{lang === 'ar' ? car?.name?.ar : car?.name?.en}</span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'السعر' : 'Price'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className=" font-semibold">{car?.price} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /> {lang === 'ar'
-                  ? ' شامل الضريبة'
-                  : ' Including VAT'} </span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الأقساط الشهرية' : 'Monthly Installments (EMI)'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className="font-semibold">{car?.emi_monthly} <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /></span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className="font-semibold">{lang === 'ar' ? car?.year_model?.ar : car?.year_model?.en}</span></li>
-                <li className="flex text-black justify-between"><span>{lang === 'ar' ? 'الضمان' : 'Warranty'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className="font-semibold">{lang === 'ar' ? car?.warranty?.ar : car?.warranty?.en}</span></li>
-                <li className="flex  text-black justify-between"><span>{lang === 'ar' ? 'عدد الأسطوانات' : 'Cylinders'}</span><span dir={lang === 'ar' ? 'ltr' : 'ltr'}  className="font-semibold">{lang === 'ar' ? car?.cylinders?.ar : car?.cylinders?.en}</span></li>
-                <li className="space-y-2">
-                  <span className="block text-gray-500">{lang === 'ar' ? 'الصالونات المتوفرة' : 'Available Showrooms'}</span>
-                  <div className="flex flex-wrap gap-2">
-                    {car.available_showrooms?.map((s, i) => {
-                      const name = lang === 'ar' ? s?.showroom_name?.ar : s?.showroom_name?.en;
+          {/* Car Details Sidebar */}
+<div className="bg-white rounded-3xl shadow p-6 order-3 lg:order-1">
+  <h3 className="font-bold text-black text-lg mb-4">{lang === 'ar' ? 'تفاصيل المركبة' : 'Car Details'}</h3>
+  <ul className="space-y-3 text-sm text-gray-700">
 
-                      return (
-                        <div key={i} className="space-y-2">
+    {/* Brand */}
+    {car?.brand?.name?.[lang] && (
+      <li className="flex text-black justify-between">
+        <span>{lang === 'ar' ? 'الماركة' : 'Brand'}</span>
+        <span className="font-semibold">{car.brand.name[lang]}</span>
+      </li>
+    )}
 
-                          {/* Showroom link or plain text */}
-                          {s?.showroom_link ? (
-                            <Link href={s.showroom_link} target="_blank" rel="noopener noreferrer">
-                              <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium inline-block">
-                                {name}
-                              </span>
-                            </Link>
-                          ) : (
-                            <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium inline-block">
-                              {name}
-                            </span>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </li>
-              </ul>
-            </div>
+    {/* Model */}
+    {(car?.name?.ar || car?.name?.en) && (
+      <li className="flex text-black justify-between">
+        <span>{lang === 'ar' ? 'الموديل' : 'Model'}</span>
+        <span dir="ltr" className="font-semibold">
+          {lang === 'ar' ? car?.name?.ar : car?.name?.en}
+        </span>
+      </li>
+    )}
+
+    {/* Price */}
+    {car?.price && (
+      <li className="flex text-black justify-between">
+        <span>{lang === 'ar' ? 'السعر' : 'Price'}</span>
+        <span dir="ltr" className="font-semibold">
+          {car.price} 
+          <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /> 
+          {lang === 'ar' ? ' شامل الضريبة' : ' Including VAT'}
+        </span>
+      </li>
+    )}
+
+    {/* EMI */}
+    {car?.emi_monthly && (
+      <li className="flex text-black justify-between">
+        <span>{lang === 'ar' ? 'الأقساط الشهرية' : 'Monthly Installments (EMI)'}</span>
+        <span dir="ltr" className="font-semibold">
+          {car.emi_monthly} 
+          <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" />
+        </span>
+      </li>
+    )}
+
+    {/* Year Model */}
+    {car?.year_model && (
+      <li className="flex text-black justify-between">
+        <span>{lang === 'ar' ? 'سنة الصنع' : 'Year Model'}</span>
+        <span dir="ltr" className="font-semibold">{car.year_model}</span>
+      </li>
+    )}
+
+    {/* Warranty */}
+    {(car?.warranty?.ar || car?.warranty?.en) && (
+      <li className="flex text-black justify-between">
+        <span>{lang === 'ar' ? 'الضمان' : 'Warranty'}</span>
+        <span dir="ltr" className="font-semibold">
+          {lang === 'ar' ? car.warranty.ar : car.warranty.en}
+        </span>
+      </li>
+    )}
+
+    {/* Cylinders */}
+    {(car?.cylinders?.ar || car?.cylinders?.en) && (
+      <li className="flex text-black justify-between">
+        <span>{lang === 'ar' ? 'عدد الأسطوانات' : 'Cylinders'}</span>
+        <span dir="ltr" className="font-semibold">
+          {lang === 'ar' ? car.cylinders.ar : car.cylinders.en}
+        </span>
+      </li>
+    )}
+
+    {/* Available Showrooms */}
+    {car?.available_showrooms?.length > 0 && (
+      <li className="space-y-2">
+        <span className="block text-gray-500">{lang === 'ar' ? 'الصالونات المتوفرة' : 'Available Showrooms'}</span>
+        <div className="flex flex-wrap gap-2">
+          {car.available_showrooms.map((s, i) => {
+            const name = lang === 'ar' ? s?.showroom_name?.ar : s?.showroom_name?.en;
+            if (!name) return null;
+            return (
+              <div key={i} className="space-y-2">
+                {s?.showroom_link ? (
+                  <Link href={s.showroom_link} target="_blank" rel="noopener noreferrer">
+                    <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium inline-block">
+                      {name}
+                    </span>
+                  </Link>
+                ) : (
+                  <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full font-medium inline-block">
+                    {name}
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </li>
+    )}
+
+  </ul>
+</div>
+
 
             {/* Video */}
             {car?.video_url && (

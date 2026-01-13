@@ -20,7 +20,7 @@ export default function CallUs({ car, lang }) {
         onClick={() => {
           trackCTA({ cta: 'callback', car });
         }}
-        className="w-full bg-white text-indigo-600 py-3 rounded-xl font-semibold cursor-pointer"
+        className="w-full bg-white text-center text-indigo-600 py-3 rounded-xl font-semibold cursor-pointer"
       >
         {lang === 'ar' ? 'اتصل بنا الآن!' : 'Call us now!'}
       </a>
@@ -35,7 +35,7 @@ export default function CallUs({ car, lang }) {
           setShowPopup(true);
           trackCTA({ cta: 'callback', car });
         }}
-        className="w-full bg-white text-indigo-600 py-3 rounded-xl font-semibold cursor-pointer"
+        className="w-full bg-white text-center text-indigo-600 py-3 rounded-xl font-semibold cursor-pointer"
       >
         {lang === 'ar' ? 'اتصل بنا الآن!' : 'Call us now!'}
       </button>
