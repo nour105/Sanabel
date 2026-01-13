@@ -60,7 +60,7 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-6 gap-6">
        {visibleCars.map(car => (
   <Link key={car.id} href={`/${lang}/cars/${car.slug}`}>
-    <div className="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+    <div className="group relative overflow-hidden h-full rounded-2xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
 
       {/* Image */}
       <div className="relative h-64 overflow-hidden">
@@ -90,7 +90,7 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
       </div>
 
       {/* Content */}
-      <div className="p-5">
+      <div className="p-5 flex flex-col gap-5 justify-between ">
         <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
           {car.name[lang] || car.name.en}
         </h3>
@@ -104,14 +104,14 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
         </span></p>
          )}
         
-        <div className="mt-4 flex items-center justify-between">
+        <div className="flex items-center justify-between">
      {/* {car.emi_monthly && (     
   <span className="text-sm text-gray-400">
     {lang === 'ar' ? 'إمكانية التقسيط الشهري' : 'Monthly Installments available'}
   </span>
 )} */}
           {car.emi_monthly && (
-          <span className="text-sm text-gray-400">
+          <span className="text-sm  text-gray-400">
             {lang === 'ar' ? 'إمكانية التقسيط الشهري' : 'Monthly Installments available'}
           </span>
           )} 

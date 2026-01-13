@@ -76,30 +76,44 @@ const router = useRouter();
     const res = await submitLeadSearch(payload);
 const carsData = res.results || [];
 
-const budget = cleanNumber(res.emi_budget);
+      // استخراج الميزانية
+      const budget = cleanNumber(res.emi_budget);
 
-const filtered = carsData.filter(car => {
-  const emi = cleanNumber(car.emi_monthly);
+      // فلترة السيارات حسب EMI Budget
+      let filtered = carsData.filter(car => {
+        const emi = cleanNumber(car.emi_monthly);
 
-  // ❌ لا EMI → لا سيارة
-  // if (emi <= 0) return false;
-  if (budget === 0) return true;
-  return emi <= budget;
-});
+        if (budget > 0) return emi <= budget;
+        return true; // إذا ما في ميزانية → كل السيارات
+      });
 
-setCars(filtered);
-setFilteredCars(filtered);
-setEmiBudget(budget);
-setShowEmiBudget(true);
+      // ترتيب السيارات: أولًا السيارات اللي عندها EMI > 0
+      filtered.sort((a, b) => {
+        const emiA = cleanNumber(a.emi_monthly);
+        const emiB = cleanNumber(b.emi_monthly);
 
+        if (emiA > 0 && emiB === 0) return -1;
+        if (emiA === 0 && emiB > 0) return 1;
+        return 0;
+      });
 
-    setShowEmiBudget(Boolean(payload.salary_range || payload.has_loans));
+      // استخراج الماركات الفريدة
+      const uniqueBrands = Array.from(
+        new Set(carsData.map(car => getBrandName(car.brand, lang)))
+      );
+
+      setCars(filtered);
+      setFilteredCars(filtered);
+      setEmiBudget(budget);
+      setBrands(uniqueBrands);
+setShowEmiBudget(Boolean(payload.salary_range || payload.has_loans));
   } catch (err) {
     alert('Something went wrong');
   } finally {
     setLoading(false);
   }
 }
+
 
   /* ================= SELECT CAR ================= */
 
@@ -328,11 +342,10 @@ async function handleSelectCar(car) {
       )}
 
       {/* ================= CARS GRID (NEW DESIGN) ================= */}
-      {filteredCars.length > 0 && (
+     {filteredCars.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 px-4 md:px-0">
           {filteredCars.map(car => {
-const isSelected = selectedCars[car.id] || false;
-
+            const isSelected = selectedCars[car.id] || false;
             return (
               <div key={car.id} className="bg-white rounded-2xl shadow-lg overflow-hidden relative">
                 <img
@@ -349,76 +362,46 @@ const isSelected = selectedCars[car.id] || false;
                 )}
 
                 <span className="absolute top-3 right-3 bg-gray-200 px-3 py-1 rounded-full text-sm font-semibold text-gray-600">
-
                   {car.price}{' '}
                   <Image src={SAR_symbol} alt="SAR" width={18} height={18} className="inline" />
                 </span>
 
-                <div
-                  className={`p-5 flex flex-col gap-3 ${lang === 'ar' ? 'text-right' : 'text-left'
-                    }`}
-                >
-                  {/* Price Note */}
+                <div className={`p-5 flex flex-col gap-3 ${lang === 'ar' ? 'text-right' : 'text-left'}`}>
                   <span className="text-sm text-gray-500">
-                    {lang === 'ar'
-                      ? 'السعر يشمل الضريبة'
-                      : ' price Including VAT'}
+                    {lang === 'ar' ? 'السعر يشمل الضريبة' : 'price Including VAT'}
                   </span>
-                  {/* Car Name */}
+
                   <h3 className="text-xl font-semibold text-gray-800 leading-snug">
                     {getText(car.name, lang)}
                   </h3>
 
-                  {/* Brand */}
                   <span className="inline-block w-fit text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
                     {getBrandName(car.brand, lang)}
                   </span>
 
-                  {/* Short Content */}
                   <p
                     className="text-sm text-gray-700 leading-relaxed line-clamp-1"
-                    dangerouslySetInnerHTML={{
-                      __html: getContent(car.content, lang),
-                    }}
+                    dangerouslySetInnerHTML={{ __html: getContent(car.content, lang) }}
                   />
-                  
 
-                  {/* EMI */}
                   {car.emi_monthly && (
                     <div className="flex items-center gap-1 text-blue-600 text-sm font-medium">
-                      <span>
-                        {lang === 'ar' ? 'القسط الشهري' : 'Monthly Installment'}
-                      </span>
-
-                      <span className="font-semibold">
-                        {car.emi_monthly}
-                      </span>
-                      <Image
-                        src={SAR_symbol}
-                        alt="SAR"
-                        width={14}
-                        height={14}
-                        className="inline"
-                      />
+                      <span>{lang === 'ar' ? 'القسط الشهري' : 'Monthly Installment'}</span>
+                      <span className="font-semibold">{car.emi_monthly}</span>
+                      <Image src={SAR_symbol} alt="SAR" width={14} height={14} className="inline" />
                     </div>
                   )}
 
-                  {/* CTA */}
                   {!isSelected ? (
                     <button
-                      type="button"   // ✅ أهم سطر
-
+                      type="button"
                       onClick={() => handleSelectCar(car)}
                       disabled={loadingCarId === car.id}
                       className="mt-3 w-full bg-green-600 text-white py-2.5 rounded-xl font-medium hover:bg-green-700 transition disabled:opacity-60"
                     >
                       {loadingCarId === car.id
-                        ? lang === 'ar'
-                          ? 'جاري الإرسال...'
-                          : 'Submitting...'
-                        : lang === 'ar'
-                          ? 'أريد هذه السيارة'
-                          : 'I Want This Car'}
+                        ? lang === 'ar' ? 'جاري الإرسال...' : 'Submitting...'
+                        : lang === 'ar' ? 'أريد هذه السيارة' : 'I Want This Car'}
                     </button>
                   ) : (
                     <a
@@ -429,7 +412,6 @@ const isSelected = selectedCars[car.id] || false;
                     </a>
                   )}
                 </div>
-
               </div>
             );
           })}
