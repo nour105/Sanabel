@@ -24,7 +24,7 @@ export default function CarLeadForm({ car, lang }) {
         { value: "between_5000_and_10,000", label: "بين 5000 و 10,000" },
         { value: "over_10,000", label: "أكثر من 10,000" },
       ],
-      banks: ["SNB", "NCB", "NBD", "Bank 4"],
+      banks: ["بنك الرياض", "البنك السعودي الوطني", "بنك الراجحي", "بنك البلاد"],
     },
     en: {
       firstName: "First Name",
@@ -43,7 +43,7 @@ export default function CarLeadForm({ car, lang }) {
         { value: "between_5000_and_10,000", label: "Between 5000 and 10,000" },
         { value: "over_10,000", label: "Over 10,000" },
       ],
-      banks: ["SNB", "NCB", "NBD", "Bank 4"],
+      banks: ["Riyadh Bank", "SNB", "Alrajhi", "Bank Al Bilad"],
     }
   };
 

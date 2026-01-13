@@ -92,13 +92,20 @@ window.location.href = `/${locale}/thank-you`;
           <option value="over_10,000">{locale === 'ar' ? 'أكثر من 10,000' : 'Over 10,000'}</option>
         </select>
 
-        <select name="bank" className="px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" defaultValue="">
-          <option value="" disabled>{locale === 'ar' ? 'البنك' : 'Bank'}</option>
-          <option value="SNB">SNB</option>
-          <option value="NCB">NCB</option>
-          <option value="NBD">NBD</option>
-          <option value="Bank4">{locale === 'ar' ? 'بنك 4' : 'Bank 4'}</option>
-        </select>
+      <select
+  name="bank"
+  className="px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+  defaultValue=""
+>
+  <option value="" disabled>
+    {locale === 'ar' ? 'البنك' : 'Bank'}
+  </option>
+  <option value="Riyadh Bank">{locale === 'ar' ? 'بنك الرياض' : 'Riyadh Bank'}</option>
+  <option value="SNB">{locale === 'ar' ? 'البنك السعودي الوطني' : 'SNB'}</option>
+  <option value="Alrajhi">{locale === 'ar' ? 'بنك الراجحي' : 'Alrajhi'}</option>
+  <option value="Bank Al Bilad">{locale === 'ar' ? 'بنك البلاد' : 'Bank Al Bilad'}</option>
+</select>
+
 
         <button
           type="submit"
