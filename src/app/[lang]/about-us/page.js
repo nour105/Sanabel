@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import cherySanabel from '@/publicImage/cherySanabel.jpg';
+import cherySanabel from '@/publicImage/No-brand-about-us.jpg';
 
 export default async function AboutUsPage({ params}) {
   const { lang } =  await params;
@@ -70,7 +70,7 @@ export default async function AboutUsPage({ params}) {
       </div>
 
       {/* ===== Team Section ===== */}
-      <div className="mb-16">
+      {/* <div className="mb-16">
         <h2 className="text-3xl font-bold text-center mb-8">
           {lang === 'ar' ? 'فريقنا' : 'Meet Our Team'}
         </h2>
@@ -101,9 +101,8 @@ export default async function AboutUsPage({ params}) {
               {lang === 'ar' ? 'رئيس المبيعات' : 'Head of Sales'}
             </p>
           </div>
-          {/* يمكن إضافة أعضاء آخرين */}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
