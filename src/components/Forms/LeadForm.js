@@ -272,10 +272,10 @@ async function handleSelectCar(car) {
           <option value="">
             {lang === 'ar' ? 'اختر البنك (اختياري)' : 'Choose your bank (Optional)'}
           </option>
-      <option value="Riyadh Bank">{locale === 'ar' ? 'بنك الرياض' : 'Riyadh Bank'}</option>
-  <option value="SNB">{locale === 'ar' ? 'البنك السعودي الوطني' : 'SNB'}</option>
-  <option value="Alrajhi">{locale === 'ar' ? 'بنك الراجحي' : 'Alrajhi'}</option>
-  <option value="Bank Al Bilad">{locale === 'ar' ? 'بنك البلاد' : 'Bank Al Bilad'}</option> 
+      <option value="Riyadh Bank">{lang === 'ar' ? 'بنك الرياض' : 'Riyadh Bank'}</option>
+  <option value="SNB">{lang === 'ar' ? 'البنك السعودي الوطني' : 'SNB'}</option>
+  <option value="Alrajhi">{lang === 'ar' ? 'بنك الراجحي' : 'Alrajhi'}</option>
+  <option value="Bank Al Bilad">{lang === 'ar' ? 'بنك البلاد' : 'Bank Al Bilad'}</option> 
        </select>
 
 
