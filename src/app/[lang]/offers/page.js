@@ -200,7 +200,7 @@ export default function OffersPage() {
                     {offer.title[locale]}
                   </h2>
                   {offer.description && (
-                    <p className="text-gray-700 text-sm md:text-base mb-2 line-clamp-3">
+                    <p className="text-gray-700 text-sm md:text-base mb-2 line-clamp-1">
                       {offer.description[locale]}
                     </p>
                   )}

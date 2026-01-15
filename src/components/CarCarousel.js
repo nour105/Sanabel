@@ -91,7 +91,7 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
                     <h3 className="text-lg font-bold text-gray-900 transition-colors duration-300 group-hover:text-indigo-600">
                       {getCarName(car, locale)}
                     </h3>
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-gray-500 line-clamp-1">
                       {getCarDescription(car, locale)}
                     </p>
                      <li className="flex text-black justify-between"><span>{locale === 'ar' ? 'سنة الصنع' : 'Year Model'}</span>
