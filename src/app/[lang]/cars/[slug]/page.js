@@ -187,6 +187,19 @@ export default async function CarPage({ params }) {
                 </ul>
               </div>
             )}
+             {car.features?.length > 0 && (
+              <div className="bg-white rounded-3xl shadow p-6 order-2 lg:order-6">
+                <h3 className="font-bold text-black text-lg mb-4">{lang === 'ar' ? 'تكنولوجيا السيارة' : 'Technology'}</h3>
+                <ul className="space-y-3">
+                  {car.features.map((features, i) => (
+                    <li key={i} className="flex items-center gap-3">
+                  
+                      <span className=" text-black font-semibold">{lang === 'ar' ? features?.feature_name?.ar : features?.feature_name?.en}:</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 {/* Description */}
 {car?.description?.[lang] && (
   <div className="bg-white rounded-3xl order-3 shadow p-6">
