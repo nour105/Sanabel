@@ -52,13 +52,13 @@ export default async function OfferDetailsPage({ params }) {
         {/* HERO BANNER */}
        {offer.banners?.[locale]?.length > 0 && (
   <div className="relative w-full">
-    <div className="relative w-full h-[300px] md:h-[500px] lg:h-full overflow-hidden shadow-lg">
+    <div className="relative w-full md:h-[500px] lg:h-full overflow-hidden shadow-lg">
       <Image
         src={`https://admin.sanabelauto.com/storage/${offer.banners[locale][0]}`}
         alt={offer.title[locale]}
         width={1920}       // عرض ثابت
         height={600}       // ارتفاع مناسب للشاشات الكبيرة
-        className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+        className=" w-full h-full transition-transform duration-500 hover:scale-105"
         unoptimized
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
