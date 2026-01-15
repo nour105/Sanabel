@@ -130,7 +130,7 @@ export default function OffersPage() {
         {/* Filters */}
         <div className="mb-10 flex flex-wrap gap-4 justify-center">
           <select
-            className="border text-balck border-gray-500 rounded px-4 py-2"
+            className="border text-black border-gray-500 rounded px-4 py-2"
             value={filters.brand}
             onChange={(e) =>
               setFilters({ ...filters, brand: e.target.value })
