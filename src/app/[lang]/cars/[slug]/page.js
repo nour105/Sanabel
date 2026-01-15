@@ -326,7 +326,7 @@ export default async function CarPage({ params }) {
   </ul>
 </div>
 {car?.colors?.length > 0 && (
-  <div className="bg-white rounded-3xl shadow p-6 order-2">
+  <div className="bg-white rounded-3xl shadow p-6 order-4 lg:order-2">
     <h3 className="font-bold text-black text-lg mb-4">
       {lang === 'ar' ? 'الألوان المتوفرة' : 'Available Colors'}
     </h3>
@@ -337,7 +337,7 @@ export default async function CarPage({ params }) {
         .map((color, i) => (
           <li
             key={i}
-            className="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium order-3 text-gray-800"
+            className="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-800"
           >
             {color.color_name[lang]}
           </li>
@@ -347,7 +347,7 @@ export default async function CarPage({ params }) {
 )}
 
 {car?.safety?.length > 0 && (
-  <div className="bg-white rounded-3xl order-3 shadow p-6">
+  <div className="bg-white rounded-3xl order-5 lg:order-3 shadow p-6">
     <h3 className="font-bold text-black text-lg mb-4">
       {lang === 'ar' ?'أنظمة السلامة' : 'Safety '}
     </h3>
@@ -370,7 +370,7 @@ export default async function CarPage({ params }) {
 
             {/* Video */}
             {car?.video_url && (
-              <div className="bg-white rounded-3xl shadow p-6 order-5 lg:order-3">
+              <div className="bg-white rounded-3xl shadow p-6 order-6 lg:order-4">
                 <h3 className="font-bold text-gray-900 text-lg mb-4">{lang === 'ar' ? 'فيديو السيارة' : 'Car Video'}</h3>
                 <iframe
                   src={formatYouTubeUrl(car.video_url)}
@@ -382,7 +382,7 @@ export default async function CarPage({ params }) {
             )}
 
             {/* Need Help */}
-            <div className="bg-indigo-600 rounded-3xl p-6 text-white order-5 lg:order-4">
+            <div className="bg-indigo-600 rounded-3xl p-6 text-white order-7 lg:order-5">
               <h4 className="font-bold text-lg mb-2">{lang === 'ar' ? 'هل تحتاج مساعدة؟' : 'Need Help?'}</h4>
               <p className="text-sm text-indigo-100 mb-4">{lang === 'ar' ? 'مستشارونا سيساعدونك على اختيار أفضل خيار.' : 'Our advisors will help you choose the best option.'}</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
