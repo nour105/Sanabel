@@ -159,26 +159,41 @@ export default function OffersPage() {
         ) : (
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {currentOffers.map((offer) => (
-              <Link
-                key={offer.id}
-                href={`/${locale}/offers/${offer.slug}`}
-                className="group block bg-white rounded-3xl shadow-lg overflow-hidden transform transition hover:scale-[1.02]"
-              >
-                {offer.banners?.[locale]?.length > 0 && (
-                  <div className="relative h-56 w-full">
-                    <Image
-                      src={
-                        offer.card_image?.[locale]
-                          ? `https://admin.sanabelauto.com/storage/${offer.card_image[locale]}`
-                          : `https://admin.sanabelauto.com/storage/${offer.banners[locale][0]}`
-                      }
-                      alt={offer.title[locale]}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform"
-                      unoptimized
-                    />
-                  </div>
-                )}
+<Link
+  key={offer.id}
+  href={`/${locale}/offers/${offer.slug}`}
+  className="group block bg-white rounded-3xl shadow-lg overflow-hidden transform transition hover:scale-[1.02]"
+>
+  {offer.banners?.[locale]?.length > 0 && (
+    <div className="relative w-full aspect-[2/2] overflow-hidden bg-black">
+      {/* Blurred Background */}
+      <Image
+        src={
+          offer.card_image?.[locale]
+            ? `https://admin.sanabelauto.com/storage/${offer.card_image[locale]}`
+            : `https://admin.sanabelauto.com/storage/${offer.banners[locale][0]}`
+        }
+        alt=""
+        fill
+        className="object-cover blur-xl scale-110"
+        unoptimized
+      />
+
+      {/* Main Image (FULL – no crop) */}
+      <Image
+        src={
+          offer.card_image?.[locale]
+            ? `https://admin.sanabelauto.com/storage/${offer.card_image[locale]}`
+            : `https://admin.sanabelauto.com/storage/${offer.banners[locale][0]}`
+        }
+        alt={offer.title[locale]}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-contain transition-transform duration-300 group-hover:scale-105"
+        unoptimized
+      />
+    </div>
+  )}
 
                 <div className="p-6">
                   <h2 className="text-2xl font-bold mb-2 text-gray-900">
