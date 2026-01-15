@@ -207,7 +207,7 @@ export default async function CarPage({ params }) {
     </h3>
 
     <div
-      className="prose prose-gray max-w-none"
+      className="prose prose-gray  text-gray-700 max-w-none"
       dangerouslySetInnerHTML={{
         __html: car.content[lang],
       }}
