@@ -16,12 +16,12 @@ export default function Offers({ offers, lang }) {
           {offers.map((offer) => (
             <Link key={offer.id} href={`/${lang}/offers/${offer.slug || offer.id}`} className="group relative block overflow-hidden rounded-xl shadow-lg">
               {offer.card_image && (
-                <div className="relative h-64 w-full">
+                <div className="relative h-77">
                   <Image
                     src={`https://admin.sanabelauto.com/storage/${offer.card_image[lang] || offer.card_image.en}`}
                     alt={typeof offer.title === 'object' ? offer.title[lang] || offer.title.en : offer.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform"
+                    className="object-contain object-center group-hover:scale-105 transition-transform"
                     unoptimized
                   />
                 </div>

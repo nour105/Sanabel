@@ -94,7 +94,7 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
         <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
           {car.name[lang] || car.name.en}
         </h3>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-500 line-clamp-1">
           {car.description[lang] || car.description.en}
         </p>
          {car.year_model && (
