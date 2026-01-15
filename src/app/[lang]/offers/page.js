@@ -123,20 +123,20 @@ export default function OffersPage() {
   return (
     <div className="bg-gray-50 py-16 px-6">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">
+        <h1 className="text-4xl md:text-5xl text-black font-bold text-center mb-12">
           {locale === "ar" ? "جميع العروض" : "All Offers"}
         </h1>
 
         {/* Filters */}
         <div className="mb-10 flex flex-wrap gap-4 justify-center">
           <select
-            className="border border-gray-300 rounded px-4 py-2"
+            className="border text-balck border-gray-500 rounded px-4 py-2"
             value={filters.brand}
             onChange={(e) =>
               setFilters({ ...filters, brand: e.target.value })
             }
           >
-            <option value="">
+            <option value="" className="text-black">
               {locale === "ar" ? "جميع الماركات" : "All Brands"}
             </option>
             {brands.map((b) => (
