@@ -52,7 +52,7 @@ export default async function OfferDetailsPage({ params }) {
         {/* HERO BANNER */}
        {offer.banners?.[locale]?.length > 0 && (
   <div className="relative w-full">
-    <div className="relative w-full h-[300px] md:h-[500px] lg:h-[600px] overflow-hidden shadow-lg">
+    <div className="relative w-full h-[300px] md:h-[500px] lg:h-full overflow-hidden shadow-lg">
       <Image
         src={`https://admin.sanabelauto.com/storage/${offer.banners[locale][0]}`}
         alt={offer.title[locale]}
