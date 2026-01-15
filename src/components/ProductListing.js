@@ -46,7 +46,7 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 bg-white">
          <Filters
         brands={brands.map(b => ({
           ...b,
