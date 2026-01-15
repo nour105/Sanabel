@@ -187,6 +187,33 @@ export default async function CarPage({ params }) {
                 </ul>
               </div>
             )}
+{/* Description */}
+{car?.description?.[lang] && (
+  <div className="bg-white rounded-3xl order-3 shadow p-6">
+    <h3 className="font-bold text-black text-lg mb-4">
+      {lang === 'ar' ? 'الوصف' : 'Description'}
+    </h3>
+    <p className="text-gray-700 leading-relaxed">
+      {car.description[lang]}
+    </p>
+  </div>
+)}
+
+{/* Content (HTML from API) */}
+{car?.content?.[lang] && (
+  <div className="bg-white rounded-3xl order-4 shadow p-6">
+    <h3 className="font-bold text-black text-lg mb-4">
+      {lang === 'ar' ? 'تفاصيل إضافية' : 'More Details'}
+    </h3>
+
+    <div
+      className="prose prose-gray max-w-none"
+      dangerouslySetInnerHTML={{
+        __html: car.content[lang],
+      }}
+    />
+  </div>
+)}
 
           </div>
 
@@ -298,11 +325,52 @@ export default async function CarPage({ params }) {
 
   </ul>
 </div>
+{car?.colors?.length > 0 && (
+  <div className="bg-white rounded-3xl shadow p-6 order-2">
+    <h3 className="font-bold text-black text-lg mb-4">
+      {lang === 'ar' ? 'الألوان المتوفرة' : 'Available Colors'}
+    </h3>
+
+    <ul className="flex flex-wrap gap-3">
+      {car.colors
+        .filter(c => c?.color_name?.[lang])
+        .map((color, i) => (
+          <li
+            key={i}
+            className="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium order-3 text-gray-800"
+          >
+            {color.color_name[lang]}
+          </li>
+        ))}
+    </ul>
+  </div>
+)}
+
+{car?.safety?.length > 0 && (
+  <div className="bg-white rounded-3xl order-3 shadow p-6">
+    <h3 className="font-bold text-black text-lg mb-4">
+      {lang === 'ar' ?'أنظمة السلامة' : 'Safety '}
+    </h3>
+
+    <ul className="space-y-2 text-gray-700">
+      {car.safety
+        .filter(s => s?.trim_name?.[lang])
+        .map((safety, i) => (
+          <li
+            key={i}
+            className="bg-gray-100 px-4 py-2 rounded-lg font-medium"
+          >
+            {safety.trim_name[lang]}
+          </li>
+        ))}
+    </ul>
+  </div>
+)}
 
 
             {/* Video */}
             {car?.video_url && (
-              <div className="bg-white rounded-3xl shadow p-6 order-4 lg:order-3">
+              <div className="bg-white rounded-3xl shadow p-6 order-5 lg:order-3">
                 <h3 className="font-bold text-gray-900 text-lg mb-4">{lang === 'ar' ? 'فيديو السيارة' : 'Car Video'}</h3>
                 <iframe
                   src={formatYouTubeUrl(car.video_url)}
@@ -314,7 +382,7 @@ export default async function CarPage({ params }) {
             )}
 
             {/* Need Help */}
-            <div className="bg-indigo-600 rounded-3xl p-6 text-white order-5 lg:order-2">
+            <div className="bg-indigo-600 rounded-3xl p-6 text-white order-5 lg:order-4">
               <h4 className="font-bold text-lg mb-2">{lang === 'ar' ? 'هل تحتاج مساعدة؟' : 'Need Help?'}</h4>
               <p className="text-sm text-indigo-100 mb-4">{lang === 'ar' ? 'مستشارونا سيساعدونك على اختيار أفضل خيار.' : 'Our advisors will help you choose the best option.'}</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

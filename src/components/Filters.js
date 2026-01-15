@@ -65,7 +65,7 @@ export default function Filters({ brands = [], cars = [], onFilterChange, lang }
     priceRange: [minCarPrice, maxCarPrice],
     colors: [],
     features: [],
-    trims: [],
+    safety: [],
     vehicleTypes: [],
     showrooms: [],
     specifications: [],
@@ -98,7 +98,7 @@ export default function Filters({ brands = [], cars = [], onFilterChange, lang }
 
   const trimsOptions = useMemo(
     () => [...new Set(
-      cars.flatMap(c => getArrayText(c.available_trims, 'trim_name', lang))
+      cars.flatMap(c => getArrayText(c.safety, 'safety', lang))
     )],
     [cars, lang]
   );
@@ -146,10 +146,10 @@ export default function Filters({ brands = [], cars = [], onFilterChange, lang }
           c.features?.some(x =>
             selectedFilters.features.includes(normalizeText(x.feature_name, lang))
           )) &&
-        (!selectedFilters.trims.length ||
-          c.available_trims?.some(x =>
-            selectedFilters.trims.includes(normalizeText(x.trim_name, lang))
-          )) &&
+        // (!selectedFilters.safety.length ||
+        //   c.safety?.some(x =>
+        //     selectedFilters.safety.includes(normalizeText(x.trim_name, lang))
+        //   )) &&
         (!selectedFilters.showrooms.length ||
           c.available_showrooms?.some(x =>
             selectedFilters.showrooms.includes(normalizeText(x.showroom_name, lang))
@@ -292,7 +292,7 @@ export default function Filters({ brands = [], cars = [], onFilterChange, lang }
         {[
           { title: lang === 'ar' ? 'الألوان' : 'Colors', type: 'colors', options: colorsOptions },
           { title: lang === 'ar' ? 'المزايا' : 'Features', type: 'features', options: featuresOptions },
-          { title: lang === 'ar' ? 'الفئات' : 'Trims', type: 'trims', options: trimsOptions },
+          // { title: lang === 'ar' ? 'الفئات' : 'Safety', type: 'Safety', options: trimsOptions },
           { title: lang === 'ar' ? 'المعارض' : 'Showrooms', type: 'showrooms', options: showroomsOptions },
           { title: lang === 'ar' ? 'نوع المركبة' : 'Vehicle Types', type: 'vehicleTypes', options: vehicleTypesOptions },
           { title: lang === 'ar' ? 'المواصفات' : 'Specifications', type: 'specifications', options: specificationsOptions },
