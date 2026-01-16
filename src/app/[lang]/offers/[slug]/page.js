@@ -59,7 +59,8 @@ export default async function OfferDetailsPage({ params }) {
         width={1920}       // عرض ثابت
         height={600}       // ارتفاع مناسب للشاشات الكبيرة
         className=" w-full h-full transition-transform duration-500 hover:scale-105"
-        unoptimized
+        unoptimized={true}
+        quality={10}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
     </div>

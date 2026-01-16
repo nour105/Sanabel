@@ -39,7 +39,7 @@ export default function OfferLeadForm({ offer, locale = 'en' }) {
     });
 
     setLoading(false);
-window.location.href = `/${locale}/thank-you`;
+// window.location.href = `/${locale}/thank-you`;
   }
 
   return (
