@@ -20,7 +20,7 @@ export default function Footer({ lang = 'en' }) {
       contact: 'تواصل معنا',
       location: 'الرياض، المملكة العربية السعودية',
       email: 'info@sanabelauto.com',
-      copyright: ' جميع الحقوق محفوظة لشركة سنابل للسيارات الحديثة.',
+      copyright: '  .جميع الحقوق محفوظة لشركة سنابل الحديثة للسيارات',
     },
     en: {
       title: 'MultiBrand Cars',
@@ -32,7 +32,7 @@ export default function Footer({ lang = 'en' }) {
       contact: 'Contact',
       location: 'Riyadh, Saudi Arabia',
       email: 'info@sanabelauto.com',
-      copyright: ' Sanabel Modern Cars. all rights are saved.',
+      copyright: '  Sanabel Modern Motors. All Rights Reserved.',
     },
   };
 
