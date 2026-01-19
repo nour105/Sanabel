@@ -2,8 +2,11 @@ export default function About({ lang }) {
   const isAr = lang === 'ar';
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section className="py-16 bg-white">
+      <div className="container text-center mx-auto px-4 max-w-5xl">
+ <h2 className="text-3xl text-black font-bold mb-8">
+            {isAr ? 'عن معرضنا' : 'About Our Dealership'}
+          </h2>
 
         {/* Main Paragraph */}
         <p className="text-lg text-gray-700 leading-relaxed mb-10">
