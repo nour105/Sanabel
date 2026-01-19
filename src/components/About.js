@@ -2,56 +2,52 @@ export default function About({ lang }) {
   const isAr = lang === 'ar';
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          
-          <h2 className="text-3xl text-black font-bold mb-8">
-            {isAr ? 'عن معرضنا' : 'About Our Dealership'}
-          </h2>
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4 max-w-5xl">
 
-          <p className="text-lg text-gray-600 mb-8">
-            {isAr
-              ? 'نحن معرض سيارات رائد متخصص في مجموعة واسعة من العلامات التجارية والموديلات. هدفنا هو تقديم خدمة عملاء متميزة ومساعدتك في العثور على السيارة المثالية التي تناسب احتياجاتك.'
-              : 'We are a premier car dealership specializing in a wide range of brands and models. Our mission is to provide exceptional customer service and help you find the perfect vehicle for your needs.'}
-          </p>
+        {/* Main Paragraph */}
+        <p className="text-lg text-gray-700 leading-relaxed mb-10">
+          {isAr
+            ? 'في رحلتنا معكم هدفنا ما هو مجرد توفير سيارة، هدفنا نبني شراكة أساسها الثقة والاعتمادية المتميزة. نسعى دائماً لتسهيل رحلتكم في عالم السيارات عبر توفير خيارات مميزة من أفضل العلامات التجارية، وخدمات متكاملة تشمل برامج الضمان الممتد وباقات الصيانة الموثوقة لراحة بال تدوم. واليوم، حنا أقرب لكم من أي وقت مضى بفضل شبكة فروعنا اللي تغطي المملكة بفروع متكاملة مجهزة خصيصاً لأحسن تجربة شراء وصيانة في المملكة.'
+            : 'On our journey with you, our goal is not just to provide a car; our goal is to build a partnership based on trust and outstanding reliability. We always strive to make your journey in the automotive world easier by offering distinguished options from the best brands, along with integrated services that include extended warranty programs and reliable maintenance packages for lasting peace of mind. Today, we are closer to you than ever before, thanks to our branch network across the Kingdom, designed to deliver the best car-purchasing and ownership experience in the Kingdom.'}
+        </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <div className="text-center">
-              <h3 className="text-xl text-black font-semibold mb-4">
-                {isAr ? 'خدمة عالية الجودة' : 'Quality Service'}
-              </h3>
-              <p className="text-gray-600">
-                {isAr
-                  ? 'نقدم خدمات صيانة ودعم فني على أعلى مستوى لجميع سياراتنا.'
-                  : 'We offer top-notch service and maintenance for all our vehicles.'}
-              </p>
-            </div>
+        {/* Three Key Points */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <div className="text-center">
-              <h3 className="text-xl text-black font-semibold mb-4">
-                {isAr ? 'تشكيلة واسعة' : 'Wide Selection'}
-              </h3>
-              <p className="text-gray-600">
-                {isAr
-                  ? 'اختر من بين مجموعة متنوعة من العلامات التجارية والموديلات لتناسب جميع الأذواق.'
-                  : 'Choose from a diverse range of brands and models to suit your preferences.'}
-              </p>
-            </div>
-
-            <div className="text-center">
-              <h3 className="text-xl text-black font-semibold mb-4">
-                {isAr ? 'استشارات متخصصة' : 'Expert Advice'}
-              </h3>
-              <p className="text-gray-600">
-                {isAr
-                  ? 'فريقنا الخبير موجود لإرشادك في كل خطوة من رحلة شراء سيارتك.'
-                  : 'Our knowledgeable team is here to guide you through your car buying journey.'}
-              </p>
-            </div>
-
+          <div>
+            <h3 className="font-bold text-xl mb-3">
+              {isAr ? 'خيارات متنوعة' : 'Wide Range of Options'}
+            </h3>
+            <p className="text-gray-600">
+              {isAr
+                ? 'من أفضل العلامات: نوفر أحدث موديلات هيونداي، وإم جي، وشيري، وفورد ونيسان بمواصفات تلبي احتياجاتك.'
+                : 'From top brands, we offer the latest models from Hyundai, MG, Chery, Ford, and Nissan with specifications that meet your needs.'}
+            </p>
           </div>
+
+          <div>
+            <h3 className="font-bold text-xl mb-3">
+              {isAr ? 'راحة بال مع الضمان والصيانة' : 'Peace of Mind with Warranty and Maintenance'}
+            </h3>
+            <p className="text-gray-600">
+              {isAr
+                ? 'نقدم برامج الضمان الممتد وباقات الصيانة لضمان استدامة أداء سيارتك وموثوقيتها.'
+                : 'We offer extended warranty programs and maintenance packages to ensure your vehicle’s long-term performance and reliability.'}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-xl mb-3">
+              {isAr ? 'قريبين منك في أنحاء المملكة' : 'Close to You Across the Kingdom'}
+            </h3>
+            <p className="text-gray-600">
+              {isAr
+                ? 'نخدمك من خلال فروع منتشرة حول المملكة لنكون دائماً الخيار الأقرب إليك.'
+                : 'We serve you through branches spread throughout the Kingdom, so we are always near you.'}
+            </p>
+          </div>
+
         </div>
       </div>
     </section>

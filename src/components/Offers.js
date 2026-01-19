@@ -56,7 +56,8 @@ export default function Offers({ offers, lang }) {
   {lang === 'ar' ? 'العروض الخاصة' : 'Special Offers'}
 </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {offers.map((offer) => (
+         {offers.slice(0, 6).map((offer) => (
+
             <Link key={offer.id} href={`/${lang}/offers/${offer.slug || offer.id}`} className="group relative block overflow-hidden rounded-xl shadow-lg">
               {offer.card_image && (
                 <div className="relative h-77">
