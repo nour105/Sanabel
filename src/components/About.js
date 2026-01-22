@@ -19,7 +19,7 @@ export default function About({ lang }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
           <div>
-            <h3 className="font-bold text-xl mb-3">
+            <h3 className="font-bold text-gray-700 text-xl mb-3">
               {isAr ? 'خيارات متنوعة' : 'Wide Range of Options'}
             </h3>
             <p className="text-gray-600">
@@ -30,7 +30,7 @@ export default function About({ lang }) {
           </div>
 
           <div>
-            <h3 className="font-bold text-xl mb-3">
+            <h3 className="font-bold text-gray-700 text-xl mb-3">
               {isAr ? 'راحة بال مع الضمان والصيانة' : 'Peace of Mind with Warranty and Maintenance'}
             </h3>
             <p className="text-gray-600">
@@ -41,7 +41,7 @@ export default function About({ lang }) {
           </div>
 
           <div>
-            <h3 className="font-bold text-xl mb-3">
+            <h3 className="font-bold text-gray-700 text-xl mb-3">
               {isAr ? 'قريبين منك في أنحاء المملكة' : 'Close to You Across the Kingdom'}
             </h3>
             <p className="text-gray-600">
