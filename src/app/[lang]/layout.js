@@ -9,7 +9,6 @@ import Footer from '@/components/Footer';
 import '../globals.css';
 import Script from "next/script";
 
-
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
@@ -37,6 +36,7 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       <head>
+        {/* Google Tag Manager */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
@@ -48,26 +48,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-5P77LKGW');`
           }}
         />
+
+        {/* Google Ads gtag */}
+        <Script
+          id="google-ads-gtag"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17857898763"
+        />
+        <Script
+          id="google-ads-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17857898763');
+            `,
+          }}
+        />
       </head>
       <body
         className={`${leagueSpartan.variable} ${montserrat.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <!-- Google Tag Manager (noscript) --> */}
+        {/* Google Tag Manager (noscript) */}
         <noscript>
-  <iframe
-    src="https://www.googletagmanager.com/ns.html?id=GTM-5P77LKGW"
-    height="0"
-    width="0"
-    style={{ display: 'none', visibility: 'hidden' }}
-  />
-</noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5P77LKGW"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
 
-        {/* <!-- End Google Tag Manager (noscript) --> */}
         <Header lang={lang} />
         {children}
         <Footer lang={lang} />
       </body>
-      
     </html>
   );
 }
