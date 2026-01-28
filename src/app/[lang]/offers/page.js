@@ -175,6 +175,8 @@ export default function OffersPage() {
         }
         alt=""
         fill
+          quality={65}
+
         className="object-cover blur-xl scale-110"
         unoptimized
       />
@@ -188,6 +190,8 @@ export default function OffersPage() {
         }
         alt={offer.title[locale]}
         fill
+          quality={65}
+
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-contain transition-transform duration-300 group-hover:scale-105"
         unoptimized

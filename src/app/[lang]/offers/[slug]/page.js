@@ -58,9 +58,10 @@ export default async function OfferDetailsPage({ params }) {
         alt={offer.title[locale]}
         width={1920}       // عرض ثابت
         height={600}       // ارتفاع مناسب للشاشات الكبيرة
+          quality={65}
+
         className=" w-full h-full transition-transform duration-500 hover:scale-105"
         unoptimized={true}
-        quality={10}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
     </div>
@@ -93,6 +94,8 @@ export default async function OfferDetailsPage({ params }) {
           height={60}
           className="object-contain p-2"
           unoptimized
+            quality={10}
+
         />
       ) : (
         <span className="font-semibold text-gray-700">

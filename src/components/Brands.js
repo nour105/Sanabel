@@ -28,6 +28,8 @@ export default function Brands({ brands, lang }) {
                   height={60}
                   className="object-contain"
                   unoptimized
+                    quality={65}
+
                 />
               </div>
             </Link>

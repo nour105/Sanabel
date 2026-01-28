@@ -50,6 +50,8 @@ export default function Footer({ lang = 'en' }) {
   width={200}
   height={50}
   className="object-contain"
+    quality={65}
+
 />
           </Link>
           <p className="text-gray-600">{L.description}</p>

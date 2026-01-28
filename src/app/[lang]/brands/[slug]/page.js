@@ -80,6 +80,7 @@ export default async function BrandPage({ params }) {
       src={car.card_image_url}
       alt={car.name[lang] || car.name.en}
       fill
+  quality={65}
       unoptimized
       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
     />
@@ -98,6 +99,7 @@ export default async function BrandPage({ params }) {
       alt="SAR"
       width={20}
       height={20}
+  quality={65}
       className="inline mx-1"
     />
     {lang === 'ar' ? ' شامل الضريبة' : ' Including VAT'}

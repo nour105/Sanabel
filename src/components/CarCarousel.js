@@ -68,6 +68,8 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
                       src={`https://admin.sanabelauto.com/storage/${car.banner_image}`}
                       alt={getCarName(car, locale)}
                       fill
+                        quality={65}
+
                       className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                       unoptimized
                     />
@@ -79,6 +81,8 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
     width={20}
     height={20}
     className="inline"
+      quality={65}
+
   />
   {locale === 'ar'
                 ? ' شامل الضريبة'

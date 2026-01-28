@@ -65,6 +65,7 @@ export default function Offers({ offers, lang }) {
                     src={`https://admin.sanabelauto.com/storage/${offer.card_image[lang] || offer.card_image.en}`}
                     alt={typeof offer.title === 'object' ? offer.title[lang] || offer.title.en : offer.title}
                     fill
+                      quality={10}
                     className="object-contain object-center group-hover:scale-105 transition-transform"
                     unoptimized
                   />

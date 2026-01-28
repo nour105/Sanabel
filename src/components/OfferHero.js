@@ -33,6 +33,8 @@ export default function OfferHero({ title, subtitle, banners, lang }) {
                 alt={`Banner ${i + 1}`}             
                 className="object-cover"
                 unoptimized
+                  quality={65}
+
               />
             </div>
           </SwiperSlide>

@@ -47,6 +47,8 @@ export default function Banner({ banners, lang }) {
                   priority={index === 0}
                   className="object-cover object-center"
                   unoptimized
+                    quality={65}
+
                 />
               </div>
             </SwiperSlide>

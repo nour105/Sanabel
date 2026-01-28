@@ -33,6 +33,8 @@ export default function Lightbox({ images, index, onClose, onChange }) {
           src={images[index]}
           alt="Gallery"
           fill
+            quality={65}
+
           className="object-contain"
           unoptimized
         />

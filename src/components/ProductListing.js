@@ -65,9 +65,12 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
       {/* Image */}
       <div className="relative h-64 overflow-hidden">
         {car.card_image && (
-          <img
+          <Image
             src={`https://admin.sanabelauto.com/storage/${car.card_image}`}
             alt={car.name[lang] || car.name.en}
+            fill
+            unoptimized
+              quality={65}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         )}

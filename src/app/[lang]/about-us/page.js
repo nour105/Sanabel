@@ -23,6 +23,8 @@ export default async function AboutUsPage({ params}) {
             src={cherySanabel}
             width={150}
             height={150} 
+              quality={65}
+
             unoptimized
             alt={lang === 'ar' ? 'عن سنابل للسيارات' : 'About Sanabel Auto'}
             className="rounded-3xl shadow-lg w-full object-cover"

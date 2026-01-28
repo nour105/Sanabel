@@ -26,6 +26,8 @@ export default function BrandBannerSlider({ banners, brandName }) {
                 fill
                 className="object-cover"
                 unoptimized
+                  quality={65}
+
               />
             </div>
           </SwiperSlide>

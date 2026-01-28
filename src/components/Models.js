@@ -39,6 +39,8 @@ export default function Models({ cars, lang }) {
                       src={`https://admin.sanabelauto.com/storage/${car.banner_image}`}
                       alt={getCarName(car)}
                       className="object-cover"
+                        quality={65}
+
                         unoptimized={true} // <-- bypass optimization
 
                     />
@@ -57,6 +59,8 @@ export default function Models({ cars, lang }) {
     width={20}
     height={20}
     className="inline"
+      quality={65}
+
   />
   {lang === 'ar'
                 ? ' شامل الضريبة'

@@ -49,6 +49,8 @@ export default function Header({ lang }) {
   alt="Sanabel Auto"
   width={200}
   height={50}
+    quality={65}
+
   className="object-contain"
 />
      </Link>
@@ -87,6 +89,8 @@ export default function Header({ lang }) {
                           alt={getBrandName(brand)}
                           width={32}
                           height={32}
+                            quality={65}
+
                           className={`${isAr ? 'ml-3' : 'mr-3'} object-contain`}
                         />
                       )}
@@ -169,6 +173,8 @@ export default function Header({ lang }) {
                             alt={getBrandName(brand)}
                             width={32}
                             height={32}
+                              quality={65}
+
                             className="mr-3 object-contain"
                           />
                         )}

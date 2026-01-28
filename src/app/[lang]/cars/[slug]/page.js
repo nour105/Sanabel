@@ -63,6 +63,8 @@ export default async function CarPage({ params }) {
           priority
           width={1860}
           height={720}
+            quality={65}
+
           className="object-cover w-full"
           unoptimized
         />
@@ -147,6 +149,8 @@ export default async function CarPage({ params }) {
                                   alt="SAR"
                                   width={20}
                                   height={20}
+                                    quality={65}
+
                                   className="inline"
                                 />
                               </p>
@@ -263,7 +267,8 @@ export default async function CarPage({ params }) {
         <span>{lang === 'ar' ? 'السعر' : 'Price'}</span>
         <span dir="ltr" className="font-semibold">
           {car.price} 
-          <Image src={SAR_symbol} alt="SAR" width={20} height={20} className="inline" /> 
+          <Image src={SAR_symbol} alt="SAR" width={20} height={20}   quality={65}
+ className="inline" /> 
           {lang === 'ar' ? ' شامل الضريبة' : ' Including VAT'}
         </span>
       </li>
@@ -441,6 +446,8 @@ export default async function CarPage({ params }) {
                     alt={c.name[lang]}
                     width={400}
                     height={250}
+                      quality={65}
+
                     className="object-cover w-full h-48"
                   />
                   <div className="p-4">

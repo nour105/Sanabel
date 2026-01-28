@@ -24,6 +24,8 @@ export default function Gallery({ title, images }) {
           fill
           className="object-cover"
           unoptimized
+            quality={65}
+
         />
       </div>
 
@@ -39,6 +41,8 @@ export default function Gallery({ title, images }) {
               src={img}
               alt={title}
               fill
+                quality={65}
+
               className="object-cover hover:scale-105 transition"
               unoptimized
             />
