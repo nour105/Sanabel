@@ -31,6 +31,33 @@ p, span, li {
 code, pre {
   font-family: var(--font-geist-mono), monospace;
 }
+/* Swiper navigation arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important;      /* white arrows */
+  width: 32px;
+  height: 32px;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;              /* smaller arrow icon */
+  font-weight: bold;
+}
+
+/* Optional: better visibility on images */
+.swiper-button-next,
+.swiper-button-prev {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 9999px;
+  padding: 6px;
+}
+
+/* Optional: hover effect */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.55);
+}
 
 
 @theme inline {
