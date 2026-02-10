@@ -17,6 +17,7 @@ export default function Footer({ lang = 'en' }) {
       offers: 'العروض',
       findUs: 'مواقعنا',
       aboutUs: 'من نحن',
+      privacyPolicy: 'سياسة الخصوصية',
       contact: 'تواصل معنا',
       location: 'الرياض، المملكة العربية السعودية',
       email: 'info@sanabelauto.com',
@@ -29,6 +30,7 @@ export default function Footer({ lang = 'en' }) {
       offers: 'Offers',
       findUs: 'Find Us',
       aboutUs: 'About Us',
+        privacyPolicy: 'Privacy Policy',
       contact: 'Contact',
       location: 'Riyadh, Saudi Arabia',
       email: 'info@sanabelauto.com',
@@ -74,6 +76,11 @@ export default function Footer({ lang = 'en' }) {
             <li>
               <Link href={`/${lang}/about-us`} className="hover:text-gray-400 transition-colors">
                 {L.aboutUs}
+              </Link>
+            </li>
+             <li>
+              <Link href={`/${lang}/privacy-policy`} className="hover:text-gray-400 transition-colors">
+                {L.privacyPolicy}
               </Link>
             </li>
           </ul>
