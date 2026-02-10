@@ -12,12 +12,12 @@ export default function OfferBannerSlider({ banners, title }) {
     setCurrent((prev) => (prev - 1 + banners.length) % banners.length);
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000); // auto-slide every 5 seconds
+    const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
   }, [banners.length]);
 
   return (
-    <div className="relative w-full md:h-[500px] lg:h-[600px] overflow-hidden shadow-lg">
+    <div className="relative w-full">
       {banners.map((img, i) => (
         <div
           key={i}
@@ -25,14 +25,17 @@ export default function OfferBannerSlider({ banners, title }) {
             i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}
         >
-          <Image
-            src={`https://admin.sanabelauto.com/storage/${img}`}
-            alt={title}
-            fill
-            className=" object-contain w-full h-full"
-            unoptimized
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          {/* Wrapper div ensures responsive behavior */}
+          <div className="relative w-full h-[300px] md:h-[500px] lg:h-[600px] overflow-hidden shadow-lg">
+            <Image
+              src={`https://admin.sanabelauto.com/storage/${img}`}
+              alt={title}
+              fill
+              className="lg:object-contain w-full h-full transition-transform duration-500 hover:scale-105"
+              unoptimized
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          </div>
         </div>
       ))}
 
