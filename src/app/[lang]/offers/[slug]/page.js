@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getOfferBySlug } from "@/lib/api";
 import OfferLeadForm from "@/components/Forms/OfferLeadForm";
 import CarCarousel from "@/components/CarCarousel";
+import OfferBannerSlider from "@/components/OfferBannerSlider";
 import Link from "next/link";
 
 export default async function OfferDetailsPage({ params }) {
@@ -50,23 +51,14 @@ export default async function OfferDetailsPage({ params }) {
     return (
       <div className="bg-gray-50">
         {/* HERO BANNER */}
-       {offer.banners?.[locale]?.length > 0 && (
-  <div className="relative w-full">
-    <div className="relative w-full md:h-[500px] lg:h-full overflow-hidden shadow-lg">
-      <Image
-        src={`https://admin.sanabelauto.com/storage/${offer.banners[locale][0]}`}
-        alt={offer.title[locale]}
-        width={1920}       // عرض ثابت
-        height={600}       // ارتفاع مناسب للشاشات الكبيرة
-          quality={65}
-
-        className=" w-full h-full transition-transform duration-500 hover:scale-105"
-        unoptimized={true}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-    </div>
-  </div>
+{offer.banners?.[locale]?.length > 0 && (
+  <OfferBannerSlider
+    banners={offer.banners[locale]}
+    title={offer.title[locale]}
+  />
 )}
+
+
 
 
         {/* OFFER LEAD FORM */}
