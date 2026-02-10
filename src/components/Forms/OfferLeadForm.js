@@ -119,7 +119,13 @@ window.location.href = `/${locale}/thank-you`;
       <div className="space-y-2 text-sm text-gray-700">
         <label className="flex items-start space-x-2 rtl:space-x-reverse">
           <input type="checkbox" checked={agreeTerms} onChange={e => setAgreeTerms(e.target.checked)} className="mt-1" />
-          <span>{locale === 'ar' ? 'بالتسجيل أنت توافق على الشروط والأحكام' : 'By registering you agree to terms and conditions'} <a href="#" className="text-blue-600 underline">{locale === 'ar' ? 'الشروط' : 'Terms'}</a></span>
+          <span>{locale === 'ar' ? 'بالتسجيل أنت توافق على الشروط والأحكام' : 'By registering you agree to terms and conditions'} <a
+  href="#terms"
+  className="text-blue-600 underline hover:text-blue-800"
+>
+  {locale === 'ar' ? 'الشروط والأحكام' : 'Terms & Conditions'}
+</a>
+</span>
         </label>
       </div>
     </form>

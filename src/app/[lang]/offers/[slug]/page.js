@@ -122,6 +122,20 @@ export default async function OfferDetailsPage({ params }) {
               </div>
             </section>
           )}
+ {offer.terms?.[locale] && (
+  <section id="terms" className="mb-24">
+    <div className="mx-auto max-w-4xl rounded-3xl bg-gray-50 p-12 shadow-inner">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+        {locale === 'ar' ? 'الشروط والأحكام' : 'Terms & Conditions'}
+      </h2>
+
+      <div
+        className="prose max-w-none text-gray-700"
+        dangerouslySetInnerHTML={{ __html: offer.terms[locale] }}
+      />
+    </div>
+  </section>
+)}
 
      
           {offer.cars?.length > 0 && (
