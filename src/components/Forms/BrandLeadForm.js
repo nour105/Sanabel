@@ -70,7 +70,7 @@ export default function BrandLeadForm({ brandId, brand, cars, lang }) {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6 max-w-5xl">
         <h2 className="text-2xl font-bold text-black mb-6 text-center">
-          {lang === "ar" ? "طلب تمويل" : "Request Financing"}
+          {lang === "ar" ? "طلب عرض سعر" : "Request A Quote"}
         </h2>
 
         <form onSubmit={submit} className="flex flex-wrap gap-4">
