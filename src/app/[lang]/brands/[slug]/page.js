@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import BrandBannerSlider from '@/components/BrandBannerSlider';
 import SAR_symbol from '@/publicImage/Saudi_Riyal_Symbol.svg.png';
+import BrandLeadForm from "@/components/Forms/BrandLeadForm";
 
 import {
   getBrandBySlug,
@@ -41,6 +42,8 @@ export default async function BrandPage({ params }) {
           brandName={brand.name[lang] || brand.name.en}
         />
       )}
+<BrandLeadForm     brandId={brand.id}
+ brand={brand} cars={cars} lang={lang} />
 
       {/* Biography */}
      <section className="py-16 bg-white">
