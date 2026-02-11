@@ -46,7 +46,7 @@ export default async function BrandPage({ params }) {
  brand={brand} cars={cars} lang={lang} />
 
       {/* Biography */}
-     <section className="py-16 bg-white">
+     <section className="py-4 bg-white">
   <div
     className="container mx-auto text-black px-6 prose max-w-4xl"
     dangerouslySetInnerHTML={{
