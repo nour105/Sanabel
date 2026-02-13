@@ -8,6 +8,9 @@ const salaryOptions = [
   { value: "over_10000", label: "Over 10,000" },
 ];
 
+const inputStyle =
+  "flex-1 min-w-[200px] rounded-lg border border-gray-300 p-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500";
+
 export default function BrandLeadForm({ brandId, brand, cars, lang }) {
   const [form, setForm] = useState({
     first_name: "",
@@ -30,27 +33,31 @@ export default function BrandLeadForm({ brandId, brand, cars, lang }) {
     const utm_campaign = urlParams.get("utm_campaign") || "";
 
     try {
-      const res = await fetch(`https://admin.sanabelauto.com/api/v1/brand/leads`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          brand_id: brandId,
-          first_name: form.first_name,
-          last_name: form.last_name,
-          email: form.email,
-          mobile: form.mobile,
-          salary: form.salary,
-          source: "website",
-          utm_source,
-          utm_medium,
-          utm_campaign,
-          vehicle_id: form.vehicle_id,
-        }),
-      });
+      const res = await fetch(
+        `https://admin.sanabelauto.com/api/v1/brand/leads`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            brand_id: brandId,
+            first_name: form.first_name,
+            last_name: form.last_name,
+            email: form.email,
+            mobile: form.mobile,
+            salary: form.salary,
+            source: "website",
+            utm_source,
+            utm_medium,
+            utm_campaign,
+            vehicle_id: form.vehicle_id,
+          }),
+        }
+      );
 
       if (!res.ok) throw new Error("Submission failed");
 
       alert(lang === "ar" ? "تم الإرسال بنجاح" : "Submitted successfully");
+
       setForm({
         first_name: "",
         last_name: "",
@@ -69,7 +76,7 @@ export default function BrandLeadForm({ brandId, brand, cars, lang }) {
   return (
     <section className="py-4 bg-white">
       <div className="container mx-auto px-6 max-w-5xl">
-        <h2 className="text-2xl font-bold text-black mb-6 text-center">
+        <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">
           {lang === "ar" ? "طلب عرض سعر" : "Request A Quote"}
         </h2>
 
@@ -78,15 +85,21 @@ export default function BrandLeadForm({ brandId, brand, cars, lang }) {
             required
             placeholder={lang === "ar" ? "الاسم الكامل" : "Full Name"}
             value={form.first_name}
-            onChange={(e) => setForm({ ...form, first_name: e.target.value })}
-            className="flex-1 border rounded-lg p-3 min-w-[200px]"
+            onChange={(e) =>
+              setForm({ ...form, first_name: e.target.value })
+            }
+            className={inputStyle}
           />
 
           <input
-            placeholder={lang === "ar" ? "اللقب (اختياري)" : "Last Name (Optional)"}
+            placeholder={
+              lang === "ar" ? "اللقب (اختياري)" : "Last Name (Optional)"
+            }
             value={form.last_name}
-            onChange={(e) => setForm({ ...form, last_name: e.target.value })}
-            className="flex-1 border rounded-lg p-3 min-w-[200px]"
+            onChange={(e) =>
+              setForm({ ...form, last_name: e.target.value })
+            }
+            className={inputStyle}
           />
 
           <input
@@ -94,23 +107,29 @@ export default function BrandLeadForm({ brandId, brand, cars, lang }) {
             type="email"
             placeholder={lang === "ar" ? "البريد الإلكتروني" : "Email"}
             value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="flex-1 border rounded-lg p-3 min-w-[200px]"
+            onChange={(e) =>
+              setForm({ ...form, email: e.target.value })
+            }
+            className={inputStyle}
           />
 
           <input
             required
             placeholder={lang === "ar" ? "رقم الهاتف" : "Phone Number"}
             value={form.mobile}
-            onChange={(e) => setForm({ ...form, mobile: e.target.value })}
-            className="flex-1 border rounded-lg p-3 min-w-[200px]"
+            onChange={(e) =>
+              setForm({ ...form, mobile: e.target.value })
+            }
+            className={inputStyle}
           />
 
           <select
             required
             value={form.salary}
-            onChange={(e) => setForm({ ...form, salary: e.target.value })}
-            className="flex-1 border rounded-lg p-3 min-w-[200px]"
+            onChange={(e) =>
+              setForm({ ...form, salary: e.target.value })
+            }
+            className={`${inputStyle} bg-white`}
           >
             <option value="">
               {lang === "ar" ? "الدخل الشهري" : "Monthly Salary"}
@@ -124,8 +143,10 @@ export default function BrandLeadForm({ brandId, brand, cars, lang }) {
 
           <select
             value={form.vehicle_id}
-            onChange={(e) => setForm({ ...form, vehicle_id: e.target.value })}
-            className="flex-1 border rounded-lg p-3 min-w-[200px]"
+            onChange={(e) =>
+              setForm({ ...form, vehicle_id: e.target.value })
+            }
+            className={`${inputStyle} bg-white`}
           >
             <option value="">
               {lang === "ar" ? "اختر السيارة" : "Select Vehicle"}
@@ -140,7 +161,12 @@ export default function BrandLeadForm({ brandId, brand, cars, lang }) {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition min-w-[200px]"
+            className={`flex-1 min-w-[200px] rounded-lg py-3 font-semibold transition
+              ${
+                loading
+                  ? "cursor-not-allowed bg-gray-400 text-white"
+                  : "bg-indigo-600 text-white hover:bg-indigo-700"
+              }`}
           >
             {loading
               ? lang === "ar"
