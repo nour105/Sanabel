@@ -33,7 +33,16 @@ const TEXT = {
     phoneError: 'Please enter a valid Saudi phone number (05XXXXXXXX)',
     success: 'Your request has been sent! We will contact you soon.',
     error: 'Something went wrong. Please try again.',
+
+    // ✅ ADD THIS
+    workingHours: {
+      title: 'Ramadan Timing',
+      days: 'Saturday to Thursday',
+      morning: '(10:00 AM – 4:00 PM)',
+      evening: '(9:30 PM – 1:30 AM)',
+    },
   },
+
   ar: {
     title: 'اعثر علينا',
     subtitle: 'يرجى تعبئة النموذج أدناه وسيتواصل معك فريقنا قريباً.',
@@ -58,8 +67,17 @@ const TEXT = {
     phoneError: 'يرجى إدخال رقم هاتف سعودي صحيح',
     success: 'تم إرسال طلبك بنجاح، سنتواصل معك قريباً.',
     error: 'حدث خطأ ما، يرجى المحاولة لاحقاً.',
+
+    // ✅ ADD THIS
+    workingHours: {
+      title: 'مواعيد العمل خلال رمضان',
+      days: 'من السبت إلى الخميس',
+      morning: '(10:00 صباحاً – 4:00 عصراً)',
+      evening: '(9:30 مساءً – 1:30 صباحاً)',
+    },
   },
 };
+
 
 export default function FindUsPage() {
   const params = useParams();
@@ -124,108 +142,30 @@ export default function FindUsPage() {
       dir={lang === 'ar' ? 'rtl' : 'ltr'}
     >
       {page?.banners?.length > 0 && <Banner banners={page.banners} />}
+       <section className=" mt-10 z-10">
+        <div className="container mx-auto px-4">
+          <div
+            className={`mx-auto max-w-2xl rounded-2xl bg-white shadow-lg border border-gray-100 px-6 py-5 text-center ${
+              lang === 'ar' ? 'rtl' : 'ltr'
+            }`}
+          >
+            <h3 className="text-lg font-bold text-gray-900 mb-2">
+              {t.workingHours.title}
+            </h3>
+
+            <p className="text-sm font-medium text-gray-700">
+              {t.workingHours.days}
+            </p>
+
+            <div className="mt-2 flex flex-col sm:flex-row sm:justify-center sm:gap-6 text-sm text-gray-600">
+              <span>{t.workingHours.morning}</span>
+              <span>{t.workingHours.evening}</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="container mx-auto  px-4 md:px-0">
-        {/* <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 text-black">
-          {t.title}
-        </h1>
-
-        <p className="text-center  text-gray-600 mb-12">
-          {t.subtitle}
-        </p> */}
-
-        {/* ===== FORM =====
-        <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-lg p-8 md:p-12">
-          <form className="space-y-6" onSubmit={submit}>
-            <div>
-              <label className="block text-sm font-medium mb-1 text-gray-700">
-                {t.name}
-              </label>
-              <input
-                type="text"
-                required
-                placeholder={t.namePlaceholder}
-                className="w-full border text-gray-700 rounded-xl px-4 py-3"
-                value={form.name}
-                onChange={(e) =>
-                  setForm({ ...form, name: e.target.value })
-                }
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-1 text-gray-700">
-                {t.phone}
-              </label>
-              <input
-                type="text"
-                required
-                placeholder={t.phonePlaceholder}
-                className="w-full border text-gray-700 rounded-xl px-4 py-3"
-                value={form.phone}
-                onChange={(e) =>
-                  setForm({ ...form, phone: e.target.value })
-                }
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-1 text-gray-700">
-                {t.reason}
-              </label>
-              <select
-                required
-                className="w-full border text-gray-700 rounded-xl px-4 py-3"
-                value={form.reason}
-                onChange={(e) =>
-                  setForm({ ...form, reason: e.target.value })
-                }
-              >
-                <option value="">{t.selectReason}</option>
-                <option value="price">{t.reasons.price}</option>
-                <option value="test_drive">{t.reasons.test_drive}</option>
-                <option value="finance">{t.reasons.finance}</option>
-                <option value="availability">{t.reasons.availability}</option>
-                <option value="suggestion">{t.reasons.suggestion}</option>
-                <option value="make_a_complaint">{t.reasons.complaint}</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-1 text-gray-700">
-                {t.message}
-              </label>
-              <textarea
-                placeholder={t.messagePlaceholder}
-                className="w-full border text-gray-700 rounded-xl px-4 py-3"
-                value={form.message}
-                onChange={(e) =>
-                  setForm({ ...form, message: e.target.value })
-                }
-              />
-            </div>
-
-            {error && (
-              <div className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm">
-                {error}
-              </div>
-            )}
-
-            {success && (
-              <div className="bg-green-50 text-green-600 px-4 py-2 rounded-lg text-sm">
-                {success}
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold"
-            >
-              {loading ? t.sending : t.submit}
-            </button>
-          </form>
-        </div> */}
 
         {/* ===== BRANCHES ===== */}
         <div className="mt-16">
