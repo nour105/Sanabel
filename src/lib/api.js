@@ -69,6 +69,15 @@ export async function getFindUs() {
 
   return json.data.find(page => page.slug === 'find-us');
 }
+export async function getUber() {
+  const res = await fetch(`${API_BASE_URL}/pages`, {
+    cache: 'no-store',
+  });
+
+  const json = await res.json();
+
+  return json.data.find(page => page.slug === 'uber');
+}
 export async function getCarBySlug(slug) {
   const res = await fetch(
     `${API_BASE_URL}/cars/slug/${slug}`,

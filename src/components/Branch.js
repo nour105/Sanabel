@@ -122,7 +122,7 @@ export default function Branch() {
 
       {page?.banners?.length > 0 && <Banner banners={page.banners} />}
 
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto px-4 py-5">
 
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-black mb-3">

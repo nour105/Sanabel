@@ -358,7 +358,7 @@ async function handleSelectCar(car) {
 
                 {car.has_offer && (
                   <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    {lang === 'ar' ? 'عرض خاص' : 'Special Offer'}
+                    {lang === 'ar' ? 'عرض رمضان' : 'Ramadan Offer'}
                   </span>
                 )}
 

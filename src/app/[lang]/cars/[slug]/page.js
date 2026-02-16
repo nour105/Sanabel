@@ -431,7 +431,7 @@ export default async function CarPage({ params }) {
                   {/* Offer badge */}
                   {c.has_offer && (
                     <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                      {lang === 'ar' ? 'عرض خاص' : 'Offer'}
+                      {lang === 'ar' ? 'عرض رمضان' : 'Ramadan Offer'}
                     </span>
                   )}
                   <p className="absolute top-3 right-3 bg-gray-100  px-3 py-1 rounded-full text-sm shadow-lg  mt-2 font-bold text-gray-900">

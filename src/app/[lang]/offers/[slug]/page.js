@@ -6,9 +6,11 @@ import HeroBannerCarousel from '@/components/HeroBannerCarousel';
 import Link from "next/link";
 
 export default async function OfferDetailsPage({ params }) {
+  
   try {
     const { lang, slug } = await params;
     const locale = lang === "ar" ? "ar" : "en"; // default to 'en'
+
 
     if (!slug || slug === "undefined") {
       return (
@@ -36,6 +38,9 @@ export default async function OfferDetailsPage({ params }) {
         </div>
       );
     }
+    const publishedCars = (offer.cars || []).filter(
+  (car) => car.status === "published"
+);
 
     if (!offer) {
       return (
@@ -128,19 +133,26 @@ export default async function OfferDetailsPage({ params }) {
 )}
 
      
-          {offer.cars?.length > 0 && (
-            <section className="mb-24">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl text-gray-700 font-bold">
-                  {locale === "ar" ? "السيارات المشمولة بالعرض" : "Cars Included in This Offer"}
-                </h2>
-                <span className="text-green-600 font-medium">
-                  {locale === "ar" ? "أقساط شهرية متاحة" : "Monthly Installments Available"}
-                </span>
-              </div>
-              <CarCarousel cars={offer.cars} locale={locale} />
-            </section>
-          )}
+        {publishedCars.length > 0 && (
+  <section className="mb-24">
+    <div className="flex justify-between items-center mb-6">
+      <h2 className="text-3xl text-gray-700 font-bold">
+        {locale === "ar"
+          ? "السيارات المشمولة بالعرض"
+          : "Cars Included in This Offer"}
+      </h2>
+
+      <span className="text-green-600 font-medium">
+        {locale === "ar"
+          ? "أقساط شهرية متاحة"
+          : "Monthly Installments Available"}
+      </span>
+    </div>
+
+    <CarCarousel cars={publishedCars} locale={locale} />
+  </section>
+)}
+
         </div>
       </div>
     );
