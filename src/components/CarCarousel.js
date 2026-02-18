@@ -85,7 +85,7 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
                     />
               
                     <span className="text-sm text-gray-600 whitespace-nowrap">
-                      {lang === 'ar'
+                      {locale === 'ar'
                         ? 'إمكانية التقسيط الشهري'
                         : 'Monthly installments'}
                     </span>
@@ -99,12 +99,12 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
                     className="group cursor-pointer relative inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-indigo-700 hover:shadow-lg active:scale-95"
                   >
                     <span>
-                      {lang === 'ar' ? 'عرض التفاصيل' : 'View Details'}
+                      {locale === 'ar' ? 'عرض التفاصيل' : 'View Details'}
                     </span>
               
                     <svg
                       className={`h-4 w-4 transition-transform duration-300 ${
-                        lang === 'ar'
+                        locale === 'ar'
                           ? 'rotate-180 group-hover:-translate-x-1'
                           : 'group-hover:translate-x-1'
                       }`}
