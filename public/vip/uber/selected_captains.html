@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Special Offer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <main class="page">
+    <section class="card" aria-labelledby="page-title">
+     <div class="logo-stack">
+  <a href="https://sanabelauto.com/" target="_blank">
+    <img src="assets/Sanabel-Logo.png" alt="Sanabel Logo" class="logo" />
+    <img src="assets/uber_logo.png" alt="Uber Logo" class="logo logo-secondary" />
+  </a>
+</div>
+      <h1 id="page-title">
+        <span class="ar" lang="ar">تم اختيارك!</span>
+        <span class="en">You've been selected!</span>
+      </h1>
+
+      <form id="lead-form" novalidate>
+        <input type="hidden" name="offer_preference" id="offer_preference" />
+        <input type="hidden" name="preferred_time" id="preferred_time" />
+        <input type="hidden" name="utm_source" id="utm_source" />
+        <input type="hidden" name="utm_medium" id="utm_medium" />
+        <input type="hidden" name="utm_campaign" id="utm_campaign" />
+        <input type="hidden" name="utm_id" id="utm_id" />
+        <input type="hidden" name="utm_term" id="utm_term" />
+        <input type="hidden" name="utm_content" id="utm_content" />
+        <input type="hidden" name="submission_timestamp" id="submission_timestamp" />
+        <input type="hidden" name="latitude" id="latitude" />
+        <input type="hidden" name="longitude" id="longitude" />
+
+        <div class="field-group">
+          <p class="label">
+            <span class="ar" lang="ar">أي عرض تفضّل؟</span>
+            <span class="en">What offer would you prefer?</span>
+          </p>
+          <div class="option-grid" role="radiogroup" aria-label="Offer selection">
+            <button type="button" class="option-button" data-value="Free Service Package with any car purchase" role="radio" aria-checked="false" aria-label="Free Service Package with any car purchase">
+              <img src="assets/offer-service.png" alt="Free Service Package" />
+              <span>
+                <span class="ar" lang="ar">باقة صيانة مجانية مع أي شراء سيارة</span>
+                <span class="en">Free Service Package with any car purchase</span>
+              </span>
+            </button>
+            <button type="button" class="option-button" data-value="No registration & admin fees" role="radio" aria-checked="false" aria-label="No registration and admin fees">
+              <img src="assets/offer-registration.png" alt="No registration and admin fees" />
+              <span>
+                <span class="ar" lang="ar">بدون رسوم تسجيل وإدارة</span>
+                <span class="en">No registration & admin fees</span>
+              </span>
+            </button>
+          </div>
+          <p class="error" id="offer-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field-group">
+          <p class="label">
+            <span class="ar" lang="ar">ما الوقت الذي تفضّل أن نتواصل معك فيه؟</span>
+            <span class="en">What time would you like us to contact you?</span>
+          </p>
+          <div class="time-grid" role="radiogroup" aria-label="Preferred callback time">
+            <button type="button" class="time-button" data-value="7:00-8:00 PM" role="radio" aria-checked="false">
+              <span class="time-main">7:00-8:00</span>
+              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
+            </button>
+            <button type="button" class="time-button" data-value="8:00-9:00 PM" role="radio" aria-checked="false">
+              <span class="time-main">8:00-9:00</span>
+              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
+            </button>
+            <button type="button" class="time-button" data-value="9:00-10:00 PM" role="radio" aria-checked="false">
+              <span class="time-main">9:00-10:00</span>
+              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
+            </button>
+            <button type="button" class="time-button" data-value="10:00-11:00 PM" role="radio" aria-checked="false">
+              <span class="time-main">10:00-11:00</span>
+              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
+            </button>
+            <button type="button" class="time-button" data-value="11:00-12:00 PM" role="radio" aria-checked="false">
+              <span class="time-main">11:00-12:00</span>
+              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
+            </button>
+            <button type="button" class="time-button" data-value="12:00-1:00 PM" role="radio" aria-checked="false">
+              <span class="time-main">12:00-1:00</span>
+              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
+            </button>
+          </div>
+          <p class="error" id="time-error" aria-live="polite"></p>
+        </div>
+
+        <button type="submit" id="submit-button" class="submit-button" aria-label="Request a Call">
+          <span class="button-text">
+            <span class="ar" lang="ar">اطلب مكالمة</span>
+            <span class="en">Request a Call</span>
+          </span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="location-note">
+          <span class="ar" lang="ar">شارك موقعك لتحسين الخدمة</span>
+          <span class="en">Share your location to improve service</span>
+        </p>
+
+        <p class="error" id="submit-error" aria-live="polite"></p>
+      </form>
+
+      <div id="thank-you" class="thank-you" aria-live="polite" hidden>
+        <h2>
+          <span class="ar" lang="ar">شكرًا لك!</span>
+          <span class="en">Thank you!</span>
+        </h2>
+        <p>
+          <span class="ar" lang="ar">سيتواصل معك فريقنا قريبًا.</span>
+          <span class="en">Our team will contact you soon.</span>
+        </p>
+      </div>
+    </section>
+
+    <section id="locations" aria-labelledby="locations-title">
+      <p class="visit-message">
+        <span class="ar" lang="ar">أو قم بزيارتنا اليوم!</span>
+        <span class="en">Or just visit us Today!</span>
+      </p>
+      <h2 id="locations-title">
+        <span class="ar" lang="ar">مواقعنا</span>
+        <span class="en">Our Locations</span>
+      </h2>
+   <div id="map-placeholder">
+
+  <div class="branch-locator">
+
+    <div class="city-buttons">
+      <button data-city="0" class="city-btn active">
+        <span class="ar">جدة</span>
+        <span class="en">Jeddah</span>
+      </button>
+
+      <button data-city="1" class="city-btn">
+        <span class="ar">الرياض</span>
+        <span class="en">Riyadh</span>
+      </button>
+
+      <button data-city="2" class="city-btn">
+        <span class="ar">الدمام</span>
+        <span class="en">Dammam</span>
+      </button>
+
+      <button data-city="3" class="city-btn">
+        <span class="ar">مكة</span>
+        <span class="en">Makkah</span>
+      </button>
+
+      <button data-city="4" class="city-btn">
+        <span class="ar">المدينة</span>
+        <span class="en">Medina</span>
+      </button>
+
+      <button data-city="5" class="city-btn">
+        <span class="ar">جيزان</span>
+        <span class="en">Jizan</span>
+      </button>
+    </div>
+
+    <div class="branch-container">
+
+      <div class="branch-list" id="branch-list"></div>
+
+      <div class="branch-map">
+        <iframe
+          id="branch-map"
+          src="https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Automall&output=embed"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+        <div class="map-link">
+          <a id="map-link" target="_blank">
+            <span class="ar">افتح في خرائط جوجل</span>
+            <span class="en">Open in Google Maps</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+    </section>
+
+   <section id="terms" aria-labelledby="terms-title">
+  <h2 id="terms-title">
+    <span class="ar" lang="ar">الشروط والأحكام</span>
+    <span class="en">Terms & Conditions</span>
+  </h2>
+
+  <ul class="terms-list">
+
+    <li>
+      <span class="ar">العرض مخصص فقط لسائقي أوبر (يتم التحقق).</span>
+      <span class="en">Offer is exclusively available to registered Uber drivers (verification required).</span>
+    </li>
+
+    <li>
+      <span class="ar">العرض ساري عند شراء سيارة من سنابل فقط.</span>
+      <span class="en">Offer valid only upon purchase of a vehicle from Sanabel Modern Motors.</span>
+    </li>
+
+    <li>
+      <span class="ar">باقة الخدمة المجانية تشمل: تغيير زيت + فلتر زيت + فحص عام للسيارة.</span>
+      <span class="en">Free Service Package includes: one oil change, one oil filter replacement, and one standard vehicle inspection.</span>
+    </li>
+
+    <li>
+      <span class="ar">العرض غير قابل للتحويل أو الاستبدال ولا يمكن استبداله نقدًا.</span>
+      <span class="en">Offer is non-transferable, non-exchangeable, and cannot be redeemed for cash.</span>
+    </li>
+
+    <li>
+      <span class="ar">لا يمكن الجمع بين هذا العرض وأي عروض أو خصومات أخرى.</span>
+      <span class="en">Offer cannot be combined with any other promotions or discounts.</span>
+    </li>
+
+    <li>
+      <span class="ar">يجب استخدام الخدمة في مراكز سنابل المعتمدة وخلال فترة الصلاحية المحددة.</span>
+      <span class="en">Service must be redeemed at authorized Sanabel service centers within the specified validity period.</span>
+    </li>
+
+    <li>
+      <span class="ar">يحق لسنابل تعديل أو إيقاف العرض في أي وقت بدون إشعار مسبق.</span>
+      <span class="en">Sanabel reserves the right to modify or discontinue the offer at any time without prior notice.</span>
+    </li>
+
+    <li>
+      <span class="ar">الاستفادة من العرض تعني الموافقة على الشروط والأحكام.</span>
+      <span class="en">Participation in this campaign constitutes acceptance of these terms and conditions.</span>
+    </li>
+
+  </ul>
+</section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+:8443 {
+  tls "/Users/ahmad.work/Documents/CODEX/UBER LEADS/Special Offer Landing Page/landing-page/ssl/local.crt" "/Users/ahmad.work/Documents/CODEX/UBER LEADS/Special Offer Landing Page/landing-page/ssl/local.key"
+  reverse_proxy 127.0.0.1:8000
+}
