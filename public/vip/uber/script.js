@@ -11,6 +11,37 @@ const thankYou = document.getElementById('thank-you');
 const confettiCanvas = document.getElementById('confetti-canvas');
 const latitudeInput = document.getElementById('latitude');
 const longitudeInput = document.getElementById('longitude');
+const languageButtons = document.querySelectorAll('.language-button');
+
+const textByLanguage = {
+  ar: {
+    offerError: 'يرجى اختيار العرض.',
+    timeError: 'يرجى اختيار الوقت المفضل.',
+    submitError: 'تعذر إرسال الطلب. يرجى المحاولة مرة أخرى.',
+    submissionFailed: 'تعذر إرسال الطلب.'
+  },
+  en: {
+    offerError: 'Please select an offer.',
+    timeError: 'Please select a preferred time.',
+    submitError: 'Submission failed. Please try again.',
+    submissionFailed: 'Submission failed.'
+  }
+};
+
+const getCurrentLanguage = () => document.body.dataset.language || 'ar';
+
+const applyLanguage = (language) => {
+  const nextLanguage = language === 'en' ? 'en' : 'ar';
+  document.body.dataset.language = nextLanguage;
+  document.documentElement.lang = nextLanguage;
+  document.documentElement.dir = nextLanguage === 'ar' ? 'rtl' : 'ltr';
+  languageButtons.forEach((button) => {
+    const isActive = button.dataset.language === nextLanguage;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+  window.localStorage.setItem('landing-language', nextLanguage);
+};
 
 const setSelection = (buttons, selectedButton, input) => {
   buttons.forEach((button) => {
@@ -33,6 +64,12 @@ timeButtons.forEach((button) => {
   button.addEventListener('click', () => {
     setSelection(timeButtons, button, timeInput);
     timeError.textContent = '';
+  });
+});
+
+languageButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    applyLanguage(button.dataset.language);
   });
 });
 
@@ -94,18 +131,19 @@ const captureLocation = () => new Promise((resolve) => {
 });
 
 const validateForm = () => {
+  const language = getCurrentLanguage();
   let valid = true;
   offerError.textContent = '';
   timeError.textContent = '';
   submitError.textContent = '';
 
   if (!offerInput.value) {
-    offerError.textContent = 'Please select an offer.';
+    offerError.textContent = textByLanguage[language].offerError;
     valid = false;
   }
 
   if (!timeInput.value) {
-    timeError.textContent = 'Please select a preferred time.';
+    timeError.textContent = textByLanguage[language].timeError;
     valid = false;
   }
 
@@ -130,26 +168,37 @@ form.addEventListener('submit', async (event) => {
   document.getElementById('submission_timestamp').value = new Date().toISOString();
 
   try {
-const response = await fetch(
-  "https://admin.sanabelauto.com/api/v1/landingLeads",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(Object.fromEntries(new FormData(form))),
-  }
-);
+ const response = await fetch('https://admin.sanabelauto.com/api/v1/landingLeads', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
+  body: JSON.stringify({
+    offer_preference: offerInput.value,
+    preferred_time: timeInput.value,
+    utm_source: document.getElementById('utm_source').value,
+    utm_medium: document.getElementById('utm_medium').value,
+    utm_campaign: document.getElementById('utm_campaign').value,
+    utm_id: document.getElementById('utm_id').value,
+    utm_term: document.getElementById('utm_term').value,
+    utm_content: document.getElementById('utm_content').value,
+    submission_timestamp: document.getElementById('submission_timestamp').value,
+    latitude: latitudeInput.value,
+    longitude: longitudeInput.value,
+    language: getCurrentLanguage()
+  })
+});
 
     const responseText = await response.text();
     let result = {};
     try {
       result = JSON.parse(responseText);
     } catch (parseError) {
-      throw new Error('Submission failed. Please try again.');
+      throw new Error(textByLanguage[getCurrentLanguage()].submitError);
     }
     if (!response.ok || !result.success) {
-      throw new Error(result.message || 'Submission failed.');
+      throw new Error(result.message || textByLanguage[getCurrentLanguage()].submissionFailed);
     }
 
     form.reset();
@@ -168,6 +217,7 @@ const response = await fetch(
 });
 
 window.addEventListener('load', () => {
+  applyLanguage(window.localStorage.getItem('landing-language') || 'ar');
   setUtmFields();
   runConfetti();
 });
@@ -176,107 +226,106 @@ window.addEventListener('resize', () => {
   confettiCanvas.width = window.innerWidth;
   confettiCanvas.height = window.innerHeight;
 });
-
 const BRANCHES = [
-{
-city:{ar:'جدة',en:'Jeddah'},
-locations:[
-{
-name:{ar:'أوتومول',en:'Automall'},
-embed:'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Automall&output=embed',
-link:'https://maps.app.goo.gl/fAGRDGCDMYx1nLot7'
-},
-{
-name:{ar:'السليمانية',en:'Al Sulimaniya'},
-embed:'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Sulimaniya&output=embed',
-link:'https://maps.app.goo.gl/MoPpz356Dyeo1xYE6'
-},
-{
-name:{ar:'كار جيت',en:'Car Gate'},
-embed:'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Car+Gate&output=embed',
-link:'https://maps.app.goo.gl/x63RBHiURhkrxDUd6'
-}
-]
-},
-{
-city:{ar:'الرياض',en:'Riyadh'},
-locations:[
-{
-name:{ar:'خريص',en:'Khurais'},
-embed:'https://www.google.com/maps?q=Sanabel+Auto+Riyadh+Khurais&output=embed',
-link:'https://maps.app.goo.gl/YbK6qJhE4asoq5Zc7'
-},
-{
-name:{ar:'الدائري الشمالي',en:'North Ring Road'},
-embed:'https://www.google.com/maps?q=Sanabel+Auto+Riyadh+North+Ring+Road&output=embed',
-link:'https://maps.app.goo.gl/2rCaT814idCoutE67'
-}
-]
-},
-{
-city:{ar:'الدمام',en:'Dammam'},
-locations:[
-{
-name:{ar:'الفرع الرئيسي',en:'Main Branch'},
-embed:'https://www.google.com/maps?q=Sanabel+Auto+Dammam&output=embed',
-link:'https://maps.app.goo.gl/qAr6RaNZHa45NXS66'
-}
-]
-}
+  {
+    city:{en:'Jeddah',ar:'جدة'},
+    locations:[
+      {name:{en:'Automall',ar:'أوتومول'},embed:'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Automall&output=embed',link:'https://maps.app.goo.gl/fAGRDGCDMYx1nLot7'},
+      {name:{en:'Al Sulimaniya',ar:'السليمانية'},embed:'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Sulimaniya&output=embed',link:'https://maps.app.goo.gl/MoPpz356Dyeo1xYE6'},
+      {name:{en:'Car Gate',ar:'كار جيت'},embed:'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Car+Gate&output=embed',link:'https://maps.app.goo.gl/x63RBHiURhkrxDUd6'}
+    ]
+  },
+  {
+    city:{en:'Riyadh',ar:'الرياض'},
+    locations:[
+      {name:{en:'Khurais',ar:'خريص'},embed:'https://www.google.com/maps?q=Sanabel+Auto+Riyadh+Khurais&output=embed',link:'https://maps.app.goo.gl/YbK6qJhE4asoq5Zc7'},
+      {name:{en:'North Ring Road',ar:'الدائري الشمالي'},embed:'https://www.google.com/maps?q=Sanabel+Auto+Riyadh+North+Ring+Road&output=embed',link:'https://maps.app.goo.gl/2rCaT814idCoutE67'}
+    ]
+  },
+  {
+    city:{en:'Dammam',ar:'الدمام'},
+    locations:[
+      {name:{en:'Main Branch',ar:'الفرع الرئيسي'},embed:'https://www.google.com/maps?q=Sanabel+Auto+Dammam&output=embed',link:'https://maps.app.goo.gl/qAr6RaNZHa45NXS66'}
+    ]
+  },
+  {
+    city:{en:'Makkah',ar:'مكة'},
+    locations:[
+      {name:{en:'Main Branch',ar:'الفرع الرئيسي'},embed:'https://www.google.com/maps?q=Sanabel+Auto+Makkah&output=embed',link:'https://maps.app.goo.gl/fMbXCchNSzDuoxnf6'}
+    ]
+  },
+  {
+    city:{en:'Medina',ar:'المدينة'},
+    locations:[
+      {name:{en:'Main Branch',ar:'الفرع الرئيسي'},embed:'https://www.google.com/maps?q=Sanabel+Auto+Medina&output=embed',link:'https://maps.app.goo.gl/Rf1NY4mr2E7TL1Df7'}
+    ]
+  },
+  {
+    city:{en:'Jizan',ar:'جازان'},
+    locations:[
+      {name:{en:'Main Branch',ar:'الفرع الرئيسي'},embed:'https://www.google.com/maps?q=Sanabel+Auto+Jizan&output=embed',link:'https://maps.app.goo.gl/DqDwDwhmqkEjWgGWA'}
+    ]
+  }
 ];
 
-const cityButtons = document.querySelectorAll('.city-btn');
-const branchList = document.getElementById('branch-list');
-const mapFrame = document.getElementById('branch-map');
-const mapLink = document.getElementById('map-link');
-
 let activeCity = 0;
+let activeBranch = 0;
 
-function renderBranches(cityIndex){
+function renderMap(){
 
-branchList.innerHTML='';
+  const langBtn = document.querySelector('.language-button.active');
+  const lang = langBtn ? langBtn.dataset.language : 'ar';
 
-BRANCHES[cityIndex].locations.forEach((branch,index)=>{
+  const cityContainer = document.getElementById('city-buttons');
+  const branchContainer = document.getElementById('branch-buttons');
+  const frame = document.getElementById('map-frame');
+  const link = document.getElementById('map-link');
 
-const btn=document.createElement('button');
+  if(!cityContainer || !branchContainer || !frame) return;
 
-btn.innerHTML = `
-<span class="ar">${branch.name.ar}</span>
-<span class="en">${branch.name.en}</span>
-`;
+  cityContainer.innerHTML='';
+  branchContainer.innerHTML='';
 
-if(index===0) btn.classList.add('active');
+  BRANCHES.forEach((city,i)=>{
+    const btn=document.createElement('button');
+    btn.textContent=city.city[lang];
+    if(i===activeCity) btn.classList.add('active');
 
-btn.addEventListener('click',()=>{
+    btn.onclick=()=>{
+      activeCity=i;
+      activeBranch=0;
+      renderMap();
+    };
 
-document.querySelectorAll('#branch-list button').forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
+    cityContainer.appendChild(btn);
+  });
 
-mapFrame.src=branch.embed;
-mapLink.href=branch.link;
+  BRANCHES[activeCity].locations.forEach((branch,i)=>{
+    const btn=document.createElement('button');
+    btn.textContent=branch.name[lang];
+    if(i===activeBranch) btn.classList.add('active');
 
-});
+    btn.onclick=()=>{
+      activeBranch=i;
+      renderMap();
+    };
 
-branchList.appendChild(btn);
+    branchContainer.appendChild(btn);
+  });
 
-});
+  const selected = BRANCHES[activeCity].locations[activeBranch];
 
-mapFrame.src=BRANCHES[cityIndex].locations[0].embed;
-mapLink.href=BRANCHES[cityIndex].locations[0].link;
-
+  frame.src = selected.embed;
+  link.href = selected.link;
+  link.textContent = lang === 'ar'
+    ? 'افتح الموقع على خرائط Google'
+    : 'Open in Google Maps';
 }
 
-cityButtons.forEach(btn=>{
-btn.addEventListener('click',()=>{
+document.addEventListener('DOMContentLoaded',renderMap);
 
-cityButtons.forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
-
-activeCity=btn.dataset.city;
-
-renderBranches(activeCity);
-
+document.querySelectorAll('.language-button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    setTimeout(renderMap,50);
+  });
 });
-});
-
-renderBranches(0);

@@ -11,12 +11,14 @@
 
   <main class="page">
     <section class="card" aria-labelledby="page-title">
-     <div class="logo-stack">
-  <a href="https://sanabelauto.com/" target="_blank">
-    <img src="assets/Sanabel-Logo.png" alt="Sanabel Logo" class="logo" />
-    <img src="assets/Uber_logo.png" alt="Uber Logo" class="logo logo-secondary" />
-  </a>
-</div>
+      <div class="language-toggle" role="group" aria-label="Language selector">
+        <button type="button" class="language-button active" data-language="ar" aria-pressed="true">العربية</button>
+        <button type="button" class="language-button" data-language="en" aria-pressed="false">English</button>
+      </div>
+      <div class="logo-stack">
+        <img src="assets/Sanabel-Logo.png" alt="Sanabel Logo" class="logo" />
+        <img src="assets/uber_logo.png" alt="Uber Logo" class="logo logo-secondary" />
+      </div>
       <h1 id="page-title">
         <span class="ar" lang="ar">تم اختيارك!</span>
         <span class="en">You've been selected!</span>
@@ -64,32 +66,33 @@
             <span class="ar" lang="ar">ما الوقت الذي تفضّل أن نتواصل معك فيه؟</span>
             <span class="en">What time would you like us to contact you?</span>
           </p>
-          <div class="time-grid" role="radiogroup" aria-label="Preferred callback time">
-            <button type="button" class="time-button" data-value="7:00-8:00 PM" role="radio" aria-checked="false">
-              <span class="time-main">7:00-8:00</span>
-              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
-            </button>
-            <button type="button" class="time-button" data-value="8:00-9:00 PM" role="radio" aria-checked="false">
-              <span class="time-main">8:00-9:00</span>
-              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
-            </button>
-            <button type="button" class="time-button" data-value="9:00-10:00 PM" role="radio" aria-checked="false">
-              <span class="time-main">9:00-10:00</span>
-              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
-            </button>
-            <button type="button" class="time-button" data-value="10:00-11:00 PM" role="radio" aria-checked="false">
-              <span class="time-main">10:00-11:00</span>
-              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
-            </button>
-            <button type="button" class="time-button" data-value="11:00-12:00 PM" role="radio" aria-checked="false">
-              <span class="time-main">11:00-12:00</span>
-              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
-            </button>
-            <button type="button" class="time-button" data-value="12:00-1:00 PM" role="radio" aria-checked="false">
-              <span class="time-main">12:00-1:00</span>
-              <span class="time-sub">PM <span class="ar" lang="ar">مساء</span></span>
-            </button>
-          </div>
+        <div class="time-grid" role="radiogroup" aria-label="Preferred callback time">
+
+  <button type="button" class="time-button" data-value="Morning 9am - 12pm" role="radio" aria-checked="false">
+    <span class="time-main">9:00-12:00</span>
+    <span class="time-sub">
+      <span class="ar" lang="ar">صباحًا</span>
+      <span class="en">Morning</span>
+    </span>
+  </button>
+
+  <button type="button" class="time-button" data-value="Afternoon 12pm - 5pm" role="radio" aria-checked="false">
+    <span class="time-main">12:00-5:00</span>
+    <span class="time-sub">
+      <span class="ar" lang="ar">بعد الظهر</span>
+      <span class="en">Afternoon</span>
+    </span>
+  </button>
+
+  <button type="button" class="time-button" data-value="Evening 5pm - 9pm" role="radio" aria-checked="false">
+    <span class="time-main">5:00-9:00</span>
+    <span class="time-sub">
+      <span class="ar" lang="ar">مساءً</span>
+      <span class="en">Evening</span>
+    </span>
+  </button>
+
+</div>
           <p class="error" id="time-error" aria-live="polite"></p>
         </div>
 
@@ -121,77 +124,30 @@
       </div>
     </section>
 
-    <section id="locations" aria-labelledby="locations-title">
-      <p class="visit-message">
-        <span class="ar" lang="ar">أو قم بزيارتنا اليوم!</span>
-        <span class="en">Or just visit us Today!</span>
-      </p>
-      <h2 id="locations-title">
-        <span class="ar" lang="ar">مواقعنا</span>
-        <span class="en">Our Locations</span>
-      </h2>
-   <div id="map-placeholder">
+<section id="locations" aria-labelledby="locations-title">
+  <p class="visit-message">
+    <span class="ar">أو قم بزيارتنا اليوم!</span>
+    <span class="en">Or just visit us Today!</span>
+  </p>
 
-  <div class="branch-locator">
+  <h2 id="locations-title">
+    <span class="ar">مواقعنا</span>
+    <span class="en">Our Locations</span>
+  </h2>
 
-    <div class="city-buttons">
-      <button data-city="0" class="city-btn active">
-        <span class="ar">جدة</span>
-        <span class="en">Jeddah</span>
-      </button>
+  <div class="map-wrapper">
+    <div id="city-buttons" class="city-buttons"></div>
 
-      <button data-city="1" class="city-btn">
-        <span class="ar">الرياض</span>
-        <span class="en">Riyadh</span>
-      </button>
+    <div class="map-grid">
+      <div id="branch-buttons" class="branch-buttons"></div>
 
-      <button data-city="2" class="city-btn">
-        <span class="ar">الدمام</span>
-        <span class="en">Dammam</span>
-      </button>
-
-      <button data-city="3" class="city-btn">
-        <span class="ar">مكة</span>
-        <span class="en">Makkah</span>
-      </button>
-
-      <button data-city="4" class="city-btn">
-        <span class="ar">المدينة</span>
-        <span class="en">Medina</span>
-      </button>
-
-      <button data-city="5" class="city-btn">
-        <span class="ar">جيزان</span>
-        <span class="en">Jizan</span>
-      </button>
-    </div>
-
-    <div class="branch-container">
-
-      <div class="branch-list" id="branch-list"></div>
-
-      <div class="branch-map">
-        <iframe
-          id="branch-map"
-          src="https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Automall&output=embed"
-          loading="lazy"
-          allowfullscreen>
-        </iframe>
-
-        <div class="map-link">
-          <a id="map-link" target="_blank">
-            <span class="ar">افتح في خرائط جوجل</span>
-            <span class="en">Open in Google Maps</span>
-          </a>
-        </div>
+      <div class="map-view">
+        <iframe id="map-frame"></iframe>
+        <a id="map-link" target="_blank"></a>
       </div>
-
     </div>
-
   </div>
-
-</div>
-    </section>
+</section>
 
    <section id="terms" aria-labelledby="terms-title">
   <h2 id="terms-title">
@@ -199,49 +155,81 @@
     <span class="en">Terms & Conditions</span>
   </h2>
 
-  <ul class="terms-list">
+  <ol class="terms-list">
 
     <li>
-      <span class="ar">العرض مخصص فقط لسائقي أوبر (يتم التحقق).</span>
-      <span class="en">Offer is exclusively available to registered Uber drivers (verification required).</span>
+      <span class="ar" lang="ar">
+        العرض مخصص فقط لسائقي أوبر (يتم التحقق).
+      </span>
+      <span class="en">
+        Offer is exclusively available to registered Uber drivers (verification required).
+      </span>
     </li>
 
     <li>
-      <span class="ar">العرض ساري عند شراء سيارة من سنابل فقط.</span>
-      <span class="en">Offer valid only upon purchase of a vehicle from Sanabel Modern Motors.</span>
+      <span class="ar" lang="ar">
+        العرض ساري عند شراء سيارة من سنابل فقط.
+      </span>
+      <span class="en">
+        Offer valid only upon purchase of a vehicle from Sanabel Modern Motors.
+      </span>
     </li>
 
     <li>
-      <span class="ar">باقة الخدمة المجانية تشمل: تغيير زيت + فلتر زيت + فحص عام للسيارة.</span>
-      <span class="en">Free Service Package includes: one oil change, one oil filter replacement, and one standard vehicle inspection.</span>
+      <span class="ar" lang="ar">
+        باقة الخدمة المجانية تشمل: تغيير زيت + فلتر زيت + فحص عام للسيارة.
+      </span>
+      <span class="en">
+        Free Service Package includes: one oil change, one oil filter replacement, and one standard vehicle inspection.
+      </span>
     </li>
 
     <li>
-      <span class="ar">العرض غير قابل للتحويل أو الاستبدال ولا يمكن استبداله نقدًا.</span>
-      <span class="en">Offer is non-transferable, non-exchangeable, and cannot be redeemed for cash.</span>
+      <span class="ar" lang="ar">
+        العرض غير قابل للتحويل أو الاستبدال ولا يمكن استبداله نقدًا.
+      </span>
+      <span class="en">
+        Offer is non-transferable, non-exchangeable, and cannot be redeemed for cash.
+      </span>
     </li>
 
     <li>
-      <span class="ar">لا يمكن الجمع بين هذا العرض وأي عروض أو خصومات أخرى.</span>
-      <span class="en">Offer cannot be combined with any other promotions or discounts.</span>
+      <span class="ar" lang="ar">
+        لا يمكن الجمع بين هذا العرض وأي عروض أو خصومات أخرى.
+      </span>
+      <span class="en">
+        Offer cannot be combined with any other promotions or discounts.
+      </span>
     </li>
 
     <li>
-      <span class="ar">يجب استخدام الخدمة في مراكز سنابل المعتمدة وخلال فترة الصلاحية المحددة.</span>
-      <span class="en">Service must be redeemed at authorized Sanabel service centers within the specified validity period.</span>
+      <span class="ar" lang="ar">
+        يجب استخدام الخدمة في مراكز سنابل المعتمدة وخلال فترة الصلاحية المحددة.
+      </span>
+      <span class="en">
+        Service must be redeemed at authorized Sanabel service centers within the specified validity period.
+      </span>
     </li>
 
     <li>
-      <span class="ar">يحق لسنابل تعديل أو إيقاف العرض في أي وقت بدون إشعار مسبق.</span>
-      <span class="en">Sanabel reserves the right to modify or discontinue the offer at any time without prior notice.</span>
+      <span class="ar" lang="ar">
+        يحق لسنابل تعديل أو إيقاف العرض في أي وقت بدون إشعار مسبق.
+      </span>
+      <span class="en">
+        Sanabel reserves the right to modify or discontinue the offer at any time without prior notice.
+      </span>
     </li>
 
     <li>
-      <span class="ar">الاستفادة من العرض تعني الموافقة على الشروط والأحكام.</span>
-      <span class="en">Participation in this campaign constitutes acceptance of these terms and conditions.</span>
+      <span class="ar" lang="ar">
+        الاستفادة من العرض تعني الموافقة على الشروط والأحكام.
+      </span>
+      <span class="en">
+        Participation in this campaign constitutes acceptance of these terms and conditions.
+      </span>
     </li>
 
-  </ul>
+  </ol>
 </section>
   </main>
 
