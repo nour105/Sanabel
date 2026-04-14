@@ -35,12 +35,16 @@ const applyLanguage = (language) => {
   document.body.dataset.language = nextLanguage;
   document.documentElement.lang = nextLanguage;
   document.documentElement.dir = nextLanguage === 'ar' ? 'rtl' : 'ltr';
+
   languageButtons.forEach((button) => {
     const isActive = button.dataset.language === nextLanguage;
     button.classList.toggle('active', isActive);
     button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
   });
+
   window.localStorage.setItem('landing-language', nextLanguage);
+
+  renderMap(); // <-- أضف هذا السطر
 };
 
 const setSelection = (buttons, selectedButton, input) => {
@@ -273,8 +277,7 @@ let activeBranch = 0;
 
 function renderMap(){
 
-  const langBtn = document.querySelector('.language-button.active');
-  const lang = langBtn ? langBtn.dataset.language : 'ar';
+  const lang = getCurrentLanguage(); // <-- الحل هنا
 
   const cityContainer = document.getElementById('city-buttons');
   const branchContainer = document.getElementById('branch-buttons');
