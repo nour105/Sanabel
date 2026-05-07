@@ -13,7 +13,7 @@ const TEXT = {
     firstName: "First Name",
     lastName: "Last Name",
     email: "Email",
-    phone: "Phone",
+    phone: "Phone (Saudi)",
     brand: "Brand",
     model: "Model",
     city: "City",
@@ -25,6 +25,7 @@ const TEXT = {
     submit: "Submit",
     submitting: "Submitting...",
     error: "Something went wrong",
+    invalidPhone: "Enter a valid Saudi number starting with 05",
     successTitle: "Thank You!",
     successDesc:
       "Your service booking request has been received. Our team will contact you shortly.",
@@ -34,7 +35,7 @@ const TEXT = {
     firstName: "الاسم الأول",
     lastName: "اسم العائلة",
     email: "البريد الإلكتروني",
-    phone: "رقم الهاتف",
+    phone: "رقم الهاتف السعودي",
     brand: "العلامة التجارية",
     model: "الموديل",
     city: "المدينة",
@@ -46,6 +47,7 @@ const TEXT = {
     submit: "إرسال",
     submitting: "جاري الإرسال...",
     error: "حدث خطأ ما",
+    invalidPhone: "أدخل رقم سعودي صحيح يبدأ بـ 05",
     successTitle: "شكرًا لك!",
     successDesc:
       "تم استلام طلب حجز الخدمة الخاص بك، وسيتواصل معك فريقنا قريبًا.",
@@ -88,6 +90,22 @@ export default function OnlineServiceBooking() {
     { city: "Riyadh", locations: ["Khurais", "North Ring Road"] },
   ];
 
+  /* ===== SAUDI PHONE HANDLING ===== */
+
+  const handlePhoneChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ""); // numbers only
+
+    if (value.length > 10) value = value.slice(0, 10);
+
+    setForm((prev) => ({ ...prev, phone: value }));
+  };
+
+  const isValidSaudi = (phone) => /^05\d{8}$/.test(phone);
+
+  const formatTo966 = (phone) => "+966" + phone.substring(1);
+
+  /* ===== HANDLERS ===== */
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -104,6 +122,17 @@ export default function OnlineServiceBooking() {
     setLoading(true);
     setMessage("");
 
+    if (!isValidSaudi(form.phone)) {
+      setMessage(t.invalidPhone);
+      setLoading(false);
+      return;
+    }
+
+    const payload = {
+      ...form,
+      phone: formatTo966(form.phone),
+    };
+
     try {
       const res = await fetch(
         "https://admin.sanabelauto.com/api/v1/online-service-booking",
@@ -113,7 +142,7 @@ export default function OnlineServiceBooking() {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify(payload),
         }
       );
 
@@ -135,24 +164,15 @@ export default function OnlineServiceBooking() {
     <>
       {page?.banners?.length > 0 && <Banner banners={page.banners} />}
 
-      <div
-        className="max-w-5xl mx-auto py-12 px-4"
-        dir={lang === "ar" ? "rtl" : "ltr"}
-      >
-        <h1 className="text-3xl font-bold mb-10 text-center">
-          {t.title}
-        </h1>
+      <div className="max-w-5xl mx-auto py-12 px-4" dir={lang === "ar" ? "rtl" : "ltr"}>
+        <h1 className="text-3xl font-bold mb-10 text-center">{t.title}</h1>
 
         {!submitted ? (
-          <form
-            onSubmit={handleSubmit}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               ["first_name", t.firstName],
               ["last_name", t.lastName],
               ["email", t.email],
-              ["phone", t.phone],
             ].map(([name, label]) => (
               <div key={name}>
                 <label className="block mb-2 font-medium">{label}</label>
@@ -167,16 +187,24 @@ export default function OnlineServiceBooking() {
               </div>
             ))}
 
+            {/* PHONE */}
+            <div>
+              <label className="block mb-2 font-medium">{t.phone}</label>
+              <input
+                name="phone"
+                inputMode="numeric"
+                placeholder="05XXXXXXXX"
+                value={form.phone}
+                onChange={handlePhoneChange}
+                className="w-full border rounded-lg px-4 py-3"
+                required
+              />
+            </div>
+
             {/* BRAND */}
             <div>
               <label className="block mb-2 font-medium">{t.brand}</label>
-              <select
-                name="brand"
-                value={form.brand}
-                onChange={handleChange}
-                className="w-full border rounded-lg px-4 py-3"
-                required
-              >
+              <select name="brand" value={form.brand} onChange={handleChange} className="w-full border rounded-lg px-4 py-3" required>
                 <option value="">{t.selectBrand}</option>
                 {Object.keys(models).map((b) => (
                   <option key={b} value={b}>{b}</option>
@@ -187,13 +215,7 @@ export default function OnlineServiceBooking() {
             {/* MODEL */}
             <div>
               <label className="block mb-2 font-medium">{t.model}</label>
-              <select
-                name="model"
-                value={form.model}
-                onChange={handleChange}
-                className="w-full border rounded-lg px-4 py-3"
-                required
-              >
+              <select name="model" value={form.model} onChange={handleChange} className="w-full border rounded-lg px-4 py-3" required>
                 <option value="">{t.selectModel}</option>
                 {models[form.brand]?.map((m) => (
                   <option key={m} value={m}>{m}</option>
@@ -204,13 +226,7 @@ export default function OnlineServiceBooking() {
             {/* CITY */}
             <div>
               <label className="block mb-2 font-medium">{t.city}</label>
-              <select
-                name="dealer_city"
-                value={form.dealer_city}
-                onChange={handleChange}
-                className="w-full border rounded-lg px-4 py-3"
-                required
-              >
+              <select name="dealer_city" value={form.dealer_city} onChange={handleChange} className="w-full border rounded-lg px-4 py-3" required>
                 <option value="">{t.selectCity}</option>
                 {BRANCHES.map((c) => (
                   <option key={c.city} value={c.city}>{c.city}</option>
@@ -238,28 +254,19 @@ export default function OnlineServiceBooking() {
             </div>
 
             <div className="md:col-span-2">
-              <button
-                disabled={loading}
-                className="w-full bg-black text-white py-4 rounded-lg"
-              >
+              <button disabled={loading} className="w-full bg-black text-white py-4 rounded-lg">
                 {loading ? t.submitting : t.submit}
               </button>
             </div>
 
             {message && (
-              <div className="md:col-span-2 text-center text-red-600">
-                {message}
-              </div>
+              <div className="md:col-span-2 text-center text-red-600">{message}</div>
             )}
           </form>
         ) : (
           <div className="text-center py-20">
-            <h2 className="text-4xl font-bold mb-6">
-              {t.successTitle}
-            </h2>
-            <p className="text-lg text-gray-600">
-              {t.successDesc}
-            </p>
+            <h2 className="text-4xl font-bold mb-6">{t.successTitle}</h2>
+            <p className="text-lg text-gray-600">{t.successDesc}</p>
           </div>
         )}
       </div>
