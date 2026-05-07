@@ -17,6 +17,7 @@ export default function Header({ lang }) {
     brands: isAr ? 'العلامات التجارية' : 'Brands',
     offers: isAr ? 'العروض' : 'Offers',
     cars: isAr ? 'السيارات' : 'Cars',
+    onlineBookingService: isAr ? 'حجز الخدمة أونلاين' : 'Online Booking Service',
     findUs: isAr ? 'مواقعنا' : 'Find Us',
     about: isAr ? 'من نحن' : 'About Us',
     noBrands: isAr ? 'لا توجد علامات' : 'No brands found',
@@ -112,6 +113,9 @@ export default function Header({ lang }) {
           </Link>
           <Link href={`/${lang}/cars`} className="font-medium text-gray-700 hover:text-gray-900">
             {t.cars}
+          </Link>
+            <Link href={`/${lang}/online-booking-service`} className="font-medium text-gray-700 hover:text-gray-900">
+            {t.onlineBookingService}
           </Link>
           <Link href={`/${lang}/find-us`} className="font-medium text-gray-700 hover:text-gray-900">
             {t.findUs}
