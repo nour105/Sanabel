@@ -114,7 +114,7 @@ export default function Header({ lang }) {
           <Link href={`/${lang}/cars`} className="font-medium text-gray-700 hover:text-gray-900">
             {t.cars}
           </Link>
-            <Link href={`/${lang}/online-booking-service`} className="font-medium text-gray-700 hover:text-gray-900">
+            <Link href={`/${lang}/online-service-booking`} className="font-medium text-gray-700 hover:text-gray-900">
             {t.onlineBookingService}
           </Link>
           <Link href={`/${lang}/find-us`} className="font-medium text-gray-700 hover:text-gray-900">
