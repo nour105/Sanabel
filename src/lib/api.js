@@ -70,6 +70,15 @@ export async function getOSB() {
 
   return json.data.find(page => page.slug === 'online-service-booking');
 }
+export async function getRSB() {
+  const res = await fetch(`${API_BASE_URL}/pages`, {
+    cache: 'no-store',
+  });
+
+  const json = await res.json();
+
+  return json.data.find(page => page.slug === 'riyadh-service-booking');
+}
 export async function getFindUs() {
   const res = await fetch(`${API_BASE_URL}/pages`, {
     cache: 'no-store',

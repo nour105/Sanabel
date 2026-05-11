@@ -79,16 +79,123 @@ export default function OnlineServiceBooking() {
     getOSB().then(setPage).catch(() => setPage(null));
   }, []);
 
-  const models = {
-    Hyundai: [
-      "Grand i10","Accent","Elantra","Venue","Creta","Kona",
-      "Sonata","Azera","Tucson","Santa Fe","Palisade","Grand Creta","Staria",
-    ],
-  };
+    const models = {
 
-  const BRANCHES = [
-    { city: "Riyadh", locations: ["Khurais", "North Ring Road"] },
-  ];
+        Hyundai: [
+            "Grand i10",
+            "Accent",
+            "Elantra",
+            "Venue",
+            "Creta",
+            "Kona",
+            "Sonata",
+            "Azera",
+            "Tucson",
+            "Santa Fe",
+            "Pallisade",
+            "Grand Creta",
+            "Staria",
+        ],
+
+        Ford: [
+            "Taurus",
+            "Territory",
+            "Expedition",
+            "Bronco",
+            "Explorer",
+            "Bronco Raptor",
+            "Ranger",
+            "F-150",
+            "Everest",
+            "Mustang",
+        ],
+
+        Nissan: [
+            "Sunny",
+            "Magnite",
+            "Altima",
+            "Kick",
+            "X-Trail",
+            "X-Terra",
+            "Pathfinder",
+            "Patrol",
+        ],
+
+        MG: [
+            "MG3",
+            "MG5",
+            "MGGT",
+            "MG ZS",
+            "MG4 EV",
+            "MG7",
+            "MG ZS EV",
+            "MG One",
+            "MG RX5",
+            "MG HS",
+            "MG Whale",
+            "MG RX9",
+            "MG T60",
+        ],
+
+        Chery: [
+            "Arrizo 5",
+            "Arrizo 6",
+            "Arrizo 8",
+            "Tiggo 2 Pro",
+            "Tiggo 4 Pro",
+            "Tiggo 7 Pro",
+            "Tiggo 8 Pro",
+            "Tiggo 8 Pro Max",
+        ],
+    };
+
+    const BRANCHES = [
+        {
+            city: "Jeddah",
+            locations: [
+                "Automall",
+                "Al Sulimaniya",
+                "Car Gate",
+            ],
+        },
+
+        {
+            city: "Riyadh",
+            locations: [
+                "Khurais",
+                "North Ring Road",
+            ],
+        },
+
+        {
+            city: "Dammam",
+            locations: [
+                "Dammam",
+            ],
+        },
+
+        {
+            city: "Makkah",
+            locations: [
+                "Makkah",
+            ],
+        },
+
+        {
+            city: "Medina",
+            locations: [
+                "Medina",
+            ],
+        },
+
+        {
+            city: "Jizan",
+            locations: [
+                "Jizan",
+            ],
+        },
+    ];
+
 
   /* ===== SAUDI PHONE HANDLING ===== */
 
