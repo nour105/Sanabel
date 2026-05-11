@@ -17,7 +17,7 @@ export default function Header({ lang }) {
     brands: isAr ? 'العلامات التجارية' : 'Brands',
     offers: isAr ? 'العروض' : 'Offers',
     cars: isAr ? 'السيارات' : 'Cars',
-    onlineBookingService: isAr ? 'حجز الخدمة أونلاين' : 'Online Booking Service',
+    onlineBookingService: isAr ? 'حجز الخدمة أونلاين' : 'Online Service Booking',
     findUs: isAr ? 'مواقعنا' : 'Find Us',
     about: isAr ? 'من نحن' : 'About Us',
     noBrands: isAr ? 'لا توجد علامات' : 'No brands found',
