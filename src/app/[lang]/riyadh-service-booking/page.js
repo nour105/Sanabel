@@ -46,7 +46,17 @@ const TEXT = {
       "تم استلام طلب حجز الخدمة الخاص بك، وسيتواصل معك فريقنا قريبًا.",
   },
 };
+const getUTMParams = () => {
+  if (typeof window === "undefined") return {};
 
+  const params = new URLSearchParams(window.location.search);
+
+  return {
+    utm_source: params.get("utm_source") || "",
+    utm_medium: params.get("utm_medium") || "",
+    utm_campaign: params.get("utm_campaign") || "",
+  };
+};
 export default function OnlineServiceBookingRiyadh() {
   const params = useParams();
   const lang = params?.lang === "ar" ? "ar" : "en";
@@ -64,23 +74,39 @@ export default function OnlineServiceBookingRiyadh() {
 
   /* ================= FORM ================= */
 
-  const [form, setForm] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    brand: FIXED_BRAND,
-    model: "",
-    dealer_city: FIXED_CITY,
-    dealer_branch: "",
-  });
+ const [form, setForm] = useState({
+  first_name: "",
+  last_name: "",
+  email: "",
+  phone: "",
 
+  brand: FIXED_BRAND,
+  model: "",
+
+  dealer_city: FIXED_CITY,
+  dealer_branch: "",
+
+  source: "Riyadh Campaign",
+
+  utm_source: "",
+  utm_medium: "",
+  utm_campaign: "",
+});
   /* ================= API ================= */
 
   useEffect(() => {
     getRSB().then(setPage).catch(() => setPage(null));
   }, []);
+useEffect(() => {
+  const utm = getUTMParams();
 
+  setForm((prev) => ({
+    ...prev,
+    utm_source: utm.utm_source,
+    utm_medium: utm.utm_medium,
+    utm_campaign: utm.utm_campaign,
+  }));
+}, []);
   /* ================= MODELS ================= */
 
   const models = {
