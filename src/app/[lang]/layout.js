@@ -71,14 +71,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         className={`${leagueSpartan.variable} ${montserrat.variable} ${geistMono.variable} antialiased`}
       >
         {/* Google Tag Manager (noscript) */}
-        <noscript>
+        {/* <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-5P77LKGW"
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
           />
-        </noscript>
+        </noscript> */}
 
         <Header lang={lang} />
         {children}
