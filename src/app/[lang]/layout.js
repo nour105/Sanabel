@@ -35,8 +35,7 @@ export default async function RootLayout({ children, params }) {
 
   return (
     <html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
-      <head>
-        {/* Google Tag Manager */}
+      {/* <head>
         <Script
           id="gtm-script"
           strategy="afterInteractive"
@@ -49,7 +48,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
 
-        {/* Google Ads gtag */}
+      
         <Script
           id="google-ads-gtag"
           strategy="afterInteractive"
@@ -67,7 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             `,
           }}
         />
-      </head>
+      </head> */}
       <body
         className={`${leagueSpartan.variable} ${montserrat.variable} ${geistMono.variable} antialiased`}
       >

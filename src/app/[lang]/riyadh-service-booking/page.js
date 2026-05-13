@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { getRSB } from "@/lib/api";
 import Banner from "@/components/Banner";
-
+import Script from "next/script";
+import { useRouter } from "next/navigation";
 /* ================= TRANSLATIONS ================= */
 
 const TEXT = {
@@ -66,6 +67,7 @@ export default function OnlineServiceBookingRiyadh() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   /* ================= FIXED VALUES ================= */
 
@@ -203,8 +205,9 @@ useEffect(() => {
       const data = await res.json();
 
       if (data.status) {
-        setSubmitted(true);
-      } else {
+  router.push(lang === "ar" ? "/ar/thank-you" : "/en/thank-you");
+}
+else {
         setMessage(t.error);
       }
     } catch (error) {
@@ -216,6 +219,19 @@ useEffect(() => {
 
   return (
     <>
+    <Script
+  src="https://www.googletagmanager.com/gtag/js?id=AW-17842401456"
+  strategy="afterInteractive"
+/>
+
+<Script id="gtag-init" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17842401456');
+  `}
+</Script>
       {page?.banners?.length > 0 && (
         <Banner banners={page.banners} />
       )}
@@ -228,7 +244,7 @@ useEffect(() => {
           {t.title}
         </h1>
 
-        {!submitted ? (
+       
           <form
             onSubmit={handleSubmit}
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -371,17 +387,7 @@ useEffect(() => {
               </div>
             )}
           </form>
-        ) : (
-          <div className="text-center py-20">
-            <h2 className="text-4xl font-bold mb-6">
-              {t.successTitle}
-            </h2>
-
-            <p className="text-lg text-gray-600">
-              {t.successDesc}
-            </p>
-          </div>
-        )}
+        
       </div>
     </>
   );

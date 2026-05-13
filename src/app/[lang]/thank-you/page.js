@@ -1,9 +1,21 @@
 'use client';
+
+import { useEffect } from "react";
 import { usePathname } from 'next/navigation';
 
 export default function ThankYouPage() {
   const pathname = usePathname(); 
   const lang = pathname.startsWith('/ar') ? 'ar' : 'en';
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-17842401456/luqJCJ6hgqwcELDh9btC',
+        'value': 1.0,
+        'currency': 'AED'
+      });
+    }
+  }, []);
 
   const t = {
     ar: {
