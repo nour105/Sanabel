@@ -32,9 +32,13 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
         >
           <Link href={`/${locale}/cars/${car.slug}`}>
             {/* Offer Badge */}
-            <span className="absolute top-3 left-3 z-50 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-              {locale === "ar" ? "عرض رمضان" : "Ramadan Offer"}
-            </span>
+         {car.tags && (car.tags.en || car.tags.ar) && (
+  <div className="absolute top-3 left-3 flex flex-col gap-2 z-20">
+    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg w-fit">
+      {car.tags[lang] || car.tags.en}
+    </span>
+  </div>
+)}
 
             {/* Car Image */}
             <div className="relative h-56 w-full overflow-hidden rounded-t-2xl">

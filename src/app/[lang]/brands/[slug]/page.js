@@ -113,7 +113,13 @@ export default async function BrandPage({ params }) {
                         {lang === 'ar' ? ' شامل الضريبة' : ' Including VAT'}
                       </div>
                     </div>
-
+{car.tags && (car.tags.en || car.tags.ar) && (
+  <div className="absolute top-3 left-3 z-20">
+    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg w-fit">
+      {car.tags[lang] || car.tags.en}
+    </span>
+  </div>
+)}
 
                     {/* Content */}
                     <div className="p-5">

@@ -72,12 +72,14 @@ export default function ProductListing({ brands = [], cars = [], lang }) {
                   />
                 )}
 
-                {car.has_offer && (
-                  <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                    {lang === 'ar' ? 'عرض رمضان' : 'Ramadan Offer'}
-                  </span>
-                )}
-
+           {/* TAGS */}
+{car.tags && (car.tags.en || car.tags.ar) && (
+  <div className="absolute top-3 left-3 flex flex-col gap-2 z-20">
+    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg w-fit">
+      {car.tags[lang] || car.tags.en}
+    </span>
+  </div>
+)}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
                 <div className="absolute top-4 right-4 rounded-full bg-white/90 px-4 py-1 text-sm font-semibold text-gray-900 shadow backdrop-blur">

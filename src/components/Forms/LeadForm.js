@@ -356,11 +356,13 @@ async function handleSelectCar(car) {
                   loading="lazy"
                 />
 
-                {car.has_offer && (
-                  <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    {lang === 'ar' ? 'عرض رمضان' : 'Ramadan Offer'}
-                  </span>
-                )}
+                {car.tags && (car.tags.en || car.tags.ar) && (
+  <div className="absolute top-3 left-3 flex flex-col gap-2 z-20">
+    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg w-fit">
+      {car.tags[lang] || car.tags.en}
+    </span>
+  </div>
+)}
 
                 <span className="absolute top-3 right-3 bg-gray-200 px-3 py-1 rounded-full text-sm font-semibold text-gray-600">
                   {car.price}{' '}

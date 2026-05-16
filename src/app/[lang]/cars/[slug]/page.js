@@ -429,11 +429,13 @@ export default async function CarPage({ params }) {
                   className="relative block bg-white rounded-2xl shadow overflow-hidden hover:shadow-lg transition"
                 >
                   {/* Offer badge */}
-                  {c.has_offer && (
-                    <span className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                      {lang === 'ar' ? 'عرض رمضان' : 'Ramadan Offer'}
-                    </span>
-                  )}
+                 {c.tags && (c.tags.en || c.tags.ar) && (
+  <div className="absolute top-3 left-3 flex flex-col gap-2 z-20">
+    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg w-fit">
+      {c.tags[lang] || c.tags.en}
+    </span>
+  </div>
+)}
                   <p className="absolute top-3 right-3 bg-gray-100  px-3 py-1 rounded-full text-sm shadow-lg  mt-2 font-bold text-gray-900">
                     {c.price} <Image src={SAR_symbol} alt="SAR" width={16} height={16} className="inline" />
                     {lang === 'ar'
