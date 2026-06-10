@@ -126,14 +126,18 @@ export default function FindUsPage() {
       {page?.banners?.length > 0 && <Banner banners={page.banners} />}
 
       <section className="container mx-auto py-16 px-4 md:px-0">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 text-black">
+  
+   {/* ===== BRANCHES ===== */}
+        <div className="mt-16">
+          <Branch />
+        </div>
+              {/* <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 text-black">
           {t.title}
-        </h1>
+        </h1> */}
 
-        <p className="text-center  text-gray-600 mb-12">
+        <h1 className="text-center  text-3xl md:text-4xl font-bold text-center mb-6 text-black">
           {t.subtitle}
-        </p>
-
+        </h1>
         {/* ===== FORM ===== */}
         <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-lg p-8 md:p-12">
           <form className="space-y-6" onSubmit={submit}>
@@ -227,10 +231,7 @@ export default function FindUsPage() {
           </form>
         </div>
 
-        {/* ===== BRANCHES ===== */}
-        <div className="mt-16">
-          <Branch />
-        </div>
+     
       </section>
     </div>
   );

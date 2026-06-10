@@ -26,11 +26,11 @@ const BRANCHES = [
   {
     city: { en: 'Jeddah', ar: 'جدة' },
     locations: [
-      {
-        name: { en: 'Automall', ar: 'أوتومول' },
-        embed: 'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Automall&output=embed',
-        link: 'https://maps.app.goo.gl/fAGRDGCDMYx1nLot7',
-      },
+      // {
+      //   name: { en: 'Automall', ar: 'أوتومول' },
+      //   embed: 'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Automall&output=embed',
+      //   link: 'https://maps.app.goo.gl/fAGRDGCDMYx1nLot7',
+      // },
       {
         name: { en: 'Al Sulimaniya', ar: 'السليمانية' },
         embed: 'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Sulimaniya&output=embed',
