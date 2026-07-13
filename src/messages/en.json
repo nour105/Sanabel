@@ -1,0 +1,31 @@
+{
+  "cookiePolicy": {
+    "hero": {
+      "title": "Cookie Policy",
+      "subtitle": "This Cookie Policy is available in both Arabic and English. In case of conflict, the Arabic version prevails for purposes of compliance with the Saudi Personal Data Protection Law (PDPL).",
+      "description": "This Cookie Policy explains how Sanabel Modern Motors uses cookies and similar technologies on this Website."
+    },
+
+    "sections": {
+      "section1": {
+        "title": "What Are Cookies?",
+        "content": [
+          "Cookies are small text files placed on your device when you visit a website.",
+          "They store or retrieve information about your visit, such as your preferences or the pages you viewed.",
+          "Cookies do not identify you personally, but they help the Website function properly, improve performance and enhance your browsing experience."
+        ]
+      },
+
+      "section2": {
+        "title": "Why We Use Cookies",
+        "items": [
+          "Ensure the Website operates securely and efficiently.",
+          "Understand how visitors use our pages so we can improve them.",
+          "Remember your language, region and display preferences.",
+          "Enable functionality in forms and features.",
+          "Deliver personalized content or campaigns (if enabled)."
+        ]
+      }
+    }
+  }
+}

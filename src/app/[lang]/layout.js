@@ -6,8 +6,10 @@ import { Montserrat } from "next/font/google";
 import { languages } from '@/i18n/config'
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CookieBanner from '@/components/CookieBanner';
 import '../globals.css';
 import Script from "next/script";
+
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -83,6 +85,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <Header lang={lang} />
         {children}
         <Footer lang={lang} />
+          <CookieBanner lang={lang} />
+
       </body>
     </html>
   );
