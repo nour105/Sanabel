@@ -357,7 +357,7 @@ Cookies do not identify you personally, but they help the Website function prope
 
 
                 <div>
-                    <h2 className="text-3xl font-semibold mb-6">
+                    <h2 className="text-3xl text-black font-semibold mb-6">
                         {L.TypesOfCookies}
                     </h2>
 
@@ -365,48 +365,48 @@ Cookies do not identify you personally, but they help the Website function prope
                         <table className="w-full">
                             <thead className="bg-gray-100">
                                 <tr>
-                                    <th className="p-5">{L.table.category}</th>
-                                    <th className="p-5">{L.table.purpose}</th>
-                                    <th className="p-5">{L.table.Examples}</th>
-                                    <th className="p-5">{L.table.Duration}</th>
+                                    <th className="p-5 text-black">{L.table.category}</th>
+                                    <th className="p-5 text-black">{L.table.purpose}</th>
+                                    <th className="p-5 text-black">{L.table.Examples}</th>
+                                    <th className="p-5 text-black">{L.table.Duration}</th>
                                 </tr>
                             </thead>
 
                             <tbody>
 
                                 <tr className="border-t">
-                                    <td className="p-5">{L.table.essential}</td>
-                                    <td className="p-5">
+                                    <td className="p-5 text-black">{L.table.essential}</td>
+                                    <td className="p-5  text-black">
                                         {L.table.essentialPurpose}
                                     </td>
-                                    <td className="p-5">{L.table.EssentialExamples}</td>
-                                    <td className="p-5">{L.table.EssentialDuration}</td>
+                                    <td className="p-5 text-black">{L.table.EssentialExamples}</td>
+                                    <td className="p-5 text-black">{L.table.EssentialDuration}</td>
                                 </tr>
 
                                 <tr className="border-t">
-                                    <td className="p-5">{L.table.analytics}</td>
-                                    <td className="p-5">
+                                    <td className="p-5 text-black">{L.table.analytics}</td>
+                                    <td className="p-5 text-black">
                                         {L.table.analyticsPurpose}
                                     </td>
-                                    <td className="p-5">{L.table.analyticsExamples}</td>
-                                    <td className="p-5">{L.table.analyticsDuration}</td>
+                                    <td className="p-5 text-black">{L.table.analyticsExamples}</td>
+                                    <td className="p-5 text-black">{L.table.analyticsDuration}</td>
                                 </tr>
                                 <tr className="border-t">
-                                    <td className="p-5">{L.table.functional}</td>
-                                    <td className="p-5">
+                                    <td className="p-5 text-black">{L.table.functional}</td>
+                                    <td className="p-5 text-black">
                                         {L.table.functionalPurpose}
                                     </td>
-                                    <td className="p-5">{L.table.functionalExamples}</td>
-                                    <td className="p-5">{L.table.functionalDuration}</td>
+                                    <td className="p-5 text-black">{L.table.functionalExamples}</td>
+                                    <td className="p-5 text-black">{L.table.functionalDuration}</td>
                                 </tr>
 
                                 <tr className="border-t">
-                                    <td className="p-5">{L.table.marketing}</td>
-                                    <td className="p-5">
+                                    <td className="p-5 text-black">{L.table.marketing}</td>
+                                    <td className="p-5 text-black">
                                         {L.table.marketingPurpose}
                                     </td>
-                                    <td className="p-5">{L.table.marketingExamples}</td>
-                                    <td className="p-5">{L.table.marketingDuration}</td>
+                                    <td className="p-5 text-black">{L.table.marketingExamples}</td>
+                                    <td className="p-5 text-black">{L.table.marketingDuration}</td>
                                 </tr>
 
                             </tbody>
@@ -440,7 +440,7 @@ Cookies do not identify you personally, but they help the Website function prope
                     </p>
                 </div>
                 <div className="space-y-5">
-                    <h2 className="text-3xl font-semibold">
+                    <h2 className="text-black text-3xl font-semibold">
                         {L.ManagingCookies}
                     </h2>
 
@@ -490,7 +490,7 @@ Cookies do not identify you personally, but they help the Website function prope
                 </div>
 
                 <div className="space-y-5 ">
-                    <h2 className="text-3xl font-semibold">
+                    <h2 className="text-3xl text-black font-semibold">
                         {L.ThirdPartyCookies}
                     </h2>
 
@@ -510,7 +510,7 @@ Cookies do not identify you personally, but they help the Website function prope
                     </p>
                 </div>
                 <div className="space-y-5">
-                    <h2 className="text-3xl font-semibold">{L.DataPDPL}</h2>
+                    <h2 className="text-3xl text-black font-semibold">{L.DataPDPL}</h2>
 
                     <p className="text-gray-600 leading-8">{L.DataPDPLText}</p>
 
@@ -553,7 +553,7 @@ Cookies do not identify you personally, but they help the Website function prope
                 </div>
 
                 <div className="space-y-5">
-                    <h2 className="text-3xl font-semibold">{L.ContactUs}</h2>
+                    <h2 className="text-3xl text-black font-semibold">{L.ContactUs}</h2>
 
                     <p className="text-gray-600 leading-8">
                         {L.ContactUsText}{" "}
@@ -567,7 +567,7 @@ Cookies do not identify you personally, but they help the Website function prope
                 </div>
 
                 <div className="space-y-5 ">
-                    <h2 className="text-3xl font-semibold">{L.ReConsent}</h2>
+                    <h2 className="text-3xl text-black font-semibold">{L.ReConsent}</h2>
 
                     <p className="text-gray-600 leading-8">
                         {L.ReConsentText}
