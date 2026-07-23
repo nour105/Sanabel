@@ -1,12 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function CookieBanner({ lang }) {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const isArabic = lang === "ar";
+
+  useEffect(() => {
+    // Wait until component is mounted (avoids hydration issues)
+    const consent = localStorage.getItem("cookieConsent");
+
+    // Show banner only if user hasn't made a choice yet
+    if (!consent) {
+      setVisible(true);
+    }
+  }, []);
 
   const acceptCookies = () => {
     localStorage.setItem("cookieConsent", "accepted");
@@ -28,7 +38,6 @@ export default function CookieBanner({ lang }) {
       dir={isArabic ? "rtl" : "ltr"}
     >
       <div className="max-w-7xl mx-auto">
-
         <h3 className="text-xl font-bold mb-3">
           {isArabic ? "ملفات تعريف الارتباط" : "Cookie Banner"}
         </h3>
@@ -45,20 +54,17 @@ export default function CookieBanner({ lang }) {
                 لسياسة الخصوصية الخاصة بها
               </Link>{" "}
               لتمكين الموقع الإلكتروني من العمل بكفاءة.
-
-              <br /><br />
-
+              <br />
+              <br />
               وبموافقتك، قد تستخدم شركة سنابل الحديثة للسيارات أيضاً ملفات
-              تعريف ارتباط غير أساسية لـ تحليل نشاطك، وتذكر تفضيلاتك، وتحسين
+              تعريف ارتباط غير أساسية لتحليل نشاطك، وتذكر تفضيلاتك، وتحسين
               الموقع الإلكتروني، وتزويدك بإعلانات مخصصة.
-
-              <br /><br />
-
+              <br />
+              <br />
               ولهذه الأغراض، قد تقوم شركة سنابل الحديثة للسيارات بمشاركة بيانات
               استخدامك مع شركائنا في الإعلانات والتحليلات.
-
-              <br /><br />
-
+              <br />
+              <br />
               من خلال النقر على "قبول"، فإنك توافق على استخدام موقعنا لملفات
               تعريف الارتباط كما هو موضح في{" "}
               <Link
@@ -67,8 +73,7 @@ export default function CookieBanner({ lang }) {
               >
                 سياسة ملفات تعريف الارتباط
               </Link>
-              .
-              بخلاف ذلك، يمكنك الاعتراض على هذا الاستخدام من خلال النقر على
+              . بخلاف ذلك، يمكنك الاعتراض على هذا الاستخدام من خلال النقر على
               "رفض".
             </>
           ) : (
@@ -82,21 +87,18 @@ export default function CookieBanner({ lang }) {
                 Privacy Policy
               </Link>{" "}
               to enable the website to work efficiently.
-
-              <br /><br />
-
+              <br />
+              <br />
               With your consent, SANABEL MODERN MOTORS may also use
               non-essential cookies to analyze your activity, remember your
               preferences, improve the website, and provide you with tailored
               adverts.
-
-              <br /><br />
-
-              For these reasons, SANABEL MODERN MOTORS may share your usage
-              data with our advertising and analytics partners.
-
-              <br /><br />
-
+              <br />
+              <br />
+              For these reasons, SANABEL MODERN MOTORS may share your usage data
+              with our advertising and analytics partners.
+              <br />
+              <br />
               By clicking "Accept", you agree to our website’s cookie use as
               described in our{" "}
               <Link
@@ -105,32 +107,26 @@ export default function CookieBanner({ lang }) {
               >
                 Cookies Policy
               </Link>
-              .
-              Otherwise, you may object to such use by clicking "Decline".
+              . Otherwise, you may object to such use by clicking "Decline".
             </>
           )}
         </p>
 
-
-        <div className="flex gap-4 mt-5 justify-end">
-
+        <div className="flex flex-wrap gap-4 mt-5 justify-end">
           <button
             onClick={rejectCookies}
-            className="px-8 py-3 border text-black border-black rounded-md hover:bg-gray-100"
+            className="px-8 py-3 border border-black text-black rounded-md hover:bg-gray-100 transition"
           >
             {isArabic ? "رفض الكل" : "Decline All"}
           </button>
 
-
           <button
             onClick={acceptCookies}
-            className="px-8 py-3 bg-black text-white rounded-md hover:opacity-90"
+            className="px-8 py-3 bg-black text-white rounded-md hover:opacity-90 transition"
           >
             {isArabic ? "قبول الكل" : "Accept All"}
           </button>
-
         </div>
-
       </div>
     </div>
   );

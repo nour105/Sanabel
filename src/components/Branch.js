@@ -24,25 +24,30 @@ const TEXT = {
 
 const BRANCHES = [
   {
-    city: { en: 'Jeddah', ar: 'جدة' },
-    locations: [
+  city: { en: 'Jeddah', ar: 'جدة' },
+  locations: [
+    {
+      name: { en: 'Al Sulimaniya', ar: 'السليمانية' },
+      embed: 'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Sulimaniya&output=embed',
+      link: 'https://maps.app.goo.gl/MoPpz356Dyeo1xYE6',
+    },
+    {
+      name: { en: 'Car Gate', ar: 'كار جيت' },
+      embed: 'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Car+Gate&output=embed',
+      link: 'https://maps.app.goo.gl/x63RBHiURhkrxDUd6',
+    },
+    {
+      name: { en: 'An Nahdah', ar: 'النهضة' },
+      embed: 'https://www.google.com/maps?q=J469%2BXQQ,+An+Nahdah,+Jeddah,+Saudi+Arabia&output=embed',
+      link: 'https://maps.app.goo.gl/MvTjZDFHxNRKkT8JA',
+    },
       // {
       //   name: { en: 'Automall', ar: 'أوتومول' },
       //   embed: 'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Automall&output=embed',
       //   link: 'https://maps.app.goo.gl/fAGRDGCDMYx1nLot7',
       // },
-      {
-        name: { en: 'Al Sulimaniya', ar: 'السليمانية' },
-        embed: 'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Sulimaniya&output=embed',
-        link: 'https://maps.app.goo.gl/MoPpz356Dyeo1xYE6',
-      },
-      {
-        name: { en: 'Car Gate', ar: 'كار جيت' },
-        embed: 'https://www.google.com/maps?q=Sanabel+Auto+Jeddah+Car+Gate&output=embed',
-        link: 'https://maps.app.goo.gl/x63RBHiURhkrxDUd6',
-      },
-    ],
-  },
+  ],
+},
   {
     city: { en: 'Riyadh', ar: 'الرياض' },
     locations: [

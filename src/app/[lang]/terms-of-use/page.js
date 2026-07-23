@@ -33,8 +33,8 @@ contactList: [
 "Address: Malik Road, Jeddah, Saudi Arabia"
 ],
 
-section1Note1:
-"Some pages on this Website link to independent websites for automotive brands operated within the portfolio of Mohammed Yousuf Naghi Motors companies, including: BMW, MINI, Rolls-Royce, Jaguar, Land Rover, BMW Motorrad, Genesis, Lincoln, Infiniti, Hyundai, Ford, Nissan, MG, Hyundai Truck & Bus, Ankai, Tata Motors Commercial Vehicles, and MY NAGHI.",
+// section1Note1:
+// "Some pages on this Website link to independent websites for automotive brands operated within the portfolio of Mohammed Yousuf Naghi Motors companies, including: BMW, MINI, Rolls-Royce, Jaguar, Land Rover, BMW Motorrad, Genesis, Lincoln, Infiniti, Hyundai, Ford, Nissan, MG, Hyundai Truck & Bus, Ankai, Tata Motors Commercial Vehicles, and MY NAGHI.",
 
 section1Note2:
 "These websites are managed by independent entities or their authorized distributors and are subject to their own privacy policies and terms of use, which may differ from those of Modern Sanabel Automotive.",
@@ -274,8 +274,8 @@ contactList: [
 "العنوان:طريق مالك، جدة، المملكة العربية السعودية"
 ],
 
-section1Note1:
-"ترتبط بعض صفحات هذا الموقع الإلكتروني بمواقع إلكترونية مستقلة لعلامات تجارية تُدار ضمن محفظة شركات محمد يوسف ناغي للسيارات، وتشمل: BMW، MINI، Rolls-Royce، Jaguar، Land Rover، BMW Motorrad، Genesis، Lincoln، Infiniti، Hyundai، Ford، Nissan، MG، Hyundai Truck & Bus، Ankai، Tata Motors Commercial Vehicles، وMY NAGHI.",
+// section1Note1:
+// "ترتبط بعض صفحات هذا الموقع الإلكتروني بمواقع إلكترونية مستقلة لعلامات تجارية تُدار ضمن محفظة شركات محمد يوسف ناغي للسيارات، وتشمل: BMW، MINI، Rolls-Royce، Jaguar، Land Rover، BMW Motorrad، Genesis، Lincoln، Infiniti، Hyundai， Ford， Nissan， MG， Hyundai Truck & Bus， Ankai， Tata Motors Commercial Vehicles， وMY NAGHI.",
 
 section1Note2:
 "تتم إدارة هذه المواقع الإلكترونية بواسطة كيانات مستقلة أو موزعيها المعتمدين، وتخضع لسياسات الخصوصية وشروط الاستخدام الخاصة بها، والتي قد تختلف عن تلك الخاصة بشركة سنابل الحديثة للسيارات.",
@@ -513,9 +513,9 @@ section22Email:
         ))}
       </ul>
 
-      <p className="mt-6 text-gray-700 leading-8">
+      {/* <p className="mt-6 text-gray-700 leading-8">
         {L.section1Note1}
-      </p>
+      </p> */}
 
       <p className="mt-4 text-gray-700 leading-8">
         {L.section1Note2}
@@ -538,12 +538,11 @@ section22Email:
       <p className="text-gray-700 leading-8 whitespace-pre-line">
         {L.section3Intro}
       </p>
-      <p className="text-gray-700 leading-8 whitespace-pre-line">
-        {L.section3List.map((item, index) => (
-          
-  <li key={index}>{item}</li>
-        ))}
-      </p>
+    <ul className="list-disc pl-6 space-y-2 text-gray-700 leading-8">
+  {L.section3List.map((item, index) => (
+    <li key={index}>{item}</li>
+  ))}
+</ul>
     </section>
 
     {/* Section 4 */}

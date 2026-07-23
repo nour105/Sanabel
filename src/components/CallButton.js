@@ -10,7 +10,7 @@ export default function CallButton({lang}) {
     setIsMobile(/Android|iPhone/i.test(navigator.userAgent));
   }, []);
 
-  const phoneNumber = "800 123 4567";
+  const phoneNumber = "800 244 0228";
 
   if (isMobile) {
     return (

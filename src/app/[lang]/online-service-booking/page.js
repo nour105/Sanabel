@@ -182,9 +182,10 @@ useEffect(() => {
         {
             city: "Jeddah",
             locations: [
-                "Automall",
+                // "Automall",
                 "Al Sulimaniya",
                 "Car Gate",
+                "An Nahdah",
             ],
         },
 
