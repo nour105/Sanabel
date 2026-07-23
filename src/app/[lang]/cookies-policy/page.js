@@ -317,7 +317,7 @@ Cookies do not identify you personally, but they help the Website function prope
         >
             <section className="bg-white text-black py-10">
                 <div className="container mx-auto  max-w-5xl">
-                    <h1 className="text-5xl font-light mb-12">
+                    <h1 className="text-5xl text-black font-light mb-12">
                         {L.title}
                     </h1>
 
@@ -330,7 +330,7 @@ Cookies do not identify you personally, but they help the Website function prope
             <section className="max-w-5xl mx-auto  py-20 space-y-16">
 
                 <div>
-                    <h2 className="text-3xl font-semibold mb-4">
+                    <h2 className="text-3xl text-black font-semibold mb-4">
                         {L.whatAreCookies}
                     </h2>
 
@@ -558,10 +558,10 @@ Cookies do not identify you personally, but they help the Website function prope
                     <p className="text-gray-600 leading-8">
                         {L.ContactUsText}{" "}
                         <a
-                            href="mailto:privacy@auto.mynaghi.com"
+                            href="mailto:social@sanabelmotors.com"
                             className="text-blue-600 hover:underline"
                         >
-                            privacy@auto.mynaghi.com
+                            social@sanabelmotors.com
                         </a>
                     </p>
                 </div>

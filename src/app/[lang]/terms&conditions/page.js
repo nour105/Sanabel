@@ -26,11 +26,11 @@ section1Text:
 `This Website ("Website") is owned and operated by Sanabel Modern Motors ("SM Motors", "we", "our", "us"), a company established under the laws of the Kingdom of Saudi Arabia.`,
 
 contactList: [
-"Email: info@auto.mynaghi.com",
+"Email: social@sanabelmotors.com",
 "Commercial Registration No.: 4030327688",
-"VAT No.: ------------------",
-"Privacy / Data Rights: privacy@auto.mynaghi.com",
-"Address: Al Misbah Commercial Center, Palestine Street, Al Hamra District, P.O. Box 704, Jeddah 21411, Saudi Arabia."
+"VAT No.: 310772620400003",
+"Privacy / Data Rights: social@sanabelmotors.com",
+"Address: Malik Road, Jeddah, Saudi Arabia."
 ],
 
 section1Note1:
@@ -309,7 +309,7 @@ section21Text:
   "If you have any questions regarding these Terms, please contact us at:",
 
 section21Email:
-  "info@auto.mynaghi.com",
+  "social@sanabelmotors.com",
 
 },
     ar: {
@@ -331,11 +331,11 @@ section1Text:
 `هذا الموقع الإلكتروني ("الموقع الإلكتروني") مملوك ومدار من قبل شركة سنابل الحديثة للسيارات ("سنابل الحديثة للسيارات" أو "نحن")، وهي شركة مؤسسة وفق أنظمة المملكة العربية السعودية.`,
 
 contactList: [
-"البريد الإلكتروني: info@auto.mynaghi.com",
+"البريد الإلكتروني: social@sanabelmotors.com",
 "رقم السجل التجاري: 4030327688",
-"رقم ضريبة القيمة المضافة: ------------------",
-"الخصوصية / حقوق البيانات: privacy@auto.mynaghi.com",
-"العنوان: مركز المصباح التجاري، شارع فلسطين، حي الحمراء، ص.ب 704، جدة 21411، المملكة العربية السعودية."
+"رقم ضريبة القيمة المضافة: 310772620400003",
+"الخصوصية / حقوق البيانات: social@sanabelmotors.com",
+"العنوان: طريق مالك، جدة، المملكة العربية السعودية."
 ],
 
 section1Note1:
@@ -611,7 +611,7 @@ section21Text:
   "إذا كان لديكم أي أسئلة بشأن هذه الشروط، فيُرجى التواصل معنا عبر البريد الإلكتروني:",
 
 section21Email:
-  "info@auto.mynaghi.com",
+  "social@sanabelmotors.com",
 },
   };
 

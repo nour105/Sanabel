@@ -29,11 +29,11 @@ Applies to: sanabelauto.com and any sub-pages owned and operated by Sanabel Mode
         `Sanabel Modern Motors (“SM Motors”, “we”, “our”, “us”) is a Saudi automotive distributor and retailer. We are the data controller for personal data collected through this Website and/or related transactions under the Saudi Personal Data Protection Law (PDPL) and its regulations.`,
 
       contactList: [
-        "General inquiries: info@auto.mynaghi.com",
-        "Privacy inquiries / Data subject rights: privacy@auto.mynaghi.com",
+        "General inquiries: social@sanabelmotors.com",
+        "Privacy inquiries / Data subject rights: social@sanabelmotors.com",
         "Commercial Registration Number: 4030327688",
-        "VAT Number: ---------------------",
-        "Postal Address: Al Misbah Commercial Center, Palestine Street, Al Hamra District, P.O. Box 704, Jeddah 21411, Saudi Arabia."
+        "VAT Number: 310772620400003",
+        "Postal Address: Malik Road, Jeddah, Saudi Arabia"
       ],
 
       section1Note:
@@ -262,7 +262,7 @@ section10List:[
 ],
 
 section10Text2:
-"To exercise these rights, contact us at privacy@auto.mynaghi.com. We may request information to verify your identity and will respond within the timelines specified under the PDPL.",
+"To exercise these rights, contact us at social@sanabelmotors.com. We may request information to verify your identity and will respond within the timelines specified under the PDPL.",
 
 
 section11Title:
@@ -290,11 +290,11 @@ section14Title:
 "14) How to Submit Complaints",
 
 section14Text:
-"If you have any concerns, please contact us first at privacy@auto.mynaghi.com or info@auto.mynaghi.com so we can address them. You may also submit a complaint to the Saudi Data & AI Authority (SDAIA), including the National Data Management Office, in accordance with the PDPL.",
+"If you have any concerns, please contact us first at social@sanabelmotors.com so we can address them. You may also submit a complaint to the Saudi Data & AI Authority (SDAIA), including the National Data Management Office, in accordance with the PDPL.",
 
 
 footerPrivacyText:
-" We use your information to process your requests, improve our Website, and with your consent send Sanabel Modern Motors updates. We may share data with group teams and service providers, and it may be transferred outside Saudi Arabia with PDPL-compliant safeguards. You may exercise your PDPL rights (access, correction, deletion, objection, portability and withdrawal of consent) by contacting: privacy@auto.mynaghi.com. For more details, please review the full Privacy Policy."
+" We use your information to process your requests, improve our Website, and with your consent send Sanabel Modern Motors updates. We may share data with group teams and service providers, and it may be transferred outside Saudi Arabia with PDPL-compliant safeguards. You may exercise your PDPL rights (access, correction, deletion, objection, portability and withdrawal of consent) by contacting: social@sanabelmotors.com. For more details, please review the full Privacy Policy."
 
     },
     ar: {
@@ -320,11 +320,11 @@ footerPrivacyText:
 
 
       contactList: [
-        "استفسارات عامة: info@auto.mynaghi.com",
-        "استفسارات الخصوصية/حقوق صاحب البيانات: privacy@auto.mynaghi.com",
+        "استفسارات عامة: social@sanabelmotors.com",
+        "استفسارات الخصوصية/حقوق صاحب البيانات: privacy@sanabelmotors.com",
         "رقم السجل التجاري: 4030327688",
-        "رقم ضريبة القيمة المضافة: ---------------------",
-        "العنوان البريدي: مركز المصباح التجاري، شارع فلسطين، حي الحمراء، ص.ب 704، جدة 21411، المملكة العربية السعودية."
+        "رقم ضريبة القيمة المضافة: 310772620400003",
+        "العنوان البريدي: طريقة مالك، جدة، المملكة العربية السعودية."
       ],
 
 
@@ -567,7 +567,7 @@ section10List: [
 ],
 
 section10Text2:
-  "لممارسة هذه الحقوق، يرجى التواصل معنا عبر البريد الإلكتروني privacy@auto.mynaghi.com. وقد نطلب معلومات للتحقق من هويتك، وسنقوم بالرد ضمن المدد الزمنية المحددة في نظام حماية البيانات الشخصية.",
+  "لممارسة هذه الحقوق، يرجى التواصل معنا عبر البريد الإلكتروني social@sanabelmotors.com. وقد نطلب معلومات للتحقق من هويتك، وسنقوم بالرد ضمن المدد الزمنية المحددة في نظام حماية البيانات الشخصية.",
 
 
 section11Title:
@@ -595,11 +595,11 @@ section14Title:
   "14) كيفية تقديم الشكاوى",
 
 section14Text:
-  "إذا كانت لديك أي مخاوف، فيرجى التواصل معنا أولًا عبر البريد الإلكتروني privacy@auto.mynaghi.com أو info@auto.mynaghi.com حتى نتمكن من البدء في معالجتها. كما يمكنك تقديم شكوى إلى الهيئة السعودية للبيانات والذكاء الاصطناعي (سدايا)، بما في ذلك مكتب إدارة البيانات الوطنية، وذلك وفقًا لنظام حماية البيانات الشخصية.",
+  "إذا كانت لديك أي مخاوف، فيرجى التواصل معنا أولًا عبر البريد الإلكتروني social@sanabelmotors.com أو  حتى نتمكن من البدء في معالجتها. كما يمكنك تقديم شكوى إلى الهيئة السعودية للبيانات والذكاء الاصطناعي (سدايا)، بما في ذلك مكتب إدارة البيانات الوطنية، وذلك وفقًا لنظام حماية البيانات الشخصية.",
 
 
 footerPrivacyText:
-  "نستخدم معلوماتك لمعالجة طلباتك، وتحسين موقعنا الإلكتروني، وبموافقتك يمكننا إرسال تحديثات شركة سنابل الحديثة للسيارات. وقد نشارك البيانات مع فرق المجموعة ومقدمي الخدمات، وقد يتم نقلها خارج المملكة العربية السعودية مع تطبيق ضمانات متوافقة مع نظام حماية البيانات الشخصية. ويمكنك ممارسة حقوقك بموجب النظام (الوصول، والتصحيح، والحذف، والاعتراض، وقابلية نقل البيانات، وسحب الموافقة) عبر البريد الإلكتروني: privacy@auto.mynaghi.com. ولمزيد من التفاصيل، يرجى الاطلاع على سياسة الخصوصية الكاملة."
+  "نستخدم معلوماتك لمعالجة طلباتك، وتحسين موقعنا الإلكتروني، وبموافقتك يمكننا إرسال تحديثات شركة سنابل الحديثة للسيارات. وقد نشارك البيانات مع فرق المجموعة ومقدمي الخدمات، وقد يتم نقلها خارج المملكة العربية السعودية مع تطبيق ضمانات متوافقة مع نظام حماية البيانات الشخصية. ويمكنك ممارسة حقوقك بموجب النظام (الوصول، والتصحيح، والحذف، والاعتراض، وقابلية نقل البيانات، وسحب الموافقة) عبر البريد الإلكتروني: social@sanabelmotors.com. ولمزيد من التفاصيل، يرجى الاطلاع على سياسة الخصوصية الكاملة."
     }
 
   };

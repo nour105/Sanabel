@@ -26,11 +26,11 @@ section1Text:
 `This website ("Website") is owned and operated by Modern Sanabel Automotive Company ("Modern Sanabel Automotive", "we", "us", or "our"), a company established under the laws and regulations of the Kingdom of Saudi Arabia.`,
 
 contactList: [
-"Email: info@auto.mynaghi.com",
-"Commercial Registration Number: 4030065137",
-"VAT Registration Number: -----------------",
-"Privacy / Data Rights: privacy@auto.mynaghi.com",
-"Address: Al Misbah Commercial Center (formerly Al Jamjoom Commercial Center), Palestine Street, Al Hamra District, P.O. Box 704, Jeddah 21411, Kingdom of Saudi Arabia."
+"Email: social@sanabelmotors.com",
+"Commercial Registration Number: 4030327688",
+"VAT Registration Number:310772620400003",
+"Privacy / Data Rights: social@sanabelmotors.com",
+"Address: Malik Road, Jeddah, Saudi Arabia"
 ],
 
 section1Note1:
@@ -63,7 +63,7 @@ section4Title:
 "4. Purpose and Scope of the Website",
 
 section4Text:
-"This Website provides information about Modern Sanabel Automotive, its brands, business network, news, and career opportunities. The Website does not constitute an offer to sell any products or services and is not an e-commerce platform. Any product information provided is for general informational purposes only and may not reflect current specifications, availability, or applicable offers. For the latest information, please contact us or visit the official channels of the relevant brand.",
+"The Website provides corporate, brand, network, news and careers information about Sanabel Modern Motors . It is not an offer to sell goods/services or an e-commerce platform. Any product information is general and may not reflect current specifications, availability, or offers. Please contact us or visit relevant brand channels for up-to-date details.",
 
 section5Title:
 "5. Access to the Website and Availability",
@@ -89,48 +89,48 @@ section6Intro:
 "You agree not to use the Website:",
 
 section6List: [
-"In any way that violates any applicable local, national, or international law or regulation.",
-"For any unlawful, fraudulent, or harmful purpose.",
-"To harm or attempt to harm minors.",
-"To transmit or upload viruses, malware, spyware, worms, logic bombs, malicious code, or any similar harmful material.",
-"To send unauthorized advertising, promotional materials, spam, or unsolicited communications.",
-"To publish defamatory, obscene, abusive, discriminatory content or content that infringes intellectual property or privacy rights.",
-"To attempt unauthorized access to the Website, its servers, data, or any connected systems or networks.",
-"To copy, extract, collect content or data, or redirect traffic away from the Website."
+"In breach of any applicable local, national, or international law or regulation;",
+"For unlawful, fraudulent, or harmful purposes;",
+"To harm or attempt to harm minors;",
+"To transmit or upload viruses, malware, spyware, worms, logic bombs, malicious code, or similar;",
+"To send unsolicited or unauthorized advertising, promotional material, or spam;",
+"To post content that is defamatory, obscene, offensive, discriminatory, or infringes intellectual property or privacy;",
+"To attempt unauthorized access to the Website, servers, data, or any related systems or networks;",
+"To copy, scrape, or harvest content or data, or to direct web traffic away from the Website."
 ],
 
 section6Note:
-"You must take your own security precautions (such as using antivirus software). Any misuse may be reported to the relevant law enforcement authorities.",
+"You must implement your own security protections (e.g., anti-virus). Misuse may be reported to law enforcement.",
 
 section7Title:
 "7. Security and Submissions",
 
 section7Text:
-"Data transmission over the internet is not completely secure. Information you submit to us through the Website may be intercepted by third parties. Therefore, you submit information at your own risk. Please refer to our Privacy Policy for details on how we protect your personal data in accordance with the Personal Data Protection Law (PDPL).",
+"Internet transmissions are not fully secure. Information you send to us via the Website may be intercepted by others. You send information at your own risk. See our Privacy Policy for how we protect personal data under PDPL.",
 
 section8Title:
 "8. Intellectual Property Rights",
 
 section8Text:
-"Unless otherwise stated, Modern Sanabel Automotive (or its licensors) owns all intellectual property rights relating to the Website and its content, including text, images, graphics, videos, audio materials, design, layout, trademarks, and service marks (whether registered or unregistered).",
+"Unless stated otherwise, Sanabel Modern Motors (or its licensors) owns all intellectual property rights in the Website and its content, including text, images, graphics, video, audio, design, layout and trademarks/service marks (registered or unregistered).",
 
 section8List: [
-"You may view Website pages and print or download extracts for personal, non-commercial use only, provided that all copyright notices are retained.",
-"You must not modify copies, separate graphics from accompanying text, remove ownership notices, or use content unlawfully or misleadingly.",
-"You must not use any trademarks belonging to Modern Sanabel Automotive or any third party without prior written approval."
+"	You may view pages and print or download extracts for personal, non-commercial use only, provided you keep all proprietary notices intact.",
+"You must not modify copies, separate graphics from accompanying text, remove proprietary notices, or use content in an unlawful or misleading manner.",
+"	You must not use any Sanabel Modern Motors or third-party trademarks without prior written permission."
 ],
 
 section8Note1:
-"If you print, copy, download, modify, or create links to any part of the Website in breach of these terms, your right to use the Website will immediately cease, and we may require you to return or destroy any copies you have created.",
+"If you print, copy, download, modify, or link to any part of the Website in breach of these Terms, your right to use the Website will cease immediately and you must, at our option, return or destroy any copies you have made.",
 
 section8Note2:
-"You must not reverse engineer, decompile, or attempt to extract the source code of the Website or any part of its systems.",
+"You must not reverse engineer, decompile, or attempt to extract the source code of the Website or any part of its systems",
 
 section9Title:
 "9. Third-Party Links and Resources",
 
 section9Text:
-"Links to third-party websites (including brand websites, maps, social media networks, and recruitment platforms) are provided for informational purposes only. We have no control over their content, availability, policies, or practices and accept no responsibility for them. The inclusion of any link does not imply endorsement or approval. Your use of these websites is at your own risk, and you should review their terms of use and privacy notices.",
+"Links to third-party websites (including brand sites, maps, social networks, job platforms) are provided for information only. We have no control over and are not responsible for, their content, availability, policies, or practices. Linking does not imply endorsement. Use third-party sites at your own risk and review their terms and privacy notices.",
 
 section10Title:
 "10. Linking to Our Website",
@@ -152,12 +152,12 @@ section11Title:
 "11. User Contributions and Interactive Features",
 
 section11Intro:
-"If the Website allows file uploads, comments, forms, or other interactive features:",
+"If the Website enables uploads, comments, forms, or other interactive features:",
 
 section11List: [
-"You remain responsible for the content you submit and must ensure it is accurate, lawful, and compliant with these terms.",
-"We may remove any content or disable any feature at our discretion and may disclose your identity to law enforcement or third parties where permitted by law.",
-"Any content uploaded is considered non-confidential and non-proprietary. You grant Modern Sanabel Automotive a worldwide, non-exclusive, royalty-free license to use, copy, store, and transmit such content for operating and improving the Website."
+"You remain responsible for your content and must ensure it is accurate, lawful and compliant with these Terms;",
+"We may, at our discretion, remove content or disable features and we may disclose your identity to law enforcement or third parties where permitted by law;",
+"Uploaded content is considered non-confidential and non-proprietary; you grant Sanabel Modern Motor worldwide, royalty-free license to use, reproduce, store and communicate such content to operate and improve the Website."
 ],
 
 section12Title:
@@ -167,83 +167,83 @@ section12Text:
 "Content provided on the Website is for general information purposes only. It does not constitute professional, financial, investment, or technical advice. You should not rely on the Website when making decisions and should seek independent advice where appropriate.",
 
 section12Note:
-"We make reasonable efforts to keep content updated; however, we do not guarantee that the content is accurate, complete, or always current.",
+"Content is provided for general information only. It is not professional, financial, investment, or technical advice. Do not rely on the Website to make decisions—seek independent advice as appropriate. We make reasonable efforts to keep content current, but no guarantee is given that content is accurate, complete, or up to date.",
 
 section13Title:
 "13. Local Restrictions",
 
 section13Text:
-"This Website is intended for individuals residing in the Kingdom of Saudi Arabia. We do not represent that the content is suitable or available for use in other countries or regions. Access to the Website from any jurisdiction where such access is unlawful is prohibited.",
+"The Website is directed to people residing in the Kingdom of Saudi Arabia. We do not represent that content is appropriate or available in other locations. Accessing the Website from jurisdictions where such access is illegal is prohibited.",
 
 section14Title:
 "14. Disclaimer of Warranties",
 
 section14Text:
-"The Website and all content are provided on an “as is” and “as available” basis. To the maximum extent permitted by applicable law, Modern Sanabel Automotive disclaims all warranties, representations, and conditions, whether express or implied, including but not limited to warranties of accuracy, completeness, non-infringement, merchantability, satisfactory quality, fitness for a particular purpose, or uninterrupted and error-free operation.",
+"The website and all content are provided “as is” and “as available”. To the maximum extent permitted by applicable law, we disclaim all warranties, representations and conditions (express or implied), including without limitation warranties of accuracy, completeness, non-infringement, merchantability, satisfactory quality, fitness for a particular purpose and uninterrupted or error-free operation.",
 
 section15Title:
 "15. Limitation of Liability",
 
 section15Intro:
-"Nothing in these terms excludes or limits any liability that cannot be excluded or limited under the laws of the Kingdom of Saudi Arabia, including liability for death or personal injury caused by negligence, fraud, or fraudulent misrepresentation.",
+"Nothing in these terms excludes or limits liability that cannot be excluded or limited under KSA law (including liability for death or personal injury caused by negligence or for fraud/fraudulent misrepresentation).",
 
 section15Text:
-"To the maximum extent permitted by law, Modern Sanabel Automotive, its affiliates, directors, officers, employees, and agents shall not be liable for:",
+"To the maximum extent permitted by law, Sanabel Modern Motors and its affiliates, directors, officers, employees and agents shall not be liable for any:",
 
 section15List: [
-"Any loss or damage arising from your use of or inability to use the Website.",
-"Reliance on any content published on the Website or linked websites.",
-"Viruses, malicious code, or harmful technical materials affecting your devices, software, data, or other property.",
-"Loss of profits, sales, revenue, business interruption, data loss, loss of reputation, or any indirect, incidental, special, or consequential losses."
+"Loss or damage arising from or in connection with your use of or inability to use the website;",
+"Reliance on any content on the website or on linked websites;",
+"	Viruses, malicious code, or technologically harmful material that may infect your equipment, programs, data, or other proprietary material;",
+"	Lost profits, lost sales/revenue, business interruption, loss of data, loss of goodwill/reputation, or any indirect, incidental, special, exemplary, or consequential losses."
 ],
 
 section16Title:
 "16. Indemnification",
 
 section16Text:
-"You agree to indemnify, defend, and hold harmless Modern Sanabel Automotive, its affiliates, directors, officers, employees, and agents from any claims, liabilities, damages, losses, or expenses (including reasonable legal fees) arising from or related to your breach of these terms or misuse of the Website.",
+"You agree to indemnify, defend and hold harmless Sanabel Modern Motors  and its affiliates, directors, officers, employees and agents from and against all claims, liabilities, damages, losses and expenses (including reasonable legal fees) arising out of or in connection with your breach of these Terms or misuse of the Website.",
 
 section17Title:
 "17. Children Under 18",
 
 section17Text:
-"If you are under the legal age of adulthood in your jurisdiction, you must obtain permission from a parent or legal guardian before using interactive features or submitting information through the Website. We do not knowingly collect or request information from children. Please refer to our Privacy Policy for more information.",
+"If you are under the legal age of majority in your jurisdiction, you must obtain parent/guardian consent before using interactive features or submitting information. We do not knowingly solicit information from children. See our Privacy Policy.",
 
 section18Title:
 "18. Suspension and Termination",
 
 section18Text:
-"We may monitor compliance with these terms and may suspend or terminate your access to the Website (in whole or in part) at any time if you breach these terms, if required by law, or for security or operational reasons.",
+"We may monitor compliance and may suspend or terminate your access to the Website (in whole or part) at any time if you breach these Terms, if required by law, or for security/operational reasons.",
 
 section19Title:
-"19. Changes, Severability, and Waiver",
+"19.	Variation, severability and waiver",
 
 section19List: [
-"**Changes:** We may update these Terms of Use at any time by publishing a new version on this page.",
-"**Severability:** If any provision of these terms is found to be unlawful or unenforceable, the remaining provisions will remain fully effective.",
-"**Waiver:** Any delay or failure by us to enforce any provision of these terms does not constitute a waiver of our rights."
+"Variation: We may update these Terms at any time by posting a new version on this page.",
+"**Severability:**If any provision is found unlawful or unenforceable, the remaining provisions remain in full force.",
+"**Waiver:** Delay or failure to enforce a provision is not a waiver of our rights."
 ],
 
 section20Title:
 "20. Language",
 
 section20Text:
-"If we provide an Arabic version of these Terms of Use, both Arabic and English versions are intended to be consistent. In case of any discrepancy, the Arabic version may be used as the local reference. However, the published and applicable version shall remain the official version unless otherwise required by Saudi Arabian laws.",
+"If we provide an Arabic version of these Terms, both language versions are intended to be consistent. If there is any discrepancy, the Arabic version may be provided for local reference; however, the version posted here shall govern unless KSA law requires otherwise.",
 
 section21Title:
 "21. Governing Law and Jurisdiction",
 
 section21Text:
-"These Terms of Use (and any non-contractual obligations arising from or related to them) are governed by the laws of the Kingdom of Saudi Arabia. The courts of the Kingdom of Saudi Arabia shall have exclusive jurisdiction over any dispute arising from or related to these terms or your use of the Website.",
+"These Terms (and any non-contractual obligations arising out of or in connection with them) are governed by the laws of the Kingdom of Saudi Arabia. The courts of the Kingdom of Saudi Arabia shall have exclusive jurisdiction over any dispute arising from or related to these Terms or your use of the Website.",
 
 section22Title:
 "22. Contact Us",
 
 section22Text:
-"If you have any questions regarding these Terms of Use, please contact us by email:",
+"For questions about these Terms, please contact",
 
 section22Email:
-"info@auto.mynaghi.com",
+"social@sanabelmotors.com",
 
 },
 
@@ -267,11 +267,11 @@ section1Text:
 `هذا الموقع الإلكتروني ("الموقع الإلكتروني") مملوك ومدار من قبل شركة سنابل الحديثة للسيارات ("سنابل الحديثة للسيارات"، أو "نحن"، أو "لنا")، وهي شركة مؤسسة وفقًا لأنظمة المملكة العربية السعودية.`,
 
 contactList: [
-"البريد الإلكتروني: info@auto.mynaghi.com",
-"رقم السجل التجاري: 4030065137",
-"رقم ضريبة القيمة المضافة: -----------------",
-"الخصوصية / حقوق البيانات: privacy@auto.mynaghi.com",
-"العنوان: مركز المصباح التجاري (مركز الجمجوم التجاري سابقًا)، شارع فلسطين، حي الحمراء، ص.ب 704، جدة 21411، المملكة العربية السعودية."
+"البريد الإلكتروني: social@sanabelmotors.com",
+"رقم السجل التجاري: 4030327688",
+"رقم ضريبة القيمة المضافة: 310772620400003",
+"الخصوصية / حقوق البيانات: social@sanabelmotors.comm",
+"العنوان:طريق مالك، جدة، المملكة العربية السعودية"
 ],
 
 section1Note1:
@@ -488,7 +488,7 @@ section22Text:
 "إذا كانت لديك أي استفسارات بشأن شروط الاستخدام هذه، فيرجى التواصل معنا عبر البريد الإلكتروني:",
 
 section22Email:
-"info@auto.mynaghi.com",
+"social@sanabelmotors.com",
 },
   };
 
@@ -527,15 +527,7 @@ section22Email:
       <h2 className="text-3xl font-semibold mb-5">{L.section2Title}</h2>
 
       <p className="text-gray-700 leading-8 mb-4">
-        {L.section2Text1}
-      </p>
-
-      <p className="text-gray-700 leading-8 mb-4">
-        {L.section2Text2}
-      </p>
-
-      <p className="text-gray-700 leading-8">
-        {L.section2Text3}
+        {L.section2Text}
       </p>
     </section>
 
@@ -544,7 +536,13 @@ section22Email:
       <h2 className="text-3xl font-semibold mb-5">{L.section3Title}</h2>
 
       <p className="text-gray-700 leading-8 whitespace-pre-line">
-        {L.section3Text}
+        {L.section3Intro}
+      </p>
+      <p className="text-gray-700 leading-8 whitespace-pre-line">
+        {L.section3List.map((item, index) => (
+          
+  <li key={index}>{item}</li>
+        ))}
       </p>
     </section>
 
@@ -554,34 +552,14 @@ section22Email:
 
       <p className="text-gray-700 leading-8 mb-5">
         {L.section4Text}
-      </p>
-
-      <p className="text-gray-700 italic mb-5">
-        {L.section4Note}
-      </p>
-
-      <h3 className="font-semibold mb-3">{L.section4ListTitle}</h3>
-
-      <ul className="list-disc pl-6 space-y-2 text-gray-700">
-        {L.section4List.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+      </p>   
     </section>
 
     {/* Section 5 */}
     <section>
       <h2 className="text-3xl font-semibold mb-5">{L.section5Title}</h2>
 
-      <p className="text-gray-700 leading-8 mb-5">
-        {L.section5Intro}
-      </p>
-
-      <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
-        {L.section5List.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+ 
 
       <p className="text-gray-700 leading-8 mb-4">
         {L.section5Text1}
@@ -591,9 +569,15 @@ section22Email:
         {L.section5Text2}
       </p>
 
-      <p className="text-gray-700 leading-8">
-        {L.section5Text3}
+     <p className="text-gray-700 leading-8 mb-5">
+        {L.section5Intro}
       </p>
+
+      <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
+        {L.section5List.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </section>
 
     {/* Section 6 */}
@@ -601,7 +585,7 @@ section22Email:
       <h2 className="text-3xl font-semibold mb-5">{L.section6Title}</h2>
 
       <p className="text-gray-700 leading-8 mb-5">
-        {L.section6Text}
+        {L.section6Intro}
       </p>
 
       <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
@@ -620,25 +604,7 @@ section22Email:
       <h2 className="text-3xl font-semibold mb-5">{L.section7Title}</h2>
 
       <p className="text-gray-700 leading-8 mb-5">
-        {L.section7Intro}
-      </p>
-
-      <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
-        {L.section7List.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-
-      <p className="text-gray-700 leading-8 mb-4">
-        {L.section7Text1}
-      </p>
-
-      <p className="text-gray-700 leading-8 mb-4">
-        {L.section7Text2}
-      </p>
-
-      <p className="text-gray-700 leading-8">
-        {L.section7Text3}
+        {L.section7Text}
       </p>
     </section>
 
@@ -649,6 +615,11 @@ section22Email:
       <p className="text-gray-700 leading-8 mb-5">
         {L.section8Text}
       </p>
+      <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
+        {L.section8List.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
 
       <p className="text-gray-700 leading-8 mb-4">
         {L.section8Note1}
@@ -664,56 +635,24 @@ section22Email:
       <h2 className="text-3xl font-semibold mb-5">{L.section9Title}</h2>
 
       <p className="text-gray-700 leading-8 mb-5">
-        {L.section9Intro}
+        {L.section9Text}
       </p>
 
-      <ul className="list-disc pl-6 space-y-2 text-gray-700">
-        {L.section9List.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
     </section>
 
     {/* Section 10 */}
     <section>
       <h2 className="text-3xl font-semibold mb-5">{L.section10Title}</h2>
-
-      <p className="text-gray-700 leading-8 mb-5">
-        {L.section10Text}
-      </p>
-
       <p className="text-gray-700 mb-4">
-        {L.section10Note1}
+        {L.section10Intro}
       </p>
-
-      <p className="text-gray-700 mb-6">
-        {L.section10Note2}
-      </p>
-
-      <p className="text-gray-700 leading-8 mb-4">
-        {L.section10Text2}
-      </p>
-
-      <p className="text-gray-700 leading-8 mb-6">
-        {L.section10Text3}
-      </p>
-
-      <h3 className="font-semibold mb-3">
-        {L.section10ListTitle}
-      </h3>
-
       <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
         {L.section10List.map((item, index) => (
-          <li key={index}>{item}</li>
+        <li key={index}>{item}</li>
         ))}
       </ul>
-
-      <p className="text-gray-700 leading-8 mb-4">
-        {L.section10Footer1}
-      </p>
-
-      <p className="text-gray-700 leading-8">
-        {L.section10Footer2}
+   <p className="text-gray-700 mb-4">
+        {L.section10Text}
       </p>
     </section>
 
@@ -722,7 +661,7 @@ section22Email:
       <h2 className="text-3xl font-semibold mb-5">{L.section11Title}</h2>
 
       <p className="text-gray-700 leading-8 mb-5">
-        {L.section11Text}
+        {L.section11Intro}
       </p>
 
       <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
@@ -730,10 +669,6 @@ section22Email:
           <li key={index}>{item}</li>
         ))}
       </ul>
-
-      <p className="text-gray-700 leading-8">
-        {L.section11Note}
-      </p>
     </section>
 
     {/* Section 12 */}
@@ -743,13 +678,6 @@ section22Email:
       <p className="text-gray-700 leading-8 mb-5">
         {L.section12Text}
       </p>
-
-      <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
-        {L.section12List.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-
       <p className="text-gray-700">
         {L.section12Note}
       </p>
@@ -782,19 +710,22 @@ section22Email:
       </p>
 
       <p className="text-gray-700">
-        {L.section15Note}
+        {L.section15Intro}
       </p>
+      <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
+        {L.section15List.map((item, index) => (
+          <li key={index}>{item}</li> 
+        ))}
+      </ul>
     </section>
 
     {/* Section 16 */}
     <section>
       <h2 className="text-3xl font-semibold mb-5">{L.section16Title}</h2>
-
-      <ul className="list-disc pl-6 space-y-2 text-gray-700">
-        {L.section16List.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+ 
+      <p className="text-gray-700 leading-8">
+        {L.section16Text}
+      </p>
     </section>
 
     {/* Section 17 */}
@@ -819,9 +750,11 @@ section22Email:
     <section>
       <h2 className="text-3xl font-semibold mb-5">{L.section19Title}</h2>
 
-      <p className="text-gray-700 leading-8">
-        {L.section19Text}
-      </p>
+      <ul className="list-disc pl-6 space-y-2 text-gray-700 mb-6">
+        {L.section19List.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </section>
 
     {/* Section 20 */}
@@ -833,7 +766,7 @@ section22Email:
       </p>
 
       <p className="text-gray-700">
-        {L.section20Note}
+        {L.section12Note}
       </p>
     </section>
 
@@ -846,8 +779,8 @@ section22Email:
       </p>
 
         <p className="text-gray-700">
-            <a href={`mailto:${L.section21Email}`} className="text-blue-600 underline">
-                {L.section21Email}
+            <a href={`mailto:${L.section22Email}`} className="text-blue-600 underline">
+                {L.section22Email}
             </a>
         </p>
     </section>

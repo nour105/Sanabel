@@ -44,6 +44,10 @@ code, pre {
   font-size: 20px;              /* smaller arrow icon */
   font-weight: bold;
 }
+h2,h3,p,li,span {
+  color:black;
+  
+}
 
 /* Optional: better visibility on images */
 .swiper-button-next,
