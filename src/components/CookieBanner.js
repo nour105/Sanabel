@@ -116,7 +116,7 @@ export default function CookieBanner({ lang }) {
 
           <button
             onClick={rejectCookies}
-            className="px-8 py-3 border border-black rounded-md hover:bg-gray-100"
+            className="px-8 py-3 border text-black border-black rounded-md hover:bg-gray-100"
           >
             {isArabic ? "رفض الكل" : "Decline All"}
           </button>
