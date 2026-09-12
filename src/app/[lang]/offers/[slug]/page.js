@@ -66,8 +66,26 @@ export default async function OfferDetailsPage({ params }) {
 
         {/* OFFER LEAD FORM */}
         <OfferLeadForm offer={offer} locale={locale} />
+        {publishedCars.length > 0 && (
+  <section className=" py-10 px-6">
+    <div className="flex justify-between items-center mb-6">
+      <h2 className="text-3xl text-gray-700 font-bold">
+        {locale === "ar"
+          ? "السيارات المشمولة بالعرض"
+          : "Cars Included in This Offer"}
+      </h2>
 
-        <div className="container mx-auto px-6 py-16">
+      <span className="text-green-600 font-medium">
+        {locale === "ar"
+          ? "أقساط شهرية متاحة"
+          : "Monthly Installments Available"}
+      </span>
+    </div>
+
+    <CarCarousel cars={publishedCars} locale={locale} />
+  </section>
+)}
+        <div className="container mx-auto px-6 ">
           {/* BRANDS */}
           {offer.brands?.length > 0 && (
             <section className="mb-24">
@@ -133,25 +151,7 @@ export default async function OfferDetailsPage({ params }) {
 )}
 
      
-        {publishedCars.length > 0 && (
-  <section className="mb-24">
-    <div className="flex justify-between items-center mb-6">
-      <h2 className="text-3xl text-gray-700 font-bold">
-        {locale === "ar"
-          ? "السيارات المشمولة بالعرض"
-          : "Cars Included in This Offer"}
-      </h2>
 
-      <span className="text-green-600 font-medium">
-        {locale === "ar"
-          ? "أقساط شهرية متاحة"
-          : "Monthly Installments Available"}
-      </span>
-    </div>
-
-    <CarCarousel cars={publishedCars} locale={locale} />
-  </section>
-)}
 
         </div>
       </div>

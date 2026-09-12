@@ -7,17 +7,49 @@ import SAR_symbol from "@/publicImage/Saudi_Riyal_Symbol.svg.png";
 // Helpers
 function getCarName(car, locale = "en") {
   if (!car?.name) return "";
-  return typeof car.name === "object" ? car.name[locale] || car.name.en : car.name;
+  return typeof car.name === "object"
+    ? car.name[locale] || car.name.en
+    : car.name;
 }
 
 function getCarDescription(car, locale = "en") {
   if (!car?.description) return "";
-  return typeof car.description === "object" ? car.description[locale] || car.description.en : car.description;
+  return typeof car.description === "object"
+    ? car.description[locale] || car.description.en
+    : car.description;
 }
 
 function getYearModel(car, locale = "en") {
   if (!car?.year_model) return "";
-  return typeof car.year_model === "object" ? car.year_model[locale] || car.year_model.en : car.year_model;
+  return typeof car.year_model === "object"
+    ? car.year_model[locale] || car.year_model.en
+    : car.year_model;
+}
+
+// Get car image
+// Priority:
+// 1. image_url (banner image from API)
+// 2. card_image_url
+// 3. banner_image
+// 4. card_image
+function getCarImage(car) {
+  if (car?.image_url) {
+    return car.image_url;
+  }
+
+  if (car?.card_image_url) {
+    return car.card_image_url;
+  }
+
+  if (car?.banner_image) {
+    return `https://admin.sanabelauto.com/storage/${car.banner_image}`;
+  }
+
+  if (car?.card_image) {
+    return `https://admin.sanabelauto.com/storage/${car.card_image}`;
+  }
+
+  return null;
 }
 
 export default function CarCarousel({ cars = [], locale = "en" }) {
@@ -25,109 +57,145 @@ export default function CarCarousel({ cars = [], locale = "en" }) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-4 md:px-6 py-10">
-      {cars.map((car) => (
-        <div
-          key={car.id}
-          className="group relative rounded-2xl bg-white shadow-md transition-all duration-500 hover:translate-y-[-6px] hover:shadow-2xl"
-        >
-          <Link href={`/${locale}/cars/${car.slug}`}>
-            {/* Offer Badge */}
-         {car.tags && (car.tags.en || car.tags.ar) && (
-  <div className="absolute top-3 left-3 flex flex-col gap-2 z-20">
-    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg w-fit">
-      {car.tags[lang] || car.tags.en}
-    </span>
-  </div>
-)}
+      {cars.map((car) => {
+        const carImage = getCarImage(car);
 
-            {/* Car Image */}
-            <div className="relative h-56 w-full overflow-hidden rounded-t-2xl">
-              <Image
-                src={`https://admin.sanabelauto.com/storage/${car.banner_image}`}
-                alt={getCarName(car, locale)}
-                fill
-                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
-                unoptimized
-                quality={65}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
-              <div className="absolute top-4 right-4 z-20 rounded-full bg-white/90 px-4 py-1 text-sm font-semibold text-gray-900 shadow backdrop-blur flex items-center gap-1">
-                {car.price}
-                <Image src={SAR_symbol} alt="SAR" width={20} height={20} />
-                <span>{locale === "ar" ? " شامل الضريبة" : " Including VAT"}</span>
-              </div>
-            </div>
-
-            {/* Car Content */}
-            <div className="py-6 px-4">
-              <h3 className="text-lg font-bold text-gray-900 transition-colors duration-300 group-hover:text-indigo-600">
-                {getCarName(car, locale)}
-              </h3>
-              <p className="mt-1 text-sm text-gray-500 line-clamp-1">
-                {getCarDescription(car, locale)}
-              </p>
-              <li className="flex text-black justify-between mt-2">
-                <span>{locale === "ar" ? "سنة الصنع" : "Year Model"}</span>
-                <span className="font-semibold">{getYearModel(car, locale)}</span>
-              </li>
-
-                         {car.emi_monthly && (
-                <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
-                  {/* EMI INFO */}
-                  <div className="flex items-center gap-3 rounded-full bg-gray-100 px-4 py-2">
-                    <span className="text-base font-bold text-gray-900">
-                      {car.emi_monthly}
-                    </span>
-              
-                    <Image
-                      src={SAR_symbol}
-                      alt="SAR"
-                      width={18}
-                      height={18}
-                      quality={65}
-                      className="inline-block"
-                    />
-              
-                    <span className="text-sm text-gray-600 whitespace-nowrap">
-                      {locale === 'ar'
-                        ? 'إمكانية التقسيط الشهري'
-                        : 'Monthly installments'}
-                    </span>
-                  </div>
-              
-              
+        return (
+          <div
+            key={car.id}
+            className="group relative rounded-2xl bg-white shadow-md transition-all duration-500 hover:translate-y-[-6px] hover:shadow-2xl"
+          >
+            <Link href={`/${locale}/cars/${car.slug}`}>
+              {/* Offer Badge */}
+              {car.tags && (car.tags.en || car.tags.ar) && (
+                <div className="absolute top-3 left-3 flex flex-col gap-2 z-20">
+                  <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg w-fit">
+                    {car.tags[locale] || car.tags.en}
+                  </span>
                 </div>
               )}
-                  {/* CTA BUTTON */}
-                  <button
-                    className="group cursor-pointer relative inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-indigo-700 hover:shadow-lg active:scale-95"
-                  >
-                    <span>
-                      {locale === 'ar' ? 'عرض التفاصيل' : 'View Details'}
+
+              {/* Car Image */}
+              <div className="relative h-56 w-full overflow-hidden rounded-t-2xl">
+                {carImage ? (
+                  <Image
+                    src={carImage}
+                    alt={getCarName(car, locale)}
+                    fill
+                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                    unoptimized
+                    quality={65}
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-gray-100">
+                    <span className="text-sm text-gray-400">
+                      {locale === "ar"
+                        ? "الصورة غير متوفرة"
+                        : "Image unavailable"}
                     </span>
-              
-                    <svg
-                      className={`h-4 w-4 transition-transform duration-300 ${
-                        locale === 'ar'
-                          ? 'rotate-180 group-hover:-translate-x-1'
-                          : 'group-hover:translate-x-1'
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 5l7 7-7 7"
+                  </div>
+                )}
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
+
+                <div className="absolute top-4 right-4 z-20 rounded-full bg-white/90 px-4 py-1 text-sm font-semibold text-gray-900 shadow backdrop-blur flex items-center gap-1">
+                  {car.price}
+
+                  <Image
+                    src={SAR_symbol}
+                    alt="SAR"
+                    width={20}
+                    height={20}
+                  />
+
+                  <span>
+                    {locale === "ar"
+                      ? " شامل الضريبة"
+                      : " Including VAT"}
+                  </span>
+                </div>
+              </div>
+
+              {/* Car Content */}
+              <div className="py-6 px-4">
+                <h3 className="text-lg font-bold text-gray-900 transition-colors duration-300 group-hover:text-indigo-600">
+                  {getCarName(car, locale)}
+                </h3>
+
+                <p className="mt-1 text-sm text-gray-500 line-clamp-1">
+                  {getCarDescription(car, locale)}
+                </p>
+
+                <li className="flex text-black justify-between mt-2">
+                  <span>
+                    {locale === "ar" ? "سنة الصنع" : "Year Model"}
+                  </span>
+
+                  <span className="font-semibold">
+                    {getYearModel(car, locale)}
+                  </span>
+                </li>
+
+                {car.emi_monthly && (
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
+                    {/* EMI INFO */}
+                    <div className="flex items-center gap-3 rounded-full bg-gray-100 px-4 py-2">
+                      <span className="text-base font-bold text-gray-900">
+                        {car.emi_monthly}
+                      </span>
+
+                      <Image
+                        src={SAR_symbol}
+                        alt="SAR"
+                        width={18}
+                        height={18}
+                        quality={65}
+                        className="inline-block"
                       />
-                    </svg>
-                  </button>
-            </div>
-          </Link>
-        </div>
-      ))}
+
+                      <span className="text-sm text-gray-600 whitespace-nowrap">
+                        {locale === "ar"
+                          ? "إمكانية التقسيط الشهري"
+                          : "Monthly installments"}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* CTA BUTTON */}
+                <button
+                  className="group cursor-pointer relative inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-indigo-700 hover:shadow-lg active:scale-95"
+                >
+                  <span>
+                    {locale === "ar"
+                      ? "عرض التفاصيل"
+                      : "View Details"}
+                  </span>
+
+                  <svg
+                    className={`h-4 w-4 transition-transform duration-300 ${
+                      locale === "ar"
+                        ? "rotate-180 group-hover:-translate-x-1"
+                        : "group-hover:translate-x-1"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </Link>
+          </div>
+        );
+      })}
     </div>
   );
 }
+
