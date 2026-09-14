@@ -178,7 +178,7 @@ export default function Branch() {
           </div>
 
           <div>
-            <div className="h-[420px] rounded-2xl overflow-hidden bg-white shadow">
+            <div className="h-105 rounded-2xl overflow-hidden bg-white shadow">
               <iframe
                 className="w-full h-full"
                 src={selectedBranch.embed}

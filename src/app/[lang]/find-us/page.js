@@ -135,7 +135,7 @@ export default function FindUsPage() {
           {t.title}
         </h1> */}
 
-        <h1 className="text-center  text-3xl md:text-4xl font-bold text-center mb-6 text-black">
+        <h1 className="text-center  text-3xl md:text-4xl font-bold mb-6 text-black">
           {t.subtitle}
         </h1>
         {/* ===== FORM ===== */}
