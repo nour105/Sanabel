@@ -21,6 +21,7 @@ export default function Header({ lang }) {
     findUs: isAr ? 'مواقعنا' : 'Find Us',
     about: isAr ? 'من نحن' : 'About Us',
     noBrands: isAr ? 'لا توجد علامات' : 'No brands found',
+    parts: isAr ? 'قطع الغيار' : 'Parts',
   };
 
   const getBrandName = (brand) =>
@@ -123,6 +124,12 @@ export default function Header({ lang }) {
           <Link href={`/${lang}/about-us`} className="font-medium text-gray-700 hover:text-gray-900">
             {t.about}
           </Link>
+          <Link
+  href={`/${lang}/parts`}
+  className="font-medium text-gray-700 hover:text-gray-900 transition-colors"
+>
+  {t.parts}
+</Link>
         </nav>
 
         {/* Language Switcher */}
@@ -207,7 +214,13 @@ export default function Header({ lang }) {
             <Link href={`/${lang}/about-us`} className="font-medium text-gray-700 hover:text-gray-900" onClick={() => setMobileOpen(false)}>
               {t.about}
             </Link>
-
+<Link
+  href={`/${lang}/parts`}
+  className="font-medium text-gray-700 hover:text-gray-900 transition-colors"
+  onClick={() => setMobileOpen(false)}
+>
+  {t.parts}
+</Link>
             {/* Language Switcher */}
             <LanguageSwitcher lang={lang} />
           </div>
